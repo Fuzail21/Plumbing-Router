@@ -254,12 +254,15 @@ class JobInformations extends Controller
     
         // Execute query and paginate only if search filters are applied
         if ($isSearchApplied) {
-            $search = $query->orderBy('j.recnum', 'desc')->paginate(15);
-            
-            session(['search' => $search]);
+            $search = (clone $query)->orderBy('j.recnum', 'desc')->paginate(2)->appends(request()->query());
 
+            $allSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
+        
+            session(['search' => $allSearch]);
+        
             return view('admin.search', compact('search'));
         }
+        
     
         // Return empty result if no filters are applied
         return view('admin.search', ['search' => collect()]);
@@ -362,41 +365,53 @@ class JobInformations extends Controller
     
         // If search has been applied, get the results
         if ($searchApplied) {
-            $sfhEngSearch = $query->orderBy('j.recnum', 'desc')->paginate(10);
-
-            session(['sfhEngSearch' => $sfhEngSearch]);
-
-        } else {
-            $sfhEngSearch = collect(); // Empty collection if no search applied
-        }
+            $sfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->paginate(10)->appends(request()->query());
+            
+            $allSfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
     
-        return view('admin.sfhEngSearch', compact('sfhEngSearch', 'searchApplied'));
+            session(['sfhEngSearch' => $allSfhEngSearch]);
+        
+        } else {
+            $sfhEngSearch = collect();
+        }
+        
+        return view('admin.sfhEngSearch', compact('sfhEngSearch', 'searchApplied'));        
+        
     }
 
-    public function search_editBy_dateField(Request $request){
+    public function search_editBy_dateField(Request $request) {
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-            ->select('j.*', 's.*')
-            ->distinct();
+            ->select('j.recnum', 'j.jobType', 'j.*', 's.*') // Ensure ORDER BY column is included
+            ->orderBy('j.recnum', 'desc'); // Apply ORDER BY
     
         // Initialize empty results
         $searchResults = collect([]);
     
-        // Apply filtering based on user selection
         if ($request->filled('dateType') && $request->filled('from') && $request->filled('to')) {
-            $column = $request->input('dateType'); // Selected column name
+            $column = $request->input('dateType'); 
             $from = $request->input('from');
             $to = $request->input('to');
-        
-           
-            $query->whereBetween("s.$column", [$from, $to]);
-            $searchResults = $query->paginate(10);
+    
+            // Clone query before modifying
+            $filteredQuery = clone $query;
+            $filteredQuery->whereBetween("s.$column", [$from, $to]);
+    
 
-            session(['searchResults' => $searchResults]);
+            $allSearchResults = (clone $filteredQuery)->get();
+
+            // Paginated results with query parameters
+            $searchResults = $filteredQuery->paginate(10)->appends(request()->query());
+    
+            // Get all results without pagination and store in session
+            session(['searchResults' => $allSearchResults]);  // Store non-paginated results
+    
         }
     
         return view('admin.search_editByDateField', compact('searchResults'));
     }
+    
+    
 
     public function bulk_edit(Request $request) {
         $query = DB::table('job_information as j')
@@ -495,13 +510,19 @@ class JobInformations extends Controller
             $isSearchApplied = true;
         }
     
-        // Execute query and paginate only if search filters are applied
         if ($isSearchApplied) {
-            $bulkEdit = $query->orderBy('j.recnum', 'desc')->paginate(15);
-            session(['bulkEdit' => $bulkEdit]);
-
+            // Clone the query and apply pagination with query parameters
+            $bulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->paginate(10)->appends(request()->query());
+        
+            // Clone again for non-paginated results
+            $allBulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->get();
+        
+            session(['bulkEdit' => $allBulkEdit]);
+        
             return view('admin.bulk_edit', compact('bulkEdit'));
         }
+        
+        
     
         // Return empty result if no filters are applied
         return view('admin.bulk_edit', ['bulkEdit' => collect()]);
