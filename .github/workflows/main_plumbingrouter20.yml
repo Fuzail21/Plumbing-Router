@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - plumbingrouter20
+name: Build and deploy PHP app to Azure Web App - PlumbingRouter20
 
 on:
   push:
@@ -64,15 +64,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2B0AF636E27343AFA2D46E6CD7E7FA23 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_87793443FCFC464CA652F012901FBCBC }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EDCEC351324C4129AE638C8B00B8A21C }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_082DF896172B45DAA3FF3EBC77EEDCA3 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_92991C53AB584E98B56D76734052BB7E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_18F996A0732B4E4B9591CDB565D6D7E6 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'plumbingrouter20'
+          app-name: 'PlumbingRouter20'
           slot-name: 'Production'
           package: .
           
