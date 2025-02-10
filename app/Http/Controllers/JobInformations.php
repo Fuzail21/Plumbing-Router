@@ -254,7 +254,7 @@ class JobInformations extends Controller
     
         // Execute query and paginate only if search filters are applied
         if ($isSearchApplied) {
-            $search = (clone $query)->orderBy('j.recnum', 'desc')->paginate(2)->appends(request()->query());
+            $search = (clone $query)->orderBy('j.recnum', 'desc')->paginate(10)->appends(request()->query());
 
             $allSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
         
