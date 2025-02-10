@@ -130,51 +130,54 @@
         <div class="card mb-4">
             <div class="card-header">
                 <h3 class="card-title"></h3>
-                <div class="card-tools">
-                    <ul class="pagination pagination-sm float-end">
-                        <!-- Previous Page Link -->
-                        @if ($sfhEngSearch->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->previousPageUrl() }}">&laquo;</a></li>
-                        @endif
-                
-                        @php
-                            $start = max(1, $sfhEngSearch->currentPage() - 2);
-                            $end = min($sfhEngSearch->lastPage(), $sfhEngSearch->currentPage() + 2);
-                        @endphp
-                
-                        <!-- First Page -->
-                        @if ($start > 1)
-                            <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->url(1) }}">1</a></li>
-                            @if ($start > 2)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                @if ($sfhEngSearch instanceof \Illuminate\Pagination\LengthAwarePaginator && $sfhEngSearch->total() > 0)
+                    <div class="card-tools">
+                        <ul class="pagination pagination-sm float-end">
+                            <!-- Previous Page Link -->
+                            @if ($sfhEngSearch->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                            @else
+                                <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->previousPageUrl() }}">&laquo;</a></li>
                             @endif
-                        @endif
-                
-                        <!-- Page Number Links -->
-                        @for ($page = $start; $page <= $end; $page++)
-                            <li class="page-item {{ $page == $sfhEngSearch->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $sfhEngSearch->url($page) }}">{{ $page }}</a>
-                            </li>
-                        @endfor
-                
-                        <!-- Last Page -->
-                        @if ($end < $sfhEngSearch->lastPage())
-                            @if ($end < $sfhEngSearch->lastPage() - 1)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                    
+                            @php
+                                $start = max(1, $sfhEngSearch->currentPage() - 2);
+                                $end = min($sfhEngSearch->lastPage(), $sfhEngSearch->currentPage() + 2);
+                            @endphp
+                    
+                            <!-- First Page -->
+                            @if ($start > 1)
+                                <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->url(1) }}">1</a></li>
+                                @if ($start > 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
                             @endif
-                            <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->url($sfhEngSearch->lastPage()) }}">{{ $sfhEngSearch->lastPage() }}</a></li>
-                        @endif
-                
-                        <!-- Next Page Link -->
-                        @if ($sfhEngSearch->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->nextPageUrl() }}">&raquo;</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                        @endif
-                    </ul>
-                </div>
+                    
+                            <!-- Page Number Links -->
+                            @for ($page = $start; $page <= $end; $page++)
+                                <li class="page-item {{ $page == $sfhEngSearch->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $sfhEngSearch->url($page) }}">{{ $page }}</a>
+                                </li>
+                            @endfor
+                    
+                            <!-- Last Page -->
+                            @if ($end < $sfhEngSearch->lastPage())
+                                @if ($end < $sfhEngSearch->lastPage() - 1)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                                <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->url($sfhEngSearch->lastPage()) }}">{{ $sfhEngSearch->lastPage() }}</a></li>
+                            @endif
+                    
+                            <!-- Next Page Link -->
+                            @if ($sfhEngSearch->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $sfhEngSearch->nextPageUrl() }}">&raquo;</a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            @endif
+                        </ul>
+                    </div>
+                @endif
+
             </div> <!-- /.card-header -->
     
             <div class="card-body p-0">
