@@ -67,14 +67,35 @@
                         @else
                             <li class="page-item"><a class="page-link" href="{{ $dataView->previousPageUrl() }}">&laquo;</a></li>
                         @endif
-                
+                    
+                        @php
+                            $start = max(1, $dataView->currentPage() - 2);
+                            $end = min($dataView->lastPage(), $dataView->currentPage() + 2);
+                        @endphp
+                    
+                        <!-- First Page -->
+                        @if ($start > 1)
+                            <li class="page-item"><a class="page-link" href="{{ $dataView->url(1) }}">1</a></li>
+                            @if ($start > 2)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                        @endif
+                    
                         <!-- Page Number Links -->
-                        @foreach ($dataView->getUrlRange(1, $dataView->lastPage()) as $page => $url)
+                        @for ($page = $start; $page <= $end; $page++)
                             <li class="page-item {{ $page == $dataView->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link" href="{{ $dataView->url($page) }}">{{ $page }}</a>
                             </li>
-                        @endforeach
-                
+                        @endfor
+                    
+                        <!-- Last Page -->
+                        @if ($end < $dataView->lastPage())
+                            @if ($end < $dataView->lastPage() - 1)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                            <li class="page-item"><a class="page-link" href="{{ $dataView->url($dataView->lastPage()) }}">{{ $dataView->lastPage() }}</a></li>
+                        @endif
+                    
                         <!-- Next Page Link -->
                         @if ($dataView->hasMorePages())
                             <li class="page-item"><a class="page-link" href="{{ $dataView->nextPageUrl() }}">&raquo;</a></li>
@@ -82,6 +103,7 @@
                             <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                         @endif
                     </ul>
+                    
                 </div>
             </div> <!-- /.card-header -->
 

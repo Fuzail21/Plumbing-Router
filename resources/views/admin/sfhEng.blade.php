@@ -67,14 +67,35 @@
                         @else
                             <li class="page-item"><a class="page-link" href="{{ $sfhEng->previousPageUrl() }}">&laquo;</a></li>
                         @endif
-                
+                    
+                        @php
+                            $start = max(1, $sfhEng->currentPage() - 2);
+                            $end = min($sfhEng->lastPage(), $sfhEng->currentPage() + 2);
+                        @endphp
+                    
+                        <!-- First Page -->
+                        @if ($start > 1)
+                            <li class="page-item"><a class="page-link" href="{{ $sfhEng->url(1) }}">1</a></li>
+                            @if ($start > 2)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                        @endif
+                    
                         <!-- Page Number Links -->
-                        @foreach ($sfhEng->getUrlRange(1, $sfhEng->lastPage()) as $page => $url)
+                        @for ($page = $start; $page <= $end; $page++)
                             <li class="page-item {{ $page == $sfhEng->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link" href="{{ $sfhEng->url($page) }}">{{ $page }}</a>
                             </li>
-                        @endforeach
-                
+                        @endfor
+                    
+                        <!-- Last Page -->
+                        @if ($end < $sfhEng->lastPage())
+                            @if ($end < $sfhEng->lastPage() - 1)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                            <li class="page-item"><a class="page-link" href="{{ $sfhEng->url($sfhEng->lastPage()) }}">{{ $sfhEng->lastPage() }}</a></li>
+                        @endif
+                    
                         <!-- Next Page Link -->
                         @if ($sfhEng->hasMorePages())
                             <li class="page-item"><a class="page-link" href="{{ $sfhEng->nextPageUrl() }}">&raquo;</a></li>
@@ -82,6 +103,7 @@
                             <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                         @endif
                     </ul>
+                    
                 </div>
             </div> <!-- /.card-header -->
 

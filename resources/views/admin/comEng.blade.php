@@ -67,14 +67,35 @@
                         @else
                             <li class="page-item"><a class="page-link" href="{{ $comEng->previousPageUrl() }}">&laquo;</a></li>
                         @endif
-                
+                    
+                        @php
+                            $start = max(1, $comEng->currentPage() - 2);
+                            $end = min($comEng->lastPage(), $comEng->currentPage() + 2);
+                        @endphp
+                    
+                        <!-- First Page -->
+                        @if ($start > 1)
+                            <li class="page-item"><a class="page-link" href="{{ $comEng->url(1) }}">1</a></li>
+                            @if ($start > 2)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                        @endif
+                    
                         <!-- Page Number Links -->
-                        @foreach ($comEng->getUrlRange(1, $comEng->lastPage()) as $page => $url)
+                        @for ($page = $start; $page <= $end; $page++)
                             <li class="page-item {{ $page == $comEng->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link" href="{{ $comEng->url($page) }}">{{ $page }}</a>
                             </li>
-                        @endforeach
-                
+                        @endfor
+                    
+                        <!-- Last Page -->
+                        @if ($end < $comEng->lastPage())
+                            @if ($end < $comEng->lastPage() - 1)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                            <li class="page-item"><a class="page-link" href="{{ $comEng->url($comEng->lastPage()) }}">{{ $comEng->lastPage() }}</a></li>
+                        @endif
+                    
                         <!-- Next Page Link -->
                         @if ($comEng->hasMorePages())
                             <li class="page-item"><a class="page-link" href="{{ $comEng->nextPageUrl() }}">&raquo;</a></li>
@@ -82,6 +103,7 @@
                             <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                         @endif
                     </ul>
+                    
                 </div>
             </div> <!-- /.card-header -->
 

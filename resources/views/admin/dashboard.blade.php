@@ -68,12 +68,33 @@
                             <li class="page-item"><a class="page-link" href="{{ $jobs->previousPageUrl() }}">&laquo;</a></li>
                         @endif
                 
+                        @php
+                            $start = max(1, $jobs->currentPage() - 2);
+                            $end = min($jobs->lastPage(), $jobs->currentPage() + 2);
+                        @endphp
+                
+                        <!-- First Page -->
+                        @if ($start > 1)
+                            <li class="page-item"><a class="page-link" href="{{ $jobs->url(1) }}">1</a></li>
+                            @if ($start > 2)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                        @endif
+                
                         <!-- Page Number Links -->
-                        @foreach ($jobs->getUrlRange(1, $jobs->lastPage()) as $page => $url)
+                        @for ($page = $start; $page <= $end; $page++)
                             <li class="page-item {{ $page == $jobs->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link" href="{{ $jobs->url($page) }}">{{ $page }}</a>
                             </li>
-                        @endforeach
+                        @endfor
+                
+                        <!-- Last Page -->
+                        @if ($end < $jobs->lastPage())
+                            @if ($end < $jobs->lastPage() - 1)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                            <li class="page-item"><a class="page-link" href="{{ $jobs->url($jobs->lastPage()) }}">{{ $jobs->lastPage() }}</a></li>
+                        @endif
                 
                         <!-- Next Page Link -->
                         @if ($jobs->hasMorePages())
@@ -83,6 +104,7 @@
                         @endif
                     </ul>
                 </div>
+                
             </div> <!-- /.card-header -->
 
             <div class="card-body p-0">
