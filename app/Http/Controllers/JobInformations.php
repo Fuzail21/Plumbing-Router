@@ -390,7 +390,7 @@ class JobInformations extends Controller
         
            
             $query->whereBetween("s.$column", [$from, $to]);
-            $searchResults = $query->get();
+            $searchResults = $query->paginate(10);
 
             session(['searchResults' => $searchResults]);
         }

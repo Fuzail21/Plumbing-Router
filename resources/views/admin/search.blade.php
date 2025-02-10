@@ -154,7 +154,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <h3 class="card-title"></h3>
-                {{-- <div class="card-tools">
+                <div class="card-tools">
                     <ul class="pagination pagination-sm float-end">
                         <!-- Previous Page Link -->
                         @if ($search->onFirstPage())
@@ -162,14 +162,35 @@
                         @else
                             <li class="page-item"><a class="page-link" href="{{ $search->previousPageUrl() }}">&laquo;</a></li>
                         @endif
-            
+                
+                        @php
+                            $start = max(1, $search->currentPage() - 2);
+                            $end = min($search->lastPage(), $search->currentPage() + 2);
+                        @endphp
+                
+                        <!-- First Page -->
+                        @if ($start > 1)
+                            <li class="page-item"><a class="page-link" href="{{ $search->url(1) }}">1</a></li>
+                            @if ($start > 2)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                        @endif
+                
                         <!-- Page Number Links -->
-                        @foreach ($search->getUrlRange(1, $search->lastPage()) as $page => $url)
+                        @for ($page = $start; $page <= $end; $page++)
                             <li class="page-item {{ $page == $search->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                <a class="page-link" href="{{ $search->url($page) }}">{{ $page }}</a>
                             </li>
-                        @endforeach
-            
+                        @endfor
+                
+                        <!-- Last Page -->
+                        @if ($end < $search->lastPage())
+                            @if ($end < $search->lastPage() - 1)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            @endif
+                            <li class="page-item"><a class="page-link" href="{{ $search->url($search->lastPage()) }}">{{ $search->lastPage() }}</a></li>
+                        @endif
+                
                         <!-- Next Page Link -->
                         @if ($search->hasMorePages())
                             <li class="page-item"><a class="page-link" href="{{ $search->nextPageUrl() }}">&raquo;</a></li>
@@ -177,7 +198,7 @@
                             <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
                         @endif
                     </ul>
-                </div> --}}
+                </div>
             </div> <!-- /.card-header -->
     
             <div class="card-body p-0">
