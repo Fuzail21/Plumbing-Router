@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Kill any existing Nginx processes (if running)
+if [ -f /run/nginx.pid ]; then
+  kill $(cat /run/nginx.pid)
+fi
+
+# Start Nginx with your custom configuration
+/usr/sbin/nginx -c /home/site/wwwroot/nginx/nginx.conf
+
+# Optional: Add some logging for debugging (remove in production)
+echo "Starting Nginx with: /home/site/wwwroot/nginx/nginx.conf" >> /tmp/startup.log  # Log the command
+date >> /tmp/startup.log # Log the date and time
