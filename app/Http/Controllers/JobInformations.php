@@ -131,29 +131,64 @@ class JobInformations extends Controller
         return redirect()->route('search')->with('success', 'Updated Successfully.');
     }
     
-    public function home() {
+    public function home(Request $request) {
+        $sortColumn = $request->input('column', session('sort_column', 'j.recnum'));
+    
+        $validColumns = ['j.recnum', 'j.job_title', 's.status', 's.updated_at'];
 
-        $jobs = DB::table('job_information as j')
-         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-         ->select('j.*', 's.*')
-         ->distinct()
-         ->orderBy('j.recnum', 'desc')
-         ->paginate(15);
-
+        if (!in_array($sortColumn, $validColumns)) {
+            $sortColumn = 'j.recnum'; 
+        }
+    
+        $sortDirection = session('sort_direction', 'desc');
+    
+        if ($request->has('column') && session('sort_column') == $sortColumn) {
+            $sortDirection = ($sortDirection == 'asc') ? 'desc' : 'asc';
+        }
+    
+        session(['sort_column' => $sortColumn, 'sort_direction' => $sortDirection]);
+    
+        $query = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->select('j.*', 's.*');
+    
+        $query->orderBy($sortColumn, $sortDirection);
+    
+        $jobs = $query->paginate(15);
+    
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('admin.dashboard', compact('jobs'))->render()
+            ]);
+        }
+    
         return view('admin.dashboard', compact('jobs'));
     }
 
-    public function data_view() {
-
+    public function data_view(Request $request) {
+        // Get sorting parameters from session or request
+        $sortColumn = $request->get('column', session('data_sort_column', 'j.recnum'));
+        $sortDirection = $request->get('order', session('data_sort_direction', 'desc'));
+    
+        // Store sorting preferences in session
+        session(['data_sort_column' => $sortColumn, 'data_sort_direction' => $sortDirection]);
+    
+        // Fetch data with sorting
         $dataView = DB::table('job_information as j')
-         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-         ->select('j.*', 's.*')
-         ->distinct()
-         ->orderBy('j.recnum', 'desc')
-         ->paginate(15);
-
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->select('j.*', 's.*')
+            ->orderBy($sortColumn, $sortDirection)
+            ->paginate(15);
+    
+        // Return AJAX response for sorting and pagination
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('admin.data_view', compact('dataView'))->render()
+            ]);
+        }
+    
         return view('admin.data_view', compact('dataView'));
-    }
+    }    
 
     public function search(Request $request) {
         $query = DB::table('job_information as j')
@@ -268,68 +303,57 @@ class JobInformations extends Controller
         return view('admin.search', ['search' => collect()]);
     }
     
-    public function sfh_eng() {
+    public function sfh_eng(Request $request){
+        // Get sorting parameters from session or request
+        $sortColumn = $request->get('column', session('data_sort_column_sfh', 'j.recnum'));
+        $sortDirection = $request->get('order', session('data_sort_direction_sfh', 'desc'));
 
+        // Store sorting preferences in session
+        session(['data_sort_column_sfh' => $sortColumn, 'data_sort_direction_sfh' => $sortDirection]);
+
+        // Fetch data with sorting
         $sfhEng = DB::table('job_information as j')
-         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-         ->where('j.jobType', '=', 'SFH')
-         ->select('j.*', 's.*')
-         ->distinct()
-         ->orderBy('j.recnum', 'desc')
-         ->paginate(15);
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where('j.jobType', '=', 'SFH')
+            ->select('j.*', 's.*')
+            ->orderBy($sortColumn, $sortDirection)
+            ->paginate(10);
+
+        // Return AJAX response for sorting and pagination
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('admin.sfhEng', compact('sfhEng'))->render()
+            ]);
+        }
 
         return view('admin.sfhEng', compact('sfhEng'));
     }
 
-    public function com_eng() {
+    public function com_eng(Request $request){
+        // Get sorting parameters from session or request
+        $sortColumn = $request->get('column', session('data_sort_column_com', 'j.recnum'));
+        $sortDirection = $request->get('order', session('data_sort_direction_com', 'desc'));
 
+        // Store sorting preferences in session
+        session(['data_sort_column_com' => $sortColumn, 'data_sort_direction_com' => $sortDirection]);
+
+        // Fetch data with sorting
         $comEng = DB::table('job_information as j')
-         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-         ->where('j.jobType', '=', 'COM')
-         ->select('j.*', 's.*')
-         ->distinct()
-         ->orderBy('j.recnum', 'desc')
-         ->paginate(15);
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where('j.jobType', '=', 'COM')
+            ->select('j.*', 's.*')
+            ->orderBy($sortColumn, $sortDirection)
+            ->paginate(15);
+
+        // Return AJAX response for sorting and pagination
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('admin.comEng', compact('comEng'))->render()
+            ]);
+        }
 
         return view('admin.comEng', compact('comEng'));
     }
-
-    // public function sfh_eng_search(Request $request) {
-    //     $query = DB::table('job_information as j')
-    //         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-    //         ->where('j.jobType', '=', 'SFH')
-    //         ->select('j.*', 's.*')
-    //         ->distinct();
-    
-    //     // List of searchable fields
-    //     $filters = [
-    //         'jobNumber'    => 'j.jobId',
-    //         'description'  => 'j.descript',
-    //         'phase'        => 'j.phase',
-    //         'units'        => 'j.units',
-    //         'sys'          => 'j.sys',
-    //         'blf_floor'    => 'j.bldFloor',
-    //         'dataNeeded'   => 's.dateNeeded',
-    //         'engComplete'  => 's.engComplete',
-    //         'roughSuper'   => 'j.roughSuper',
-    //         'engineer'     => 'j.engineer',
-    //         'pmActManager' => 's.pActManager',
-    //         'wrhs2Feb'     => 's.wrhs2_feb',
-    //     ];
-    
-    //     // Apply filters dynamically
-    //     foreach ($filters as $input => $column) {
-    //         if ($request->filled($input)) {
-    //             $query->where($column, 'LIKE', '%' . trim($request->input($input)) . '%');
-    //         }
-    //     }
-    
-    //     // Order by recnum and paginate results
-    //     $sfhEngSearch = $query->orderBy('j.recnum', 'desc')->paginate(15);
-    
-    //     return view('admin.sfhEngSearch', compact('sfhEngSearch'));
-    // }
-
 
     public function sfh_eng_search(Request $request) {
         $query = DB::table('job_information as j')
@@ -411,8 +435,6 @@ class JobInformations extends Controller
         return view('admin.search_editByDateField', compact('searchResults'));
     }
     
-    
-
     public function bulk_edit(Request $request) {
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')

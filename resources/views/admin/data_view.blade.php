@@ -60,76 +60,76 @@
             <div class="card-header">
                 <h3 class="card-title"></h3>
                 <div class="card-tools">
-                    <ul class="pagination pagination-sm float-end">
-                        <!-- Previous Page Link -->
-                        @if ($dataView->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $dataView->previousPageUrl() }}">&laquo;</a></li>
+                <ul class="pagination pagination-sm float-end" id="pagination">
+                    <!-- Previous Page Link -->
+                    @if ($dataView->onFirstPage())
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                    @else
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="{{ $dataView->currentPage() - 1 }}" href="{{ $dataView->previousPageUrl() }}">&laquo;</a></li>
+                    @endif
+
+                    @php
+                        $start = max(1, $dataView->currentPage() - 2);
+                        $end = min($dataView->lastPage(), $dataView->currentPage() + 2);
+                    @endphp
+
+                    <!-- First Page -->
+                    @if ($start > 1)
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="1" href="{{ $dataView->url(1) }}">1</a></li>
+                        @if ($start > 2)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
                         @endif
-                    
-                        @php
-                            $start = max(1, $dataView->currentPage() - 2);
-                            $end = min($dataView->lastPage(), $dataView->currentPage() + 2);
-                        @endphp
-                    
-                        <!-- First Page -->
-                        @if ($start > 1)
-                            <li class="page-item"><a class="page-link" href="{{ $dataView->url(1) }}">1</a></li>
-                            @if ($start > 2)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                            @endif
+                    @endif
+
+                    <!-- Page Number Links -->
+                    @for ($page = $start; $page <= $end; $page++)
+                        <li class="page-item {{ $page == $dataView->currentPage() ? 'active' : '' }}">
+                            <a class="page-link page-link-ajax" data-page="{{ $page }}" href="{{ $dataView->url($page) }}">{{ $page }}</a>
+                        </li>
+                    @endfor
+
+                    <!-- Last Page -->
+                    @if ($end < $dataView->lastPage())
+                        @if ($end < $dataView->lastPage() - 1)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
                         @endif
-                    
-                        <!-- Page Number Links -->
-                        @for ($page = $start; $page <= $end; $page++)
-                            <li class="page-item {{ $page == $dataView->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $dataView->url($page) }}">{{ $page }}</a>
-                            </li>
-                        @endfor
-                    
-                        <!-- Last Page -->
-                        @if ($end < $dataView->lastPage())
-                            @if ($end < $dataView->lastPage() - 1)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                            @endif
-                            <li class="page-item"><a class="page-link" href="{{ $dataView->url($dataView->lastPage()) }}">{{ $dataView->lastPage() }}</a></li>
-                        @endif
-                    
-                        <!-- Next Page Link -->
-                        @if ($dataView->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $dataView->nextPageUrl() }}">&raquo;</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                        @endif
-                    </ul>
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="{{ $dataView->lastPage() }}" href="{{ $dataView->url($dataView->lastPage()) }}">{{ $dataView->lastPage() }}</a></li>
+                    @endif
+
+                    <!-- Next Page Link -->
+                    @if ($dataView->hasMorePages())
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="{{ $dataView->currentPage() + 1 }}" href="{{ $dataView->nextPageUrl() }}">&raquo;</a></li>
+                    @else
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                    @endif
+                </ul>
+
                     
                 </div>
             </div> <!-- /.card-header -->
 
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Job Type</th>
-                                <th>Job #</th>
-                                <th>System</th>
-                                <th>Location</th>
+                <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><a href="" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">Job Type</a></th>
+                        <th><a href="" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job #</a></th>
+                        <th><a href="" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                    <tbody id="data-table">
+                        @foreach($dataView as $data)
+                            <tr class="align-middle">
+                                <td>{{ $data->jobType }}</td>
+                                <td>{{ $data->jobId }}</td>
+                                <td>{{ $data->sys }}</td>
+                                <td>{{ $data->bldFloor }} - {{ $data->zoneUnit }} - {{ $data->dx }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($dataView as $data)
-                                <tr class="align-middle">
-                                    <td>{{ $data->jobType }}</td>
-                                    <td>{{ $data->jobId }}</td>                        
-                                    <td>{{ $data->sys }}</td>
-                                    <td>{{ $data->bldFloor }} - {{ $data->zoneUnit }} - {{ $data->dx }}</td>
-                                </tr>
-                            @endforeach
-                        
-                        </tbody>
-                    </table>
+                        @endforeach
+                    </tbody>
+                </table>
                 </div> <!-- /.table-responsive -->
             </div> <!-- /.card-body -->
         </div>
@@ -139,5 +139,62 @@
     <a href="{{ route('form.add') }}" class="floating-btn">
         <i class="bi bi-plus"></i>
     </a>
+
+@endsection
+
+
+@section('js')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+            $(document).ready(function () {
+                let currentColumn = "{{ session('data_sort_column', 'j.recnum') }}";
+                let currentOrder = "{{ session('data_sort_direction', 'desc') }}";
+                
+                function updateSortingIndicators() {
+                    $('.sort').each(function () {
+                        let column = $(this).data('column');
+                        if (column === currentColumn) {
+                            $(this).html($(this).text().split(' ')[0] + (currentOrder === 'asc' ? ' 🔼' : ' 🔽'));
+                        } else {
+                            $(this).html($(this).text().split(' ')[0]); // Reset others
+                        }
+                    });
+                }
+            
+                $('.sort').on('click', function (e) {
+                    e.preventDefault();
+                
+                    currentColumn = $(this).data('column');
+                    currentOrder = $(this).data('order') === 'asc' ? 'desc' : 'asc';
+                
+                    fetchSortedData(1);
+                });
+            
+                $(document).on('click', '.page-link-ajax', function (e) {
+                    e.preventDefault();
+                    let page = $(this).data('page');
+                    fetchSortedData(page);
+                });
+            
+                function fetchSortedData(page) {
+                    $.ajax({
+                        url: "{{ route('data_view') }}",
+                        type: "GET",
+                        data: { column: currentColumn, order: currentOrder, page: page },
+                        success: function (response) {
+                            $('#data-table').html($(response.table).find('#data-table').html());
+                            $('.pagination').html($(response.table).find('.pagination').html());
+                            $('.sort[data-column="' + currentColumn + '"]').data('order', currentOrder);
+                            updateSortingIndicators();
+                        }
+                    });
+                }
+            
+                updateSortingIndicators();
+            });
+
+
+    </script>
 
 @endsection

@@ -60,48 +60,48 @@
             <div class="card-header">
                 <h3 class="card-title"></h3>
                 <div class="card-tools">
-                    <ul class="pagination pagination-sm float-end">
+                <ul class="pagination pagination-sm float-end">
                         <!-- Previous Page Link -->
                         @if ($comEng->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $comEng->previousPageUrl() }}">&laquo;</a></li>
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                    @else
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="{{ $comEng->currentPage() - 1 }}" href="{{ $comEng->previousPageUrl() }}">&laquo;</a></li>
+                    @endif
+
+                    @php
+                        $start = max(1, $comEng->currentPage() - 2);
+                        $end = min($comEng->lastPage(), $comEng->currentPage() + 2);
+                    @endphp
+
+                    <!-- First Page -->
+                    @if ($start > 1)
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="1" href="{{ $comEng->url(1) }}">1</a></li>
+                        @if ($start > 2)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
                         @endif
-                    
-                        @php
-                            $start = max(1, $comEng->currentPage() - 2);
-                            $end = min($comEng->lastPage(), $comEng->currentPage() + 2);
-                        @endphp
-                    
-                        <!-- First Page -->
-                        @if ($start > 1)
-                            <li class="page-item"><a class="page-link" href="{{ $comEng->url(1) }}">1</a></li>
-                            @if ($start > 2)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                            @endif
+                    @endif
+
+                    <!-- Page Number Links -->
+                    @for ($page = $start; $page <= $end; $page++)
+                        <li class="page-item {{ $page == $comEng->currentPage() ? 'active' : '' }}">
+                            <a class="page-link page-link-ajax" data-page="{{ $page }}" href="{{ $comEng->url($page) }}">{{ $page }}</a>
+                        </li>
+                    @endfor
+
+                    <!-- Last Page -->
+                    @if ($end < $comEng->lastPage())
+                        @if ($end < $comEng->lastPage() - 1)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
                         @endif
-                    
-                        <!-- Page Number Links -->
-                        @for ($page = $start; $page <= $end; $page++)
-                            <li class="page-item {{ $page == $comEng->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $comEng->url($page) }}">{{ $page }}</a>
-                            </li>
-                        @endfor
-                    
-                        <!-- Last Page -->
-                        @if ($end < $comEng->lastPage())
-                            @if ($end < $comEng->lastPage() - 1)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                            @endif
-                            <li class="page-item"><a class="page-link" href="{{ $comEng->url($comEng->lastPage()) }}">{{ $comEng->lastPage() }}</a></li>
-                        @endif
-                    
-                        <!-- Next Page Link -->
-                        @if ($comEng->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $comEng->nextPageUrl() }}">&raquo;</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                        @endif
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="{{ $comEng->lastPage() }}" href="{{ $comEng->url($comEng->lastPage()) }}">{{ $comEng->lastPage() }}</a></li>
+                    @endif
+
+                    <!-- Next Page Link -->
+                    @if ($comEng->hasMorePages())
+                        <li class="page-item"><a class="page-link page-link-ajax" data-page="{{ $comEng->currentPage() + 1 }}" href="{{ $comEng->nextPageUrl() }}">&raquo;</a></li>
+                    @else
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                    @endif
                     </ul>
                     
                 </div>
@@ -109,23 +109,23 @@
 
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="data-table">
                         <thead>
                             <tr>
-                                <th>Job Type</th>
-                                <th>Job #</th>
-                                <th>Description</th>
-                                <th>Phase</th>
-                                <th>Units</th>
-                                <th>System</th>
-                                <th>Bld - Floor</th>
+                                <th><a href="#" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">Job Type</a></th>
+                                <th><a href="#" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job #</a></th>
+                                <th><a href="#" class="sort" data-column="j.descript" style="color: inherit; text-decoration: none;">Description</a></th>
+                                <th><a href="#" class="sort" data-column="j.phase" style="color: inherit; text-decoration: none;">Phase</a></th>
+                                <th><a href="#" class="sort" data-column="j.units" style="color: inherit; text-decoration: none;">Units</a></th>
+                                <th><a href="#" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
+                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">Bld - Floor</a></th>
                                 <th>Job # - System - Location</th>
-                                <th>Date Needed</th>
-                                <th>ENG Complete</th>
-                                <th>Rough Super</th>
-                                <th>Engineer</th>
-                                <th>PM/Act Manager</th>
-                                <th>Notes</th>
+                                <th><a href="#" class="sort" data-column="s.engComplete" style="color: inherit; text-decoration: none;">Date Needed</a></th>
+                                <th><a href="#" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">ENG Complete</th>
+                                <th><a href="#" class="sort" data-column="j.roughSuper" style="color: inherit; text-decoration: none;">Rough Super</a></th>
+                                <th><a href="#" class="sort" data-column="j.engineer" style="color: inherit; text-decoration: none;">Engineer</a></th>
+                                <th><a href="#" class="sort" data-column="s.pActManager" style="color: inherit; text-decoration: none;">PM/Act Manager</a></th>
+                                <th><a href="#" class="sort" data-column="s.notes" style="color: inherit; text-decoration: none;">Notes</a></th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -166,4 +166,76 @@
         <i class="bi bi-plus"></i>
     </a>
 
+@endsection
+
+
+
+@section('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Retrieve current sorting settings from session (or defaults)
+            let currentColumn = "{{ session('data_sort_column_com', 'j.recnum') }}";
+            let currentOrder = "{{ session('data_sort_direction_com', 'desc') }}";
+
+            // Function to update sorting indicators (arrows)
+            function updateSortingIndicators() {
+                $('.sort').each(function () {
+                    let column = $(this).data('column');
+                    if (column === currentColumn) {
+                        $(this).html($(this).text().split(' ')[0] + (currentOrder === 'asc' ? ' 🔼' : ' 🔽'));
+                    } else {
+                        $(this).html($(this).text().split(' ')[0]); // Reset others
+                    }
+                });
+            }
+        
+            // Event delegation to ensure the event binds to dynamically loaded elements
+            $(document).on('click', '.sort', function (e) {
+                e.preventDefault();
+            
+                let column = $(this).data('column');
+            
+                // Toggle the sort order if clicking the same column, otherwise default to ascending
+                if (currentColumn === column) {
+                    currentOrder = currentOrder === 'asc' ? 'desc' : 'asc'; // Toggle the direction
+                } else {
+                    currentOrder = 'asc'; // Default to ascending when switching columns
+                }
+            
+                currentColumn = column;
+            
+                // Update the sorting indicators immediately
+                updateSortingIndicators();
+            
+                // Make the AJAX request with the new sorting parameters
+                fetchSortedData(1); // Start with the first page
+            });
+        
+            // Function to fetch sorted data with AJAX
+            function fetchSortedData(page) {
+                $.ajax({
+                    url: "{{ route('com_eng') }}",
+                    type: "GET",
+                    data: {
+                        column: currentColumn,
+                        order: currentOrder,
+                        page: page
+                    },
+                    success: function (response) {
+                        // Update the table and pagination HTML with the response
+                        $('#data-table').html($(response.table).find('#data-table').html());
+                        $('.pagination').html($(response.table).find('.pagination').html());
+                    
+                        // Rebind sorting indicators after AJAX update
+                        updateSortingIndicators();
+                    }
+                });
+            }
+        
+            // Initialize sorting indicators on page load
+            updateSortingIndicators();
+        });
+
+    </script>
 @endsection

@@ -109,73 +109,79 @@
 
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th><a href="#" class="sort" data-column="jobType" data-order="asc" style="color: inherit; text-decoration: none;">Job Type</a></th>
+                            <th><a href="#" class="sort" data-column="j.jobId" data-order="asc" style="color: inherit; text-decoration: none;">Job #</a></th>
+                            <th><a href="#" class="sort" data-column="descript" data-order="asc" style="color: inherit; text-decoration: none;">Description</a></th>
+                            <th><a href="#" class="sort" data-column="phase" data-order="asc" style="color: inherit; text-decoration: none;">Phase</a></th>
+                            <th><a href="#" class="sort" data-column="units" data-order="asc" style="color: inherit; text-decoration: none;">Units</a></th>
+                            <th><a href="#" class="sort" data-column="material" data-order="asc" style="color: inherit; text-decoration: none;">Material</a></th>
+                            <th><a href="#" class="sort" data-column="sys" data-order="asc" style="color: inherit; text-decoration: none;">System</a></th>
+                            <th><a href="#" class="sort" data-column="bldFloor" data-order="asc" style="color: inherit; text-decoration: none;">Bid - Floor</a></th>
+                            <th><a href="#" class="sort" data-column="zoneUnit" data-order="asc" style="color: inherit; text-decoration: none;">Zone - Unit</a></th>
+                            <th><a href="#" class="sort" data-column="dx" data-order="asc" style="color: inherit; text-decoration: none;">D-X</a></th>
+                            <th>Job # - System - Location</th>
+                            <th><a href="#" class="sort" data-column="dateNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Date Needed</a></th>
+                            <th><a href="#" class="sort" data-column="engNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Engineering Date Needed</a></th>
+                            <th><a href="#" class="sort" data-column="engComplete" data-order="asc" style="color: inherit; text-decoration: none;">ENG Complete</a></th>
+                            <th><a href="#" class="sort" data-column="prwr" data-order="asc" style="color: inherit; text-decoration: none;">WRHS Misc Complete</a></th>
+                            <th><a href="#" class="sort" data-column="fabwr" data-order="asc" style="color: inherit; text-decoration: none;">FAB Complete</a></th>
+                            <th><a href="#" class="sort" data-column="fabmisc" data-order="asc" style="color: inherit; text-decoration: none;">FAB Misc Complete</a></th>
+                            <th><a href="#" class="sort" data-column="shipComplete" data-order="asc" style="color: inherit; text-decoration: none;">Ship Complete</a></th>
+                            <th><a href="#" class="sort" data-column="roughSuper" data-order="asc" style="color: inherit; text-decoration: none;">Rough Super</a></th>
+                            <th><a href="#" class="sort" data-column="finishSuper" data-order="asc" style="color: inherit; text-decoration: none;">Finish Super</a></th>
+                            <th><a href="#" class="sort" data-column="engineer" data-order="asc" style="color: inherit; text-decoration: none;">Engineer</a></th>
+                            <th><a href="#" class="sort" data-column="pActManager" data-order="asc" style="color: inherit; text-decoration: none;">PM/Act Manager</a></th>
+                            <th><a href="#" class="sort" data-column="wrhs2_feb" data-order="asc" style="color: inherit; text-decoration: none;">WRHS to FAB</a></th>
+                            <th><a href="#" class="sort" data-column="notes" data-order="asc" style="color: inherit; text-decoration: none;">Notes</a></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="jobs-table">
+                        @if($jobs->isEmpty())
                             <tr>
-                                <th>Job Type</th>
-                                <th>Job #</th>
-                                <th>Descr</th>
-                                <th>Phase</th>
-                                <th>Units</th>
-                                <th>Material</th>
-                                <th>System</th>
-                                <th>Bid - Floor</th>
-                                <th>Zone - Unit</th>
-                                <th>D-X</th>
-                                <th>Job # - System - Location</th>
-                                <th>Date Needed</th>
-                                <th>Engineering Date Needed</th>
-                                <th>ENG Complete</th>
-                                <th>WRHS Misc Complete</th>
-                                <th>FAB Complete</th>
-                                <th>FAB Misc Complete</th>
-                                <th>Ship Complete</th>
-                                <th>Rough Super</th>
-                                <th>Finish Super</th>
-                                <th>Engineer</th>
-                                <th>PM/Act Manager</th>
-                                <th>WRHS to FAB</th>
-                                <th>Notes</th>
-                                <th>Action</th>
+                                <td colspan="25" style="text-align: center;">No records found.</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($jobs as $job)
+                        @else
+                            @foreach($jobs as $row)
                                 <tr class="align-middle">
-                                    <td>{{ $job->jobType }}</td>
-                                    <td>{{ $job->jobId }}</td>
-                                    <td>{{ $job->descript }}</td>
-                                    <td>{{ $job->phase }}</td>
-                                    <td>{{ $job->units }}</td>
-                                    <td>{{ $job->material }}</td>
-                                    <td>{{ $job->sys }}</td>
-                                    <td>{{ $job->bldFloor }}</td>
-                                    <td>{{ $job->zoneUnit }}</td>
-                                    <td>{{ $job->dx }}</td>
-                                    <td>{{ (int) $job->jobId - (int) $job->sys - (int) $job->dx }}</td> <!-- Casting to integers to ensure proper subtraction -->
-                                    <td>{{ $job->dateNeeded }}</td>
-                                    <td>{{ $job->engNeeded }}</td>
-                                    <td>{{ $job->engComplete }}</td>
-                                    <td>{{ $job->prwr }}</td>
-                                    <td>{{ $job->fabwr }}</td>
-                                    <td>{{ $job->fabmisc }}</td>
-                                    <td>{{ $job->shipComplete }}</td>
-                                    <td>{{ $job->roughSuper }}</td>
-                                    <td>{{ $job->finishSuper }}</td>
-                                    <td>{{ $job->engineer }}</td>
-                                    <td>{{ $job->pActManager }}</td>
-                                    <td>{{ $job->wrhs2_feb }}</td>
-                                    <td>{{ $job->notes }}</td>
+                                    <td>{{ $row->jobType }}</td>
+                                    <td>{{ $row->jobId }}</td>
+                                    <td>{{ $row->descript }}</td>
+                                    <td>{{ $row->phase }}</td>
+                                    <td>{{ $row->units }}</td>
+                                    <td>{{ $row->material }}</td>
+                                    <td>{{ $row->sys }}</td>
+                                    <td>{{ $row->bldFloor }}</td>
+                                    <td>{{ $row->zoneUnit }}</td>
+                                    <td>{{ $row->dx }}</td>
+                                    <td>{{ $row->jobId . '-' . $row->sys . '-' . $row->dx }}</td> 
+                                    <td>{{ $row->dateNeeded }}</td>
+                                    <td>{{ $row->engNeeded }}</td>
+                                    <td>{{ $row->engComplete }}</td>
+                                    <td>{{ $row->prwr }}</td>
+                                    <td>{{ $row->fabwr }}</td>
+                                    <td>{{ $row->fabmisc }}</td>
+                                    <td>{{ $row->shipComplete }}</td>
+                                    <td>{{ $row->roughSuper }}</td>
+                                    <td>{{ $row->finishSuper }}</td>
+                                    <td>{{ $row->engineer }}</td>
+                                    <td>{{ $row->pActManager }}</td>
+                                    <td>{{ $row->wrhs2_feb }}</td>
+                                    <td>{{ $row->notes }}</td>
                                     <td>
-                                        <a href="{{ route('form.edit', ['recnum' => $job->recnum]) }}" class="text-success">
+                                        <a href="{{ route('form.edit', ['recnum' => $row->recnum]) }}" class="text-success">
                                             <i class="bi bi-pencil"></i>
                                         </a>
                                     </td>
                                 </tr>
                             @endforeach
-                        
-                        </tbody>
-                    </table>
+                        @endif
+                    </tbody>
+                </table>
+
                 </div> <!-- /.table-responsive -->
             </div> <!-- /.card-body -->
         </div>
@@ -186,4 +192,29 @@
         <i class="bi bi-plus"></i>
     </a>
 
+@endsection
+
+@section('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sort').on('click', function (e) {
+                e.preventDefault();
+            
+                let column = $(this).data('column');
+                let order = $(this).data('order');
+                let newOrder = order === 'asc' ? 'desc' : 'asc';
+            
+                $.ajax({
+                    url: "{{ route('dashboard') }}",
+                    type: "GET",
+                    data: { column: column, order: order },
+                    success: function (response) {
+                        $('#jobs-table').html($(response.table).find('#jobs-table').html());
+                        $('.sort[data-column="' + column + '"]').data('order', newOrder);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
