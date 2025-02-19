@@ -6,7 +6,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-download"></i>
+                       <i class="nav-icon bi bi-house-door"></i>
                         <p>Home</p>
                     </a>
                 </li>

@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobInformations;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 
-Route::get('/dashboard', [JobInformations::class, 'home'])
+Route::get('/', [JobInformations::class, 'home'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 

@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>@yield('title', 'Employee Movement Form')</title>
+    <title>@yield('title', 'Plumbing Router')</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ColorlibHQ">
@@ -30,7 +30,7 @@
 
 
     <footer class="app-footer"> <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div> <!--end::To the end--> <!--begin::Copyright--> <strong>
+        <div class="float-end d-none d-sm-inline"></div> <!--end::To the end--> <!--begin::Copyright--> <strong>
             Copyright &copy; 2025&nbsp;
             {{-- <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>. --}}
         </strong>
