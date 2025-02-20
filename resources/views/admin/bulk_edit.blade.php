@@ -34,6 +34,35 @@
             min-width: 100px;
         }
 
+
+        .table-container {
+            position: relative;
+            overflow-x: auto;
+            padding-bottom: 20px; /* Ensure space for the floating scrollbar */
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 20px; /* Prevent overlap */
+        }
+        
+        .floating-scrollbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 16px; /* Height of the scrollbar */
+            overflow-x: auto;
+            overflow-y: hidden;
+            background: #f1f1f1;
+            z-index: 1000;
+        }
+        
+        .floating-scrollbar div {
+            height: 1px; /* Invisible but allows scrolling */
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-content {
@@ -250,7 +279,7 @@
                         <tbody>
                             @if($bulkEdit->isEmpty())
                                 <tr>
-                                    <td colspan="26" style="text-align: center;">No records found. Please enter search criteria.</td>
+                                    <td colspan="27" style="text-align: center;">No records found. Please enter search criteria.</td>
                                 </tr>
                             @else
                                 @foreach($bulkEdit as $search)
@@ -292,6 +321,10 @@
                     </table>
                 </div> <!-- /.table-responsive -->
             </div> <!-- /.card-body -->
+
+            <div class="floating-scrollbar"><div></div></div>
+
+    
         </div>
     </div>
     
@@ -303,38 +336,65 @@
 
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-{{-- @section('scripts') --}}
-<script>
-$(document).ready(function () {
-    $("#jobTable td[contenteditable='true']").on("blur", function () {
-        let recnum = $(this).data("id"); // Get job ID
-        let column = $(this).data("column"); // Get column name
-        let value = $(this).text().trim(); // Get updated value
-
-        $.ajax({
-            url: `/update-job/${recnum}`,
-            type: "PUT",
-            data: {
-                _token: "{{ csrf_token() }}",
-                [column]: value, // Send only the updated field
-            },
-            success: function (response) {
-                // alert("Updated successfully!");
-                if (window.location.search) {
-                    const url = new URL(window.location);
-                    url.search = ''; // Clears query parameters
-                    window.history.replaceState({}, document.title, url);
-                }
-            },
-            error: function () {
-                // alert("Update failed!");
-            }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- @section('scripts') --}}
+    <script>
+        $(document).ready(function () {
+            $("#jobTable td[contenteditable='true']").on("blur", function () {
+                let recnum = $(this).data("id"); // Get job ID
+                let column = $(this).data("column"); // Get column name
+                let value = $(this).text().trim(); // Get updated value
+            
+                $.ajax({
+                    url: `/update-job/${recnum}`,
+                    type: "PUT",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        [column]: value, // Send only the updated field
+                    },
+                    success: function (response) {
+                        // alert("Updated successfully!");
+                        if (window.location.search) {
+                            const url = new URL(window.location);
+                            url.search = ''; // Clears query parameters
+                            window.history.replaceState({}, document.title, url);
+                        }
+                    },
+                    error: function () {
+                        // alert("Update failed!");
+                    }
+                });
+            });
         });
-    });
-});
 
 
-</script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let tableContainer = document.querySelector(".table-responsive");
+            let floatingScrollbar = document.querySelector(".floating-scrollbar");
+            let scrollbarContent = floatingScrollbar.querySelector("div");
+
+            // Set width of floating scrollbar to match the table
+            scrollbarContent.style.width = tableContainer.scrollWidth + "px";
+
+            // Sync scrolling
+            floatingScrollbar.addEventListener("scroll", function () {
+                tableContainer.scrollLeft = floatingScrollbar.scrollLeft;
+            });
+        
+            tableContainer.addEventListener("scroll", function () {
+                floatingScrollbar.scrollLeft = tableContainer.scrollLeft;
+            });
+        });
+
+
+
+
+
+
+
+
+
+    </script>
 
 {{-- @endsection --}}

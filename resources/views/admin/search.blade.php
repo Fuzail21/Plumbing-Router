@@ -36,6 +36,37 @@
         }
 
 
+
+        .table-container {
+            position: relative;
+            overflow-x: auto;
+            padding-bottom: 20px; /* Ensure space for the floating scrollbar */
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 20px; /* Prevent overlap */
+        }
+        
+        .floating-scrollbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 16px; /* Height of the scrollbar */
+            overflow-x: auto;
+            overflow-y: hidden;
+            background: #f1f1f1;
+            z-index: 1000;
+        }
+        
+        .floating-scrollbar div {
+            height: 1px; /* Invisible but allows scrolling */
+        }
+
+
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-content {
@@ -251,7 +282,7 @@
                         <tbody>
                             @if($search->isEmpty())
                                 <tr>
-                                    <td colspan="25" style="text-align: center;">No records found. Please enter search criteria.</td>
+                                    <td colspan="27" style="text-align: center;">No records found. Please enter search criteria.</td>
                                 </tr>
                             @else
                                 @foreach($search as $search)
@@ -295,6 +326,9 @@
                     </table>
                 </div> <!-- /.table-responsive -->
             </div> <!-- /.card-body -->
+
+            <div class="floating-scrollbar"><div></div></div>
+
         </div>
     </div>
     
@@ -304,4 +338,34 @@
         <i class="bi bi-plus"></i>
     </a>
 
+@endsection
+
+
+
+@section('js')
+    <script>
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let tableContainer = document.querySelector(".table-responsive");
+            let floatingScrollbar = document.querySelector(".floating-scrollbar");
+            let scrollbarContent = floatingScrollbar.querySelector("div");
+
+            // Set width of floating scrollbar to match the table
+            scrollbarContent.style.width = tableContainer.scrollWidth + "px";
+
+            // Sync scrolling
+            floatingScrollbar.addEventListener("scroll", function () {
+                tableContainer.scrollLeft = floatingScrollbar.scrollLeft;
+            });
+        
+            tableContainer.addEventListener("scroll", function () {
+                floatingScrollbar.scrollLeft = tableContainer.scrollLeft;
+            });
+        });
+
+
+
+    </script>
 @endsection
