@@ -13,7 +13,30 @@ use Illuminate\Support\Facades\Session;
 class JobInformations extends Controller
 {
     public function add(){
-        return view('admin.add');
+        $query = DB::table('job_information as j')
+        ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+        ->select('j.*', 's.*')
+        ->get();
+
+        $roughSuper = $query->pluck('roughSuper')->unique()->reject(function ($value) {
+            return empty($value);
+        })->values();
+        
+        $finishSuper = $query->pluck('finishSuper')->unique()->reject(function ($value) {
+            return empty($value);
+        })->values();
+        
+        $engineer = $query->pluck('engineer')->unique()->reject(function ($value) {
+            return empty($value);
+        })->values();
+        
+        $pActManager = $query->pluck('pActManager')->unique()->reject(function ($value) {
+            return empty($value);
+        })->values();
+        
+
+        $data = compact('roughSuper', 'finishSuper', 'engineer', 'pActManager');
+        return view('admin.add')->with($data);
     }
 
     public function edit($recnum){
@@ -95,8 +118,38 @@ class JobInformations extends Controller
         }
     }
 
-    public function update(Request $request, $recnum) {
-        // Update job information
+    public function update(Request $request, $recnum)
+    {
+        // Fetch job status using Eloquent
+        $jobStatus = JobStatus::where('recnum', $recnum)->first();
+
+        if (!$jobStatus) {
+            return response()->json(['message' => 'Job status not found'], 404);
+        }
+
+        // Store old values before update
+        $oldDateNeeded = $jobStatus->dateNeeded;
+        $oldEngNeeded = $jobStatus->engNeeded;
+
+        // Prepare update data for job_status
+        $updateData = [];
+
+        if ($request->filled('dateNeeded')) {
+            $updateData['old_dateNeeded'] = $oldDateNeeded;
+            $updateData['dateNeeded'] = $request->dateNeeded;
+        }
+
+        if ($request->filled('engNeeded')) {
+            $updateData['old_engNeeded'] = $oldEngNeeded;
+            $updateData['engNeeded'] = $request->engNeeded;
+        }
+
+        // Update only if there are changes
+        if (!empty($updateData)) {
+            $jobStatus->update($updateData);
+        }
+
+        // Update job_information table
         DB::table('job_information')
             ->where('recnum', $recnum)
             ->update([
@@ -114,12 +167,10 @@ class JobInformations extends Controller
                 'engineer' => $request->engineer,
             ]);
 
-        // Update job status
+        // Update job_status table with other fields
         DB::table('job_status')
             ->where('recnum', $recnum)
             ->update([
-                'dateNeeded' => $request->dateNeeded,
-                'engNeeded' => $request->engNeeded,
                 'engComplete' => $request->engComplete,
                 'prwr' => $request->wrhsMiscComplete,
                 'fabwr' => $request->fabComplete,
@@ -127,43 +178,9 @@ class JobInformations extends Controller
                 'wrhs2_feb' => $request->wrhs2Feb,
                 'notes' => $request->note,
             ]);
-            
+
         return redirect()->route('search')->with('success', 'Updated Successfully.');
     }
-    
-    // public function home(Request $request) {
-    //     $sortColumn = $request->input('column', session('sort_column', 'j.recnum'));
-    
-    //     $validColumns = ['j.recnum', 'j.job_title', 's.status', 's.updated_at'];
-
-    //     if (!in_array($sortColumn, $validColumns)) {
-    //         $sortColumn = 'j.recnum'; 
-    //     }
-    
-    //     $sortDirection = session('sort_direction', 'desc');
-    
-    //     if ($request->has('column') && session('sort_column') == $sortColumn) {
-    //         $sortDirection = ($sortDirection == 'asc') ? 'desc' : 'asc';
-    //     }
-    
-    //     session(['sort_column' => $sortColumn, 'sort_direction' => $sortDirection]);
-    
-    //     $query = DB::table('job_information as j')
-    //         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-    //         ->select('j.*', 's.*');
-    
-    //     $query->orderBy($sortColumn, $sortDirection);
-    
-    //     $jobs = $query->paginate(15);
-    
-    //     if ($request->ajax()) {
-    //         return response()->json([
-    //             'table' => view('admin.dashboard', compact('jobs'))->render()
-    //         ]);
-    //     }
-    
-    //     return view('admin.dashboard', compact('jobs'));
-    // }
 
     public function home(Request $request) {
         $sortColumn = $request->input('column', session('sort_column', 'j.recnum'));
@@ -221,10 +238,6 @@ class JobInformations extends Controller
     
         return view('admin.dashboard', compact('jobs'));
     }
-    
-    
-    
-    
 
     public function data_view(Request $request) {
         // Get sorting parameters from session or request
@@ -612,6 +625,13 @@ class JobInformations extends Controller
     }
 
     public function updateJob(Request $request, $recnum){
+        // Fetch current job status to store old values
+        $jobStatus = DB::table('job_status')->where('recnum', $recnum)->first();
+    
+        if (!$jobStatus) {
+            return response()->json(['message' => 'Job status not found'], 404);
+        }
+    
         // Extract valid fields while keeping "0" values
         $jobInfoData = array_filter([
             'descript' => $request->descript,
@@ -626,7 +646,8 @@ class JobInformations extends Controller
             'finishSuper' => $request->finishSuper,
             'engineer' => $request->engineer,
         ], fn($value) => $value !== null); // Keep 0 values
-
+    
+        // Prepare job status data and store old values
         $jobStatusData = array_filter([
             'dateNeeded' => $request->dateNeeded,
             'engNeeded' => $request->engNeeded,
@@ -639,16 +660,26 @@ class JobInformations extends Controller
             'wrhs2_feb' => $request->wrhs2_feb,
             'notes' => $request->notes,
         ], fn($value) => $value !== null); // Keep 0 values
-
+    
+        // Check if dateNeeded is changing and store old value
+        if ($request->filled('dateNeeded') && $request->dateNeeded !== $jobStatus->dateNeeded) {
+            $jobStatusData['old_dateNeeded'] = $jobStatus->dateNeeded;
+        }
+    
+        // Check if engNeeded is changing and store old value
+        if ($request->filled('engNeeded') && $request->engNeeded !== $jobStatus->engNeeded) {
+            $jobStatusData['old_engNeeded'] = $jobStatus->engNeeded;
+        }
+    
         // Check if there's data to update
-        $jobInformationUpdated = !empty($jobInfoData) 
-            ? DB::table('job_information')->where('recnum', $recnum)->update($jobInfoData) 
+        $jobInformationUpdated = !empty($jobInfoData)
+            ? DB::table('job_information')->where('recnum', $recnum)->update($jobInfoData)
             : false;
-
-        $jobStatusUpdated = !empty($jobStatusData) 
-            ? DB::table('job_status')->where('recnum', $recnum)->update($jobStatusData) 
+    
+        $jobStatusUpdated = !empty($jobStatusData)
+            ? DB::table('job_status')->where('recnum', $recnum)->update($jobStatusData)
             : false;
-
+    
         // Check if at least one update was successful
         if ($jobInformationUpdated || $jobStatusUpdated) {
             return response()->json(['message' => 'Job updated successfully!']);
@@ -656,6 +687,7 @@ class JobInformations extends Controller
             return response()->json(['message' => 'No changes detected or update failed.'], 400);
         }
     }
+
 
     //search_editByDateField
     public function export_excel_view_search_editBy_dateFeild(Request $request){

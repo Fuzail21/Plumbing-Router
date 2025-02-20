@@ -30,6 +30,11 @@
             cursor: pointer;
         }
 
+        thead th {
+            white-space: nowrap;
+            min-width: 100px; /* Adjust as needed */
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-content {
@@ -48,6 +53,11 @@
                 font-size: 28px;
                 bottom: 15px; /* Adjust for smaller screens */
                 right: 15px;
+            }
+
+            thead th {
+                white-space: nowrap;
+                min-width: 100px; /* Adjust as needed */
             }
         }
     </style>
@@ -124,7 +134,10 @@
                             <th><a href="#" class="sort" data-column="dx" data-order="asc" style="color: inherit; text-decoration: none;">D-X</a></th>
                             <th>Job # - System - Location</th>
                             <th><a href="#" class="sort" data-column="dateNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Date Needed</a></th>
-                            <th><a href="#" class="sort" data-column="engNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Engineering Date Needed</a></th>
+                            <th><a href="#" class="sort" data-column="old_dateNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Old Date Needed</a></th>
+                            <th><a href="#" class="sort" data-column="engNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Eng Date Needed</a></th>
+                            <th><a href="#" class="sort" data-column="old_engNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Old Eng Date Needed</a></th>
+
                             <th><a href="#" class="sort" data-column="engComplete" data-order="asc" style="color: inherit; text-decoration: none;">ENG Complete</a></th>
                             <th><a href="#" class="sort" data-column="prwr" data-order="asc" style="color: inherit; text-decoration: none;">WRHS Misc Complete</a></th>
                             <th><a href="#" class="sort" data-column="fabwr" data-order="asc" style="color: inherit; text-decoration: none;">FAB Complete</a></th>
@@ -159,7 +172,9 @@
                                     <td>{{ $row->dx }}</td>
                                     <td>{{ $row->jobId . '-' . $row->sys . '-' . $row->dx }}</td> 
                                     <td>{{ $row->dateNeeded }}</td>
+                                    <td>{{ $row->old_dateNeeded }}</td>
                                     <td>{{ $row->engNeeded }}</td>
+                                    <td>{{ $row->old_engNeeded }}</td>
                                     <td>{{ $row->engComplete }}</td>
                                     <td>{{ $row->prwr }}</td>
                                     <td>{{ $row->fabwr }}</td>

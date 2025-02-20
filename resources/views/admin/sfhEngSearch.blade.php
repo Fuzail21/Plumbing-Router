@@ -192,6 +192,7 @@
                                     <th>System</th>
                                     <th>Bld - Floor</th>
                                     <th>Date Needed</th>
+                                    <th>Old Date Needed</th>
                                     <th>Rough Super</th>
                                     <th>Engineer</th>
                                     <th>PM/Act Manager</th>
@@ -215,6 +216,7 @@
                                             <td>{{ $SFH->sys }}</td>
                                             <td>{{ $SFH->bldFloor }}</td>
                                             <td>{{ $SFH->dateNeeded }}</td>
+                                            <td>{{ $SFH->old_dateNeeded }}</td>
                                             <td>{{ $SFH->roughSuper }}</td>
                                             <td>{{ $SFH->engineer }}</td>
                                             <td>{{ $SFH->pActManager }}</td>

@@ -117,10 +117,47 @@
                 <div class="form-group"><label>Description:</label><input id="description" name="description" type="text"></div>
                 <div class="form-group"><label>Phase:</label><input id="phase" name="phase" type="text"></div>
                 <div class="form-group"><label>Units:</label><input type="number" name="units"  id="units"></div>
-                <div class="form-group"><label>Rough Super:</label><input type="text" id="roughSuper" required name="roughSuper"></div>
-                <div class="form-group"><label>Finish Super:</label><input type="text" id="finishSuper" name="finishSuper"></div>
-                <div class="form-group"><label>Engineer:</label><input type="text" id="engineer" name="engineer"></div>
-                <div class="form-group"><label>PM/Act Manager:</label><input type="text" id="pmactmanager" name="pmactmanager"></div>
+                <div class="form-group">
+                    <label>Rough Super:</label>
+                    <select id="roughSuper" name="roughSuper" required>
+                        <option value="">Select Rough Super</option>
+                        @foreach($roughSuper as $rSuper)
+                            <option value="{{ $rSuper }}">{{ $rSuper }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                    
+                <div class="form-group">
+                    <label>Finish Super:</label>
+                    <select id="finishSuper" name="finishSuper">
+                        <option value="">Select Finish Super</option>
+                        @foreach($finishSuper as $rSuper)
+                            <option value="{{ $rSuper }}">{{ $rSuper }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                    
+                <div class="form-group">
+                    <label>Engineer:</label>
+                    <select id="engineer" name="engineer">
+                        <option value="">Select Engineer</option>
+                        @foreach($engineer as $eng)
+                            <option value="{{ $eng }}">{{ $eng }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                    
+                <div class="form-group">
+                    <label>PM/Act Manager:</label>
+                    <select id="pmactmanager" name="pmactmanager">
+                        <option value="">Select PM/Act Manager</option>
+                        @foreach($pActManager as $manager)
+                            <option value="{{ $manager }}">{{ $manager }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
             </div>
 
             <div class="form-row">

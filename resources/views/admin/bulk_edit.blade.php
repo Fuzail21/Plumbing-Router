@@ -30,6 +30,10 @@
             cursor: pointer;
         }
 
+        table th {
+            min-width: 100px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-content {
@@ -49,6 +53,11 @@
                 bottom: 15px; /* Adjust for smaller screens */
                 right: 15px;
             }
+
+            table th {
+                min-width: 100px;
+            }
+
         }
     </style>
 @endsection
@@ -222,7 +231,9 @@
                                 <th>D-X</th>
                                 <th>Job # - System - Location</th>
                                 <th>Date Needed</th>
-                                <th>Engineering Date Needed</th>
+                                <th>Old Date Needed</th>
+                                <th>Eng Date Needed</th>
+                                <th>Old Eng Date Needed</th>
                                 <th>ENG Complete</th>
                                 <th>WRHS Misc Complete</th>
                                 <th>FAB Complete</th>
@@ -239,7 +250,7 @@
                         <tbody>
                             @if($bulkEdit->isEmpty())
                                 <tr>
-                                    <td colspan="25" style="text-align: center;">No records found. Please enter search criteria.</td>
+                                    <td colspan="26" style="text-align: center;">No records found. Please enter search criteria.</td>
                                 </tr>
                             @else
                                 @foreach($bulkEdit as $search)
@@ -256,7 +267,11 @@
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dx">{{ $search->dx }}</td>
                                         <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dateNeeded">{{ $search->dateNeeded }}</td>
+                                        <td>{{ $search->old_dateNeeded }}</td>
+
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="engNeeded">{{ $search->engNeeded }}</td>
+                                        <td>{{ $search->old_engNeeded }}</td>
+
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="engComplete">{{ $search->engComplete }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="prwr">{{ $search->prwr }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="fabwr">{{ $search->fabwr }}</td>

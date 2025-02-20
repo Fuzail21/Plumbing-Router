@@ -8,6 +8,7 @@ class JobStatus extends Model
 {
     public $timestamps = false; 
     protected $table = 'job_status';
+    protected $primaryKey = 'recnum';
     protected $guarded = [];
 
 

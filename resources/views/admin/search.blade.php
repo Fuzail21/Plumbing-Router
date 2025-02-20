@@ -30,6 +30,12 @@
             cursor: pointer;
         }
 
+        thead th {
+            white-space: nowrap;
+            min-width: 100px; /* Adjust as needed */
+        }
+
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-content {
@@ -48,6 +54,10 @@
                 font-size: 28px;
                 bottom: 15px; /* Adjust for smaller screens */
                 right: 15px;
+            }
+            thead th {
+                white-space: nowrap;
+                min-width: 100px; /* Adjust as needed */
             }
         }
     </style>
@@ -221,7 +231,9 @@
                                 <th>D-X</th>
                                 <th>Job # - System - Location</th>
                                 <th>Date Needed</th>
-                                <th>Engineering Date Needed</th>
+                                <th>Old Date Needed</th>
+                                <th>Eng Date Needed</th>
+                                <th>Old Eng Date Needed</th>
                                 <th>ENG Complete</th>
                                 <th>WRHS Misc Complete</th>
                                 <th>FAB Complete</th>
@@ -256,7 +268,9 @@
                                         <td>{{ $search->dx }}</td>
                                         <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td> <!-- Casting to integers to ensure proper subtraction -->
                                         <td>{{ $search->dateNeeded }}</td>
+                                        <td>{{ $search->old_dateNeeded }}</td>
                                         <td>{{ $search->engNeeded }}</td>
+                                        <td>{{ $search->old_engNeeded }}</td>
                                         <td>{{ $search->engComplete }}</td>
                                         <td>{{ $search->prwr }}</td>
                                         <td>{{ $search->fabwr }}</td>

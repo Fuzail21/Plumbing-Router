@@ -30,6 +30,12 @@
             cursor: pointer;
         }
 
+        thead th {
+            white-space: nowrap;
+            min-width: 100px; /* Adjust as needed */
+        }
+        
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .app-content {
@@ -39,8 +45,13 @@
 
             .table-responsive {
                 overflow-x: auto; /* Enable horizontal scrolling */
-                white-space: nowrap; /* Prevent text wrapping */
             }
+            th a {
+                white-space: normal !important;
+                overflow: visible !important;
+                text-overflow: unset !important;
+            }
+
 
             .floating-btn {
                 width: 50px;
@@ -48,6 +59,11 @@
                 font-size: 28px;
                 bottom: 15px; /* Adjust for smaller screens */
                 right: 15px;
+            }
+
+            thead th {
+                white-space: nowrap;
+                min-width: 100px; /* Adjust as needed */
             }
         }
     </style>
@@ -112,19 +128,20 @@
                     <table class="table table-striped" id="data-table">
                         <thead>
                             <tr>
-                                <th><a href="#" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">Job Type</a></th>
-                                <th><a href="#" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job #</a></th>
+                                <th><a href="#" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">Job-Type</a></th>
+                                <th><a href="#" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job#</a></th>
                                 <th><a href="#" class="sort" data-column="j.descript" style="color: inherit; text-decoration: none;">Description</a></th>
                                 <th><a href="#" class="sort" data-column="j.phase" style="color: inherit; text-decoration: none;">Phase</a></th>
                                 <th><a href="#" class="sort" data-column="j.units" style="color: inherit; text-decoration: none;">Units</a></th>
                                 <th><a href="#" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
-                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">Bld - Floor</a></th>
+                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">Bld-Floor</a></th>
                                 <th>Job # - System - Location</th>
-                                <th><a href="#" class="sort" data-column="s.engComplete" style="color: inherit; text-decoration: none;">Date Needed</a></th>
-                                <th><a href="#" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">ENG Complete</th>
-                                <th><a href="#" class="sort" data-column="j.roughSuper" style="color: inherit; text-decoration: none;">Rough Super</a></th>
+                                <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
+                                <th><a href="#" class="sort" data-column="s.old_dateNeeded" style="color: inherit; text-decoration: none;">Old-Date-Needed</a></th>
+                                <th><a href="#" class="sort" data-column="j.engComplete" style="color: inherit; text-decoration: none;">ENG-Complete</th>
+                                <th><a href="#" class="sort" data-column="j.roughSuper" style="color: inherit; text-decoration: none;">Rough-Super</a></th>
                                 <th><a href="#" class="sort" data-column="j.engineer" style="color: inherit; text-decoration: none;">Engineer</a></th>
-                                <th><a href="#" class="sort" data-column="s.pActManager" style="color: inherit; text-decoration: none;">PM/Act Manager</a></th>
+                                <th><a href="#" class="sort" data-column="s.pActManager" style="color: inherit; text-decoration: none;">PM/Act-Manager</a></th>
                                 <th><a href="#" class="sort" data-column="s.notes" style="color: inherit; text-decoration: none;">Notes</a></th>
                                 <th>Action</th>
                             </tr>
@@ -141,6 +158,7 @@
                                     <td>{{ $COM->bldFloor }}</td>
                                     <td>{{ (int) $COM->jobId - (int) $COM->sys - (int) $COM->dx }}</td>
                                     <td>{{ $COM->dateNeeded }}</td>
+                                    <td>{{ $COM->old_dateNeeded }}</td>
                                     <td>{{ $COM->engComplete }}</td>
                                     <td>{{ $COM->roughSuper }}</td>
                                     <td>{{ $COM->engineer }}</td>
