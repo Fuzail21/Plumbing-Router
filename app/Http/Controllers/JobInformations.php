@@ -118,8 +118,7 @@ class JobInformations extends Controller
         }
     }
 
-    public function update(Request $request, $recnum)
-    {
+    public function update(Request $request, $recnum) {
         // Fetch job status using Eloquent
         $jobStatus = JobStatus::where('recnum', $recnum)->first();
 

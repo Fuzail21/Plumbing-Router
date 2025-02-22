@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobInformations;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 // Route::get('/', function () {
@@ -53,6 +54,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/search/export_excel', [JobInformations::class, 'export_excel_view_search'])->name('export.excel_search');
 
     Route::get('/admin/logout', [JobInformations::class, 'AdminLogout'])->name('admin_logout');
+
+
+
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/user/list', [UserController::class, 'list'])->name('user.list');
+        Route::get('/user/add', [UserController::class, 'add'])->name('user.add');
+        Route::post('/user/add', [UserController::class, 'store'])->name('user.store');
+        Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('/user/edit/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    });
+
 
 });
 

@@ -40,16 +40,19 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'designation' => $request->designation,
         ]);
     
-        // Trigger the Registered event (optional)
-        event(new Registered($user));
+        // // Trigger the Registered event (optional)
+        // event(new Registered($user));
     
-        // Log the user in
-        Auth::login($user);
+        // // Log the user in
+        // Auth::login($user);
     
-        // Redirect to the dashboard
-        return redirect(route('dashboard', absolute: false));
+        // // Redirect to the dashboard
+        // return redirect(route('dashboard', absolute: false));
+
+        return redirect()->route('user.list')->with('success', 'User Added Successfully.');
     }
 
 }

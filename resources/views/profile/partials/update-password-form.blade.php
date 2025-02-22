@@ -11,7 +11,8 @@
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
         @csrf
-        @method('put')
+        <!-- @method('put') -->
+        <input type="hidden" name="_method" value="PUT">
 
         <div>
             <x-input-label for="update_password_current_password" :value="__('Current Password')" />
@@ -23,6 +24,7 @@
             <x-input-label for="update_password_password" :value="__('New Password')" />
             <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
             <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            <div class="text-red-500" id="errorMessage"></div>
         </div>
 
         <div>
@@ -46,3 +48,30 @@
         </div>
     </form>
 </section>
+
+<script>
+        document.getElementById('update_password_password').addEventListener('input', function () {
+            var password = this.value;
+            var passwordField = this;
+            var errorMessageElement = document.getElementById('errorMessage');
+
+            if (password.length > 6) {
+                passwordField.classList.add('border-red-500');
+                errorMessageElement.textContent = "Only 6 digits are allowed.";
+            } else {
+                passwordField.classList.remove('border-red-500');
+                errorMessageElement.textContent = "";
+            }
+        });
+
+        document.getElementById('update_password_password').addEventListener('blur', function () {
+            var password = this.value;
+            var passwordField = this;
+            var errorMessageElement = document.getElementById('errorMessage');
+
+            if (password.length < 6) {
+                passwordField.classList.add('border-red-500');
+                errorMessageElement.textContent = "6 digits required.";
+            }
+        });
+    </script>

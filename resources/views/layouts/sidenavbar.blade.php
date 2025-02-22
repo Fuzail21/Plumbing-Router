@@ -60,6 +60,15 @@
                     </a>
                 </li>
 
+                @if(Auth::check() && Auth::user()->designation === 'Admin')
+                    <li class="nav-item">
+                        <a href="{{ route('user.list') }}" class="nav-link {{ request()->routeIs('user.list') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-person"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="{{ route('admin_logout') }}" class="nav-link">
                         <i class="nav-icon bi bi-star-half"></i>

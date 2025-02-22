@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Add User</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-100">
@@ -11,7 +11,7 @@
         <div class="flex justify-center mb-6">
             <img src="/dist/assets/img/logo/logo.png" alt="Custom Logo" width="50%" height="auto">
         </div>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('user.store') }}">
             @csrf
 
             <div>
@@ -34,6 +34,15 @@
                 @enderror
             </div>
 
+
+            <div class="mt-4">
+                <label for="designation" class="block text-sm font-medium text-gray-700">Designation</label>
+                <select name="designation" id="designation" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="Admin">Admin</option>
+                    <option selected value="User">User</option>
+                </select>
+            </div>
+
             <div class="mt-4">
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <input id="password" type="password" name="password" required autocomplete="new-password" 
@@ -48,8 +57,8 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-gray-900">Already registered?</a>
-                <button type="submit" class="ml-3 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Register</button>
+                <!-- <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-gray-900">Already registered?</a> -->
+                <button type="submit" class="ml-3 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Add</button>
             </div>
         </form>
 
