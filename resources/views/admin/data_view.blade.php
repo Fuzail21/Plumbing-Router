@@ -242,12 +242,15 @@
 
 
         document.addEventListener("DOMContentLoaded", function () {
+            let sideBar = document.querySelector(".app-sidebar");
             let tableContainer = document.querySelector(".table-responsive");
             let floatingScrollbar = document.querySelector(".floating-scrollbar");
             let scrollbarContent = floatingScrollbar.querySelector("div");
+            let totalWidthScrollBar = sideBar.scrollWidth + tableContainer.scrollWidth;
+
 
             // Set width of floating scrollbar to match the table
-            scrollbarContent.style.width = tableContainer.scrollWidth + "px";
+            scrollbarContent.style.width = totalWidthScrollBar + "px";
 
             // Sync scrolling
             floatingScrollbar.addEventListener("scroll", function () {
@@ -256,8 +259,8 @@
         
             tableContainer.addEventListener("scroll", function () {
                 floatingScrollbar.scrollLeft = tableContainer.scrollLeft;
-            });
-        });
+            });
+        });
 
 
     </script>
