@@ -9,10 +9,10 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('updatePassword') }}" class="mt-6 space-y-6">
         @csrf
         <!-- @method('put') -->
-        <input type="hidden" name="_method" value="PUT">
+        <!-- <input type="hidden" name="_method" value="PUT"> -->
 
         <div>
             <x-input-label for="update_password_current_password" :value="__('Current Password')" />

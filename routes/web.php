@@ -56,6 +56,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/logout', [JobInformations::class, 'AdminLogout'])->name('admin_logout');
 
 
+    Route::post('/update-password', [UserController::class, 'updatePassword'])->name('updatePassword');
+
+
+
 
 
     Route::middleware(['auth', 'admin'])->group(function () {
