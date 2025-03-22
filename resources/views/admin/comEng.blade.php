@@ -166,7 +166,7 @@
                                 <th><a href="#" class="sort" data-column="j.phase" style="color: inherit; text-decoration: none;">Phase</a></th>
                                 <th><a href="#" class="sort" data-column="j.units" style="color: inherit; text-decoration: none;">Units</a></th>
                                 <th><a href="#" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
-                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">Bld-Floor</a></th>
+                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">BLDG-Floor</a></th>
                                 <th>Job # - System - Location</th>
                                 <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
                                 <th><a href="#" class="sort" data-column="s.old_dateNeeded" style="color: inherit; text-decoration: none;">Old-Date-Needed</a></th>
@@ -189,9 +189,9 @@
                                     <td>{{ $COM->sys }}</td>
                                     <td>{{ $COM->bldFloor }}</td>
                                     <td>{{ (int) $COM->jobId - (int) $COM->sys - (int) $COM->dx }}</td>
-                                    <td>{{ $COM->dateNeeded }}</td>
-                                    <td>{{ $COM->old_dateNeeded }}</td>
-                                    <td>{{ $COM->engComplete }}</td>
+                                    <td>{{ $COM->dateNeeded ? \Carbon\Carbon::parse($COM->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $COM->old_dateNeeded ? \Carbon\Carbon::parse($COM->old_dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $COM->engComplete ? \Carbon\Carbon::parse($COM->engComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $COM->roughSuper }}</td>
                                     <td>{{ $COM->engineer }}</td>
                                     <td>{{ $COM->pActManager }}</td>

@@ -164,7 +164,7 @@
                             <th><a href="#" class="sort" data-column="units" data-order="asc" style="color: inherit; text-decoration: none;">Units</a></th>
                             <th><a href="#" class="sort" data-column="material" data-order="asc" style="color: inherit; text-decoration: none;">Material</a></th>
                             <th><a href="#" class="sort" data-column="sys" data-order="asc" style="color: inherit; text-decoration: none;">System</a></th>
-                            <th><a href="#" class="sort" data-column="bldFloor" data-order="asc" style="color: inherit; text-decoration: none;">Bid - Floor</a></th>
+                            <th><a href="#" class="sort" data-column="bldFloor" data-order="asc" style="color: inherit; text-decoration: none;">BLDG Floor</a></th>
                             <th><a href="#" class="sort" data-column="zoneUnit" data-order="asc" style="color: inherit; text-decoration: none;">Zone - Unit</a></th>
                             <th><a href="#" class="sort" data-column="dx" data-order="asc" style="color: inherit; text-decoration: none;">D-X</a></th>
                             <th>Job # - System - Location</th>
@@ -182,7 +182,7 @@
                             <th><a href="#" class="sort" data-column="finishSuper" data-order="asc" style="color: inherit; text-decoration: none;">Finish Super</a></th>
                             <th><a href="#" class="sort" data-column="engineer" data-order="asc" style="color: inherit; text-decoration: none;">Engineer</a></th>
                             <th><a href="#" class="sort" data-column="pActManager" data-order="asc" style="color: inherit; text-decoration: none;">PM/Act Manager</a></th>
-                            <th><a href="#" class="sort" data-column="wrhs2_feb" data-order="asc" style="color: inherit; text-decoration: none;">WRHS to FAB</a></th>
+                            <!-- <th><a href="#" class="sort" data-column="wrhs2_feb" data-order="asc" style="color: inherit; text-decoration: none;">WRHS to FAB</a></th> -->
                             <th><a href="#" class="sort" data-column="notes" data-order="asc" style="color: inherit; text-decoration: none;">Notes</a></th>
                             <th>Action</th>
                         </tr>
@@ -206,20 +206,20 @@
                                     <td>{{ $row->zoneUnit }}</td>
                                     <td>{{ $row->dx }}</td>
                                     <td>{{ $row->jobId . '-' . $row->sys . '-' . $row->dx }}</td> 
-                                    <td>{{ $row->dateNeeded }}</td>
-                                    <td>{{ $row->old_dateNeeded }}</td>
-                                    <td>{{ $row->engNeeded }}</td>
-                                    <td>{{ $row->old_engNeeded }}</td>
-                                    <td>{{ $row->engComplete }}</td>
+                                    <td>{{ $row->dateNeeded ? \Carbon\Carbon::parse($row->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $row->old_dateNeeded ? \Carbon\Carbon::parse($row->old_dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $row->engNeeded ? \Carbon\Carbon::parse($row->engNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $row->old_engNeeded ? \Carbon\Carbon::parse($row->old_engNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $row->engComplete ? \Carbon\Carbon::parse($row->engComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->prwr }}</td>
-                                    <td>{{ $row->fabwr }}</td>
+                                    <td>{{ $row->fabwr ? \Carbon\Carbon::parse($row->fabwr)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->fabmisc }}</td>
-                                    <td>{{ $row->shipComplete }}</td>
+                                    <td>{{ $row->shipComplete ? \Carbon\Carbon::parse($row->shipComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->roughSuper }}</td>
                                     <td>{{ $row->finishSuper }}</td>
                                     <td>{{ $row->engineer }}</td>
                                     <td>{{ $row->pActManager }}</td>
-                                    <td>{{ $row->wrhs2_feb }}</td>
+                                    <!-- <td>{{ $row->wrhs2_feb }}</td> -->
                                     <td>{{ $row->notes }}</td>
                                     <td>
                                         <a href="{{ route('form.edit', ['recnum' => $row->recnum]) }}" class="text-success">

@@ -158,7 +158,7 @@
                                 <th><a href="#" class="sort" data-column="j.phase" style="color: inherit; text-decoration: none;">Phase</a></th>
                                 <th><a href="#" class="sort" data-column="j.units" style="color: inherit; text-decoration: none;">Units</a></th>
                                 <th><a href="#" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
-                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">Bld-Floor</a></th>
+                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">BLDG-Floor</a></th>
                                 <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
                                 <th><a href="#" class="sort" data-column="s.old_dateNeeded" style="color: inherit; text-decoration: none;">Old-Date-Needed</a></th>
                                 <th><a href="#" class="sort" data-column="j.roughSuper" style="color: inherit; text-decoration: none;">Rough-Super</a></th>
@@ -178,8 +178,8 @@
                                     <td>{{ $SFH->units }}</td>
                                     <td>{{ $SFH->sys }}</td>
                                     <td>{{ $SFH->bldFloor }}</td>
-                                    <td>{{ $SFH->dateNeeded }}</td>
-                                    <td>{{ $SFH->old_dateNeeded }}</td>
+                                    <td>{{ $SFH->dateNeeded ? \Carbon\Carbon::parse($SFH->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $SFH->roughSuper }}</td>
                                     <td>{{ $SFH->engineer }}</td>
                                     <td>{{ $SFH->pActManager }}</td>

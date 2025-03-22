@@ -255,7 +255,7 @@
                                 <th>Units</th>
                                 <th>Material</th>
                                 <th>System</th>
-                                <th>Bid - Floor</th>
+                                <th>BLDG Floor</th>
                                 <th>Zone - Unit</th>
                                 <th>D-X</th>
                                 <th>Job # - System - Location</th>
@@ -272,7 +272,7 @@
                                 <th>Finish Super</th>
                                 <th>Engineer</th>
                                 <th>PM/Act Manager</th>
-                                <th>WRHS to FAB</th>
+                                <!-- <th>WRHS to FAB</th> -->
                                 <th>Notes</th>
                             </tr>
                         </thead>
@@ -295,22 +295,22 @@
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="zoneUnit">{{ $search->zoneUnit }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dx">{{ $search->dx }}</td>
                                         <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td>
-                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dateNeeded">{{ $search->dateNeeded }}</td>
-                                        <td>{{ $search->old_dateNeeded }}</td>
+                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dateNeeded">{{ $search->dateNeeded ? \Carbon\Carbon::parse($search->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                        <td>{{ $search->old_dateNeeded ? \Carbon\Carbon::parse($search->old_dateNeeded)->format('m / d / Y') : '' }}</td>
 
-                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="engNeeded">{{ $search->engNeeded }}</td>
-                                        <td>{{ $search->old_engNeeded }}</td>
+                                        <td contenteditable="true" data-id="{{ $search->recnum }}"  data-column="engNeeded">{{ $search->engNeeded ? \Carbon\Carbon::parse($search->engNeeded)->format('m / d / Y') : '' }}</td>
+                                        <td>{{ $search->old_engNeeded ? \Carbon\Carbon::parse($search->old_engNeeded)->format('m / d / Y') : '' }}</td>
 
-                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="engComplete">{{ $search->engComplete }}</td>
+                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="engComplete">{{ $search->engComplete ? \Carbon\Carbon::parse($search->engComplete)->format('m / d / Y') : '' }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="prwr">{{ $search->prwr }}</td>
-                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="fabwr">{{ $search->fabwr }}</td>
+                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="fabwr">{{ $search->fabwr ? \Carbon\Carbon::parse($search->fabwr)->format('m / d / Y') : '' }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="fabmisc">{{ $search->fabmisc }}</td>
-                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="shipComplete">{{ $search->shipComplete }}</td>
+                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="shipComplete">{{ $search->shipComplete ? \Carbon\Carbon::parse($search->shipComplete)->format('m / d / Y') : '' }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="roughSuper">{{ $search->roughSuper }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="finishSuper">{{ $search->finishSuper }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="engineer">{{ $search->engineer }}</td>
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="pActManager">{{ $search->pActManager }}</td>
-                                        <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="wrhs2_feb">{{ $search->wrhs2_feb }}</td>
+                                        <!-- <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="wrhs2_feb">{{ $search->wrhs2_feb }}</td> -->
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="notes">{{ $search->notes }}</td>
                                     </tr>
                                     

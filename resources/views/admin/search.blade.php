@@ -257,7 +257,7 @@
                                 <th>Units</th>
                                 <th>Material</th>
                                 <th>System</th>
-                                <th>Bid - Floor</th>
+                                <th>BLDG Floor</th>
                                 <th>Zone - Unit</th>
                                 <th>D-X</th>
                                 <th>Job # - System - Location</th>
@@ -274,7 +274,7 @@
                                 <th>Finish Super</th>
                                 <th>Engineer</th>
                                 <th>PM/Act Manager</th>
-                                <th>WRHS to FAB</th>
+                                <!-- <th>WRHS to FAB</th> -->
                                 <th>Notes</th>
                                 <th>Action</th>
                             </tr>
@@ -298,20 +298,20 @@
                                         <td>{{ $search->zoneUnit }}</td>
                                         <td>{{ $search->dx }}</td>
                                         <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td> <!-- Casting to integers to ensure proper subtraction -->
-                                        <td>{{ $search->dateNeeded }}</td>
-                                        <td>{{ $search->old_dateNeeded }}</td>
-                                        <td>{{ $search->engNeeded }}</td>
-                                        <td>{{ $search->old_engNeeded }}</td>
-                                        <td>{{ $search->engComplete }}</td>
+                                        <td>{{ $search->dateNeeded ? \Carbon\Carbon::parse($search->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                        <td>{{ $search->old_dateNeeded ? \Carbon\Carbon::parse($search->old_dateNeeded)->format('m / d / Y') : '' }}</td>
+                                        <td>{{ $search->engNeeded ? \Carbon\Carbon::parse($search->engNeeded)->format('m / d / Y') : '' }}</td>
+                                        <td>{{ $search->old_engNeeded ? \Carbon\Carbon::parse($search->old_engNeeded)->format('m / d / Y') : '' }}</td>
+                                        <td>{{ $search->engComplete ? \Carbon\Carbon::parse($search->engComplete)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->prwr }}</td>
-                                        <td>{{ $search->fabwr }}</td>
+                                        <td>{{ $search->fabwr ? \Carbon\Carbon::parse($search->fabwr)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->fabmisc }}</td>
-                                        <td>{{ $search->shipComplete }}</td>
+                                        <td>{{ $search->shipComplete ? \Carbon\Carbon::parse($search->shipComplete)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->roughSuper }}</td>
                                         <td>{{ $search->finishSuper }}</td>
                                         <td>{{ $search->engineer }}</td>
                                         <td>{{ $search->pActManager }}</td>
-                                        <td>{{ $search->wrhs2_feb }}</td>
+                                        <!-- <td>{{ $search->wrhs2_feb }}</td> -->
                                         <td>{{ $search->notes }}</td>
                                         <td>
                                             <a href="{{ route('form.edit', ['recnum' => $search->recnum]) }}" class="text-success">
