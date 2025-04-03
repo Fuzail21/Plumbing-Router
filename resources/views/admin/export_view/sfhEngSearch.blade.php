@@ -60,12 +60,13 @@
                             <th>Phase</th>
                             <th>Units</th>
                             <th>System</th>
-                            <th>Bld - Floor</th>
+                            <th>BLDG Floor</th>
                             <th>Date Needed</th>
+                            <th>Old Date Needed</th>
                             <th>Rough Super</th>
                             <th>Engineer</th>
                             <th>PM/Act Manager</th>
-                            <th>WRHS2 FEB</th>
+                            <!-- <th>WRHS2 FEB</th> -->
                             <th>Notes</th>
                         </tr>
                     </thead>
@@ -83,12 +84,13 @@
                                     <td>{{ $SFH->units }}</td>
                                     <td>{{ $SFH->sys }}</td>
                                     <td>{{ $SFH->bldFloor }}</td>
-                                    <td>{{ $SFH->dateNeeded }}</td>
+                                    <td>{{ $SFH->dateNeeded ? \Carbon\Carbon::parse($SFH->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $SFH->roughSuper }}</td>
                                     <td>{{ $SFH->engineer }}</td>
                                     <td>{{ $SFH->pActManager }}</td>
-                                    <td>{{ $SFH->wrhs2_feb }}</td>
-                                    <td>{{ $SFH->notes }}</td>             
+                                    <!-- <td>{{ $SFH->wrhs2_feb }}</td> -->
+                                    <td>{{ $SFH->notes }}</td>   
                                 </tr>
                             @endforeach
                         @endif

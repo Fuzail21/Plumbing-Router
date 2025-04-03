@@ -13,7 +13,6 @@
                 <table id="searchData" class="table table-striped">
                     <thead>
                         <tr>
-                            <!-- Column headers here -->
                             <th>Job Type</th>
                             <th>Job #</th>
                             <th>Descr</th>
@@ -21,15 +20,17 @@
                             <th>Units</th>
                             <th>Material</th>
                             <th>System</th>
-                            <th>Bid - Floor</th>
+                            <th>BLDG Floor</th>
                             <th>Zone - Unit</th>
                             <th>D-X</th>
                             <th>Job # - System - Location</th>
                             <th>Date Needed</th>
-                            <th>Engineering Date Needed</th>
+                            <th>Old Date Needed</th>
+                            <th>Eng Date Needed</th>
+                            <th>Old Eng Date Needed</th>
                             <th>ENG Complete</th>
                             <th>WRHS Misc Complete</th>
-                            <th>WRHS to FAB</th>
+                            <!-- <th>WRHS to FAB</th> -->
                             <th>FAB Misc Complete</th>
                             <th>FAB Complete</th>
                             <th>Ship Complete</th>
@@ -49,8 +50,7 @@
                             </tr>
                         @else
                             @foreach($searchResults as $search)
-                                <tr>
-                                    <!-- Row data here -->
+                                <tr class="align-middle">
                                     <td>{{ $search->jobType }}</td>
                                     <td>{{ $search->jobId }}</td>
                                     <td>{{ $search->descript }}</td>
@@ -61,15 +61,17 @@
                                     <td>{{ $search->bldFloor }}</td>
                                     <td>{{ $search->zoneUnit }}</td>
                                     <td>{{ $search->dx }}</td>
-                                    <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td>
-                                    <td>{{ $search->dateNeeded }}</td>
-                                    <td>{{ $search->engNeeded }}</td>
-                                    <td>{{ $search->engComplete }}</td>
+                                    <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td> <!-- Casting to integers to ensure proper subtraction -->
+                                    <td>{{ $search->dateNeeded ? \Carbon\Carbon::parse($search->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $search->old_dateNeeded ? \Carbon\Carbon::parse($search->old_dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $search->engNeeded ? \Carbon\Carbon::parse($search->engNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $search->old_engNeeded ? \Carbon\Carbon::parse($search->old_engNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $search->engComplete ? \Carbon\Carbon::parse($search->engComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $search->prwr }}</td>
-                                    <td>{{ $search->wrhs2_feb }}</td>
+                                    <!-- <td>{{ $search->wrhs2_feb }}</td> -->
                                     <td>{{ $search->fabmisc }}</td>
-                                    <td>{{ $search->fabwr }}</td>
-                                    <td>{{ $search->shipComplete }}</td>
+                                    <td>{{ $search->fabwr ? \Carbon\Carbon::parse($search->fabwr)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $search->shipComplete ? \Carbon\Carbon::parse($search->shipComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $search->roughSuper }}</td>
                                     <td>{{ $search->finishSuper }}</td>
                                     <td>{{ $search->engineer }}</td>

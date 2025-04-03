@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
 
 
+    Route::get('/sf-sort-filter', [JobInformations::class, 'sf_sort_filter'])->name('sf_sort_filter');
 
 
     Route::middleware(['auth', 'admin'])->group(function () {

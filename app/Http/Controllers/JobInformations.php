@@ -181,60 +181,41 @@ class JobInformations extends Controller
         return redirect()->route('search')->with('success', 'Updated Successfully.');
     }
 
-    public function home(Request $request) {
+    public function home(Request $request)
+    {
         $sortColumn = $request->input('column', session('sort_column', 'j.recnum'));
-        $sortDirection = session('sort_direction', 'desc');
-    
+        $sortDirection = $request->input('order', session('sort_direction', 'desc'));
+
         // Define allowed columns for sorting
-        $validColumns = ['j.recnum', 'j.job_title', 's.status', 's.updated_at'];
-        $dateColumns = ['s.updated_at']; // Define date fields
-    
+        $validColumns = [
+            'j.recnum', 'j.jobId', 'j.descript', 'j.phase', 'j.units', 'j.material', 
+            'j.sys', 'j.bldFloor', 'j.zoneUnit', 'j.dx', 's.updated_at'
+        ];
+        $dateColumns = ['s.updated_at'];
+
         if (!in_array($sortColumn, $validColumns)) {
-            $sortColumn = 'j.recnum'; // Default sorting column
+            $sortColumn = 'j.recnum';
         }
-    
-        if ($request->has('column') && session('sort_column') == $sortColumn) {
-            $sortDirection = ($sortDirection == 'asc') ? 'desc' : 'asc';
-        }
-    
+
         session(['sort_column' => $sortColumn, 'sort_direction' => $sortDirection]);
-    
-        // Base query with joins
+
+        // Base query
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-            ->select('j.*', 's.*');
-    
-        // Apply where clause for filtering (if filter parameters exist)
-        if ($request->has('filter_column') && $request->has('filter_value')) {
-            $filterColumn = $request->input('filter_column');
-            $filterValue = $request->input('filter_value');
-    
-            if (in_array($filterColumn, $dateColumns)) {
-                // If the column is a date, use whereDate()
-                $query->whereDate($filterColumn, '=', $filterValue);
-            } else {
-                // Otherwise, use where() for normal text/number filtering
-                $query->where($filterColumn, 'LIKE', "%$filterValue%");
-            }
-        }
-    
-        // Sorting: If it's a date column, use orderBy on it
-        if (in_array($sortColumn, $dateColumns)) {
-            $query->orderBy($sortColumn, $sortDirection);
-        } else {
-            $query->orderBy($sortColumn, $sortDirection);
-        }
-    
-        // Paginate results
+            ->select('j.*', 's.*')
+            ->orderBy($sortColumn, $sortDirection);
+
+        // Fetch data
         $jobs = $query->paginate(50);
-    
+
         // Handle AJAX response
         if ($request->ajax()) {
             return response()->json([
                 'table' => view('admin.dashboard', compact('jobs'))->render()
+
             ]);
         }
-    
+
         return view('admin.dashboard', compact('jobs'));
     }
 
@@ -720,6 +701,34 @@ class JobInformations extends Controller
 
         return redirect('/');
     }
+
+    public function sf_sort_filter(Request $request){
+        // Get sorting parameters from session or request
+        $sortColumn = $request->get('column', session('data_sort_column_sfh', 'j.recnum'));
+        $sortDirection = $request->get('order', session('data_sort_direction_sfh', 'desc'));
+
+        // Store sorting preferences in session
+        session(['data_sort_column_sfh' => $sortColumn, 'data_sort_direction_sfh' => $sortDirection]);
+
+        // Fetch data with sorting
+        $sfSort = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where('j.jobType', '=', 'SFH')
+            ->select('j.*', 's.*')
+            ->orderBy($sortColumn, $sortDirection)
+            ->paginate(50);
+
+        // Return AJAX response for sorting and pagination
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('admin.sf_sort_filter', compact('sfSort'))->render()
+            ]);
+        }
+
+        return view('admin.sf_sort_filter', compact('sfSort'));
+    }
+
+
 
 
     

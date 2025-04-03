@@ -60,6 +60,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('sf_sort_filter') }}" class="nav-link {{ request()->routeIs('sf_sort_filter') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-star-half"></i>
+                        <p>SF Sort Filter</p>
+                    </a>
+                </li>
+
                 @if(Auth::check() && Auth::user()->designation === 'Admin')
                     <li class="nav-item">
                         <a href="{{ route('user.list') }}" class="nav-link {{ request()->routeIs('user.list') ? 'active' : '' }}">
