@@ -74,6 +74,14 @@
                             <p>Users</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('supervisors.add') }}" class="nav-link {{ request()->routeIs('supervisors.add') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-person-plus-fill"></i>
+                            <p>Add Supervisors</p>
+                        </a>
+                    </li>
+
                 @endif
 
                 <li class="nav-item">

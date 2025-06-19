@@ -8,7 +8,10 @@ use App\Models\JobStatus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\RoughSuper;
+use App\Models\FinishSuper;
+use App\Models\Engineer;
+use App\Models\ProjectActManager;
 
 class JobInformations extends Controller
 {
@@ -18,21 +21,27 @@ class JobInformations extends Controller
         ->select('j.*', 's.*')
         ->get();
 
-        $roughSuper = $query->pluck('roughSuper')->unique()->reject(function ($value) {
-            return empty($value);
-        })->values();
+        // $roughSuper = $query->pluck('roughSuper')->unique()->reject(function ($value) {
+        //     return empty($value);
+        // })->values();
         
-        $finishSuper = $query->pluck('finishSuper')->unique()->reject(function ($value) {
-            return empty($value);
-        })->values();
+        // $finishSuper = $query->pluck('finishSuper')->unique()->reject(function ($value) {
+        //     return empty($value);
+        // })->values();
         
-        $engineer = $query->pluck('engineer')->unique()->reject(function ($value) {
-            return empty($value);
-        })->values();
+        // $engineer = $query->pluck('engineer')->unique()->reject(function ($value) {
+        //     return empty($value);
+        // })->values();
         
-        $pActManager = $query->pluck('pActManager')->unique()->reject(function ($value) {
-            return empty($value);
-        })->values();
+        // $pActManager = $query->pluck('pActManager')->unique()->reject(function ($value) {
+        //     return empty($value);
+        // })->values();
+
+
+        $roughSuper   = RoughSuper::pluck('name');
+        $finishSuper  = FinishSuper::pluck('name');
+        $engineer     = Engineer::pluck('name');
+        $pActManager  = ProjectActManager::pluck('name');
         
 
         $data = compact('roughSuper', 'finishSuper', 'engineer', 'pActManager');
@@ -735,7 +744,47 @@ class JobInformations extends Controller
     
     
     
-    
+//     public function add()
+// {
+//     $query = DB::table('job_information as j')
+//         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+//         ->select('j.*', 's.*')
+//         ->get();
+
+//     // Helper function to normalize and filter
+//     $normalize = function ($collection) {
+//         return $collection
+//             ->map(fn($v) => trim($v))                // remove whitespace
+//             ->reject(fn($v) => empty($v))            // remove empty
+//             ->unique()
+//             ->values();                              // reset keys
+//     };
+
+//     $roughSuper   = $normalize($query->pluck('roughSuper'));
+//     $finishSuper  = $normalize($query->pluck('finishSuper'));
+//     $engineer     = $normalize($query->pluck('engineer'));
+//     $pActManager  = $normalize($query->pluck('pActManager'));
+
+//     // One-time insert (skip if already in table)
+//     foreach ($roughSuper as $name) {
+//         RoughSuper::firstOrCreate(['name' => $name]);
+//     }
+
+//     foreach ($finishSuper as $name) {
+//         FinishSuper::firstOrCreate(['name' => $name]);
+//     }
+
+//     foreach ($engineer as $name) {
+//         Engineer::firstOrCreate(['name' => $name]);
+//     }
+
+//     foreach ($pActManager as $name) {
+//         ProjectActManager::firstOrCreate(['name' => $name]);
+//     }
+
+//     $data = compact('roughSuper', 'finishSuper', 'engineer', 'pActManager');
+//     return view('admin.add')->with($data);
+// }
     
 
 }

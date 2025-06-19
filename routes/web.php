@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobInformations;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SupervisorController;
 use Illuminate\Support\Facades\Auth;
 
 // Route::get('/', function () {
@@ -62,6 +63,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/sf-sort-filter', [JobInformations::class, 'sf_sort_filter'])->name('sf_sort_filter');
 
+    Route::get('/supervisors/add', [SupervisorController::class, 'showAddPage'])->name('supervisors.add');
+    Route::post('/supervisors/store/{model}', [SupervisorController::class, 'store'])->name('supervisor.store');
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/user/list', [UserController::class, 'list'])->name('user.list');
