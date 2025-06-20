@@ -15,6 +15,54 @@
     .nav-tabs .nav-link {
         color: #021962;
     }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+        /* Add a subtle border around the entire pagination block if desired */
+        border: 1px solid #dee2e6; /* Light gray border */
+        border-radius: 0.25rem; /* Slightly rounded corners for the whole block */
+        overflow: hidden; /* Ensures child borders don't spill */
+    }
+
+    .pagination .page-item {
+        margin: 0; /* Remove individual item margins to make them stick together */
+    }
+
+    .pagination .page-link {
+        padding: 8px 14px;
+        border: none; /* Remove individual link borders as the parent will have one */
+        background-color: #fff;
+        color: #007bff; /* Blue text for inactive links */
+        font-weight: 500;
+        min-width: 42px;
+        text-align: center;
+        border-radius: 0; /* Square edges */
+        transition: all 0.2s ease-in-out;
+        /* Add a right border to separate links, except the last one */
+        border-right: 1px solid #dee2e6;
+    }
+
+    .pagination .page-item:last-child .page-link {
+        border-right: none; /* No border on the last item */
+    }
+
+    .pagination .page-link:hover {
+        background-color: #e9ecef; /* Lighter hover background */
+        color: #007bff;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #007bff; /* Blue background for active link */
+        color: #fff; /* White text for active link */
+        border-color: #007bff; /* Blue border for active link */
+        font-weight: bold;
+    }
+
+    .pagination .page-link:focus {
+        box-shadow: none;
+    }
 </style>
 @endsection
 
@@ -22,7 +70,7 @@
 <div class="app-content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Add</h3>
+            <h3 class="card-title">Add Supervisor Roles</h3>
         </div>
 
         @if(session('success'))
@@ -33,73 +81,173 @@
         @endif
 
         <div class="card-body">
-            <!-- Tabs -->
             <ul class="nav nav-tabs" id="entryTabs" role="tablist">
+                @foreach(['rough' => 'Rough Super', 'finish' => 'Finish Super', 'engineer' => 'Engineer', 'manager' => 'Project Manager'] as $id => $label)
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="rough-tab" data-bs-toggle="tab" data-bs-target="#rough" type="button" role="tab">Rough Super</button>
+                    <a class="nav-link @if(request('active_tab', session('active_tab', 'rough')) == $id) active @endif"
+                        id="{{ $id }}-tab"
+                        href="?active_tab={{ $id }}"
+                        role="tab">
+                        {{ $label }}
+                    </a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="finish-tab" data-bs-toggle="tab" data-bs-target="#finish" type="button" role="tab">Finish Super</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="engineer-tab" data-bs-toggle="tab" data-bs-target="#engineer" type="button" role="tab">Engineer</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="manager-tab" data-bs-toggle="tab" data-bs-target="#manager" type="button" role="tab">Project Manager</button>
-                </li>
+                @endforeach
             </ul>
 
-            <!-- Tab Content -->
             <div class="tab-content pt-4" id="entryTabsContent">
-                <div class="tab-pane fade show active" id="rough" role="tabpanel" aria-labelledby="rough-tab">
-                    <h5 class="mb-3">Rough Super</h5>
-                    <form action="{{ route('supervisor.store', 'RoughSuper') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name_rough" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name_rough" name="name" placeholder="Enter name" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-                </div>
+                @php
+                    $tables = [
+                        'rough' => ['title' => 'RoughSuper', 'items' => $roughSuper],
+                        'finish' => ['title' => 'FinishSuper', 'items' => $finishSuper],
+                        'engineer' => ['title' => 'Engineer', 'items' => $engineer],
+                        'manager' => ['title' => 'ProjectActManager', 'items' => $pActManager],
+                    ];
+                    $activeTab = request('active_tab', session('active_tab', 'rough'));
+                @endphp
 
-                <div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
-                    <h5 class="mb-3">Finish Super</h5>
-                    <form action="{{ route('supervisor.store', 'FinishSuper') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name_finish" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name_finish" name="name" placeholder="Enter name" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-                </div>
+                @foreach($tables as $id => $config)
+                <div class="tab-pane fade @if($activeTab == $id) show active @endif" id="{{ $id }}" role="tabpanel" aria-labelledby="{{ $id }}-tab">
+                    <h5 class="mb-3">{{ $config['title'] }}</h5>
 
-                <div class="tab-pane fade" id="engineer" role="tabpanel" aria-labelledby="engineer-tab">
-                    <h5 class="mb-3">Engineer</h5>
-                    <form action="{{ route('supervisor.store', 'Engineer') }}" method="POST">
+                    <form action="{{ route('supervisor.store', $config['title']) }}" method="POST" class="mb-3">
                         @csrf
+                        <input type="hidden" name="active_tab" value="{{ $id }}">
                         <div class="mb-3">
-                            <label for="name_engineer" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name_engineer" name="name" placeholder="Enter name" required>
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" placeholder="Enter name" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
-                </div>
 
-                <div class="tab-pane fade" id="manager" role="tabpanel" aria-labelledby="manager-tab">
-                    <h5 class="mb-3">Project Manager</h5>
-                    <form action="{{ route('supervisor.store', 'ProjectActManager') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="name_manager" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name_manager" name="name" placeholder="Enter name" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th width="20%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($config['items'] as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-sm btn-warning edit-inline"
+                                        data-id="{{ $item->id }}"
+                                        data-name="{{ $item->name }}"
+                                        data-model="{{ $config['title'] }}"
+                                        data-tab="{{ $id }}">
+                                        Edit
+                                    </button>
+
+                                    <form action="{{ route('supervisor.delete', ['model' => $config['title'], 'id' => $item->id]) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="active_tab" value="{{ $id }}">
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                  <div class="mt-3">
+    <div class="d-flex justify-content-between align-items-center">
+        {{-- Displaying result count --}}
+        <div class="pagination-info">
+            Showing {{ $config['items']->firstItem() }} to {{ $config['items']->lastItem() }} of {{ $config['items']->total() }} results
+        </div>
+
+        {{-- Pagination links --}}
+        <ul class="pagination mb-0">
+            {{-- Previous Button --}}
+            @if ($config['items']->onFirstPage())
+                <li class="page-item disabled" aria-disabled="true">
+                    <span class="page-link">&laquo; Previous</span>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $config['items']->previousPageUrl() }}" rel="prev">&laquo; Previous</a>
+                </li>
+            @endif
+
+            {{-- Next Button --}}
+            @if ($config['items']->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $config['items']->nextPageUrl() }}" rel="next">Next &raquo;</a>
+                </li>
+            @else
+                <li class="page-item disabled" aria-disabled="true">
+                    <span class="page-link">Next &raquo;</span>
+                </li>
+            @endif
+        </ul>
+    </div>
+</div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.edit-inline').forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const model = this.dataset.model;
+                const tab = this.dataset.tab;
+
+                Swal.fire({
+                    title: 'Edit Name',
+                    html: `<input id="swal-input" class="swal2-input" value="${name}" placeholder="Enter name">` +
+                          `<input type='hidden' id='swal-tab' value='${tab}'>`,
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    confirmButtonText: 'Update',
+                    preConfirm: () => {
+                        const newName = document.getElementById('swal-input').value;
+                        if (!newName.trim()) {
+                            Swal.showValidationMessage('Name is required');
+                            return false;
+                        }
+
+                        return fetch(`/supervisors/update/${model}/${id}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'X-HTTP-Method-Override': 'PUT'
+                            },
+                            body: JSON.stringify({ name: newName })
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Update failed');
+                            return response.json();
+                        })
+                        .catch(err => {
+                            Swal.showValidationMessage(err.message);
+                        });
+                    }
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        const tabValue = document.getElementById('swal-tab').value;
+                        const url = new URL(window.location.href);
+                        url.searchParams.set('active_tab', tabValue);
+                        window.location.href = url.toString();
+                    }
+                });
+            });
+        });
+    });
+</script>
 @endsection
