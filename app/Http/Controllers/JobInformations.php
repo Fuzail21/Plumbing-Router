@@ -38,10 +38,14 @@ class JobInformations extends Controller
         // })->values();
 
 
-        $roughSuper   = RoughSuper::pluck('name');
+        $roughSuper = RoughSuper::select('name')->get()->filter(function ($item) {
+            return !preg_match('/[^a-zA-Z0-9\s]/', $item->name); // skip if name has special characters
+        })->pluck('name');
         $finishSuper  = FinishSuper::pluck('name');
         $engineer     = Engineer::pluck('name');
-        $pActManager  = ProjectActManager::pluck('name');
+        $pActManager = ProjectActManager::select('name')->get()->filter(function ($item) {
+            return !preg_match('/[^a-zA-Z0-9\s]/', $item->name);
+        })->pluck('name');
         
 
         $data = compact('roughSuper', 'finishSuper', 'engineer', 'pActManager');
@@ -215,7 +219,7 @@ class JobInformations extends Controller
             ->orderBy($sortColumn, $sortDirection);
 
         // Fetch data
-        $jobs = $query->paginate(50);
+        $jobs = $query->paginate(150);
 
         // Handle AJAX response
         if ($request->ajax()) {
@@ -241,7 +245,7 @@ class JobInformations extends Controller
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->select('j.*', 's.*')
             ->orderBy($sortColumn, $sortDirection)
-            ->paginate(50);
+            ->paginate(150);
     
         // Return AJAX response for sorting and pagination
         if ($request->ajax()) {
@@ -352,7 +356,7 @@ class JobInformations extends Controller
     
         // Execute query and paginate only if search filters are applied
         if ($isSearchApplied) {
-            $search = (clone $query)->orderBy('j.recnum', 'desc')->paginate(10)->appends(request()->query());
+            $search = (clone $query)->orderBy('j.recnum', 'desc')->paginate(20)->appends(request()->query());
 
             $allSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
         
@@ -380,7 +384,7 @@ class JobInformations extends Controller
             ->where('j.jobType', '=', 'SFH')
             ->select('j.*', 's.*')
             ->orderBy($sortColumn, $sortDirection)
-            ->paginate(50);
+            ->paginate(150);
 
         // Return AJAX response for sorting and pagination
         if ($request->ajax()) {
@@ -406,7 +410,7 @@ class JobInformations extends Controller
             ->where('j.jobType', '=', 'COM')
             ->select('j.*', 's.*')
             ->orderBy($sortColumn, $sortDirection)
-            ->paginate(50);
+            ->paginate(150);
 
         // Return AJAX response for sorting and pagination
         if ($request->ajax()) {
@@ -452,7 +456,7 @@ class JobInformations extends Controller
     
         // If search has been applied, get the results
         if ($searchApplied) {
-            $sfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->paginate(10)->appends(request()->query());
+            $sfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->paginate(20)->appends(request()->query());
             
             $allSfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
     
@@ -488,7 +492,7 @@ class JobInformations extends Controller
             $allSearchResults = (clone $filteredQuery)->get();
 
             // Paginated results with query parameters
-            $searchResults = $filteredQuery->paginate(10)->appends(request()->query());
+            $searchResults = $filteredQuery->paginate(20)->appends(request()->query());
     
             // Get all results without pagination and store in session
             session(['searchResults' => $allSearchResults]);  // Store non-paginated results
@@ -597,7 +601,7 @@ class JobInformations extends Controller
     
         if ($isSearchApplied) {
             // Clone the query and apply pagination with query parameters
-            $bulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->paginate(10)->appends(request()->query());
+            $bulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->paginate(20)->appends(request()->query());
         
             // Clone again for non-paginated results
             $allBulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->get();
@@ -725,7 +729,7 @@ class JobInformations extends Controller
             ->where('j.jobType', '=', 'SFH')
             ->select('j.*', 's.*')
             ->orderBy($sortColumn, $sortDirection)
-            ->paginate(50);
+            ->paginate(150);
 
         // Return AJAX response for sorting and pagination
         if ($request->ajax()) {
@@ -735,56 +739,6 @@ class JobInformations extends Controller
         }
 
         return view('admin.sf_sort_filter', compact('sfSort'));
-    }
-
-
-
-
-    
-    
-    
-    
-//     public function add()
-// {
-//     $query = DB::table('job_information as j')
-//         ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-//         ->select('j.*', 's.*')
-//         ->get();
-
-//     // Helper function to normalize and filter
-//     $normalize = function ($collection) {
-//         return $collection
-//             ->map(fn($v) => trim($v))                // remove whitespace
-//             ->reject(fn($v) => empty($v))            // remove empty
-//             ->unique()
-//             ->values();                              // reset keys
-//     };
-
-//     $roughSuper   = $normalize($query->pluck('roughSuper'));
-//     $finishSuper  = $normalize($query->pluck('finishSuper'));
-//     $engineer     = $normalize($query->pluck('engineer'));
-//     $pActManager  = $normalize($query->pluck('pActManager'));
-
-//     // One-time insert (skip if already in table)
-//     foreach ($roughSuper as $name) {
-//         RoughSuper::firstOrCreate(['name' => $name]);
-//     }
-
-//     foreach ($finishSuper as $name) {
-//         FinishSuper::firstOrCreate(['name' => $name]);
-//     }
-
-//     foreach ($engineer as $name) {
-//         Engineer::firstOrCreate(['name' => $name]);
-//     }
-
-//     foreach ($pActManager as $name) {
-//         ProjectActManager::firstOrCreate(['name' => $name]);
-//     }
-
-//     $data = compact('roughSuper', 'finishSuper', 'engineer', 'pActManager');
-//     return view('admin.add')->with($data);
-// }
-    
+    }    
 
 }

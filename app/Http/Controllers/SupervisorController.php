@@ -7,14 +7,27 @@ use App\Models\RoughSuper;
 use App\Models\FinishSuper;
 use App\Models\Engineer;
 use App\Models\ProjectActManager;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class SupervisorController extends Controller
 {
     public function showAddPage(){
-        $roughSuper = RoughSuper::select('id', 'name')->paginate(10);
+        // Skip RoughSuper records with special characters
+        $roughSuperRaw = RoughSuper::select('id', 'name')->get()->filter(function ($item) {
+            return !preg_match('/[^a-zA-Z0-9\s]/', $item->name);
+        });
+        $roughSuper = $this->paginateCollection($roughSuperRaw, 10);
+
+        // Skip ProjectActManager records with special characters
+        $pActManagerRaw = ProjectActManager::select('id', 'name')->get()->filter(function ($item) {
+            return !preg_match('/[^a-zA-Z0-9\s]/', $item->name);
+        });
+        $pActManager = $this->paginateCollection($pActManagerRaw, 10);
+
+        // These remain unchanged
         $finishSuper = FinishSuper::select('id', 'name')->paginate(10);
         $engineer = Engineer::select('id', 'name')->paginate(10);
-        $pActManager = ProjectActManager::select('id', 'name')->paginate(10);
 
         return view('admin.supervisor_add', compact('roughSuper', 'finishSuper', 'engineer', 'pActManager'));
     }
@@ -77,4 +90,19 @@ class SupervisorController extends Controller
 
         return $map[$model] ?? null;
     }
+
+    private function paginateCollection($items, $perPage = 10, $page = null){
+        $page = $page ?: (LengthAwarePaginator::resolveCurrentPage() ?: 1);
+        $items = collect($items);
+        $pagedItems = $items->forPage($page, $perPage);
+
+        return new LengthAwarePaginator(
+            $pagedItems,
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+    }
+
 }
