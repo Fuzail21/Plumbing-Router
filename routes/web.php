@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/bulk_edit', [JobInformations::class, 'bulk_edit'])->name('bulk_edit');
 
     Route::put('/update-job/{recnum}', [JobInformations::class, 'updateJob']);
+    Route::post('/insert-job', [JobInformations::class, 'addRow'])->name('insert.job');
 
 
 
@@ -67,7 +68,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/supervisors/store/{model}', [SupervisorController::class, 'store'])->name('supervisor.store');
     Route::put('/supervisors/update/{model}/{id}', [SupervisorController::class, 'update'])->name('supervisor.update');
     Route::delete('/supervisors/delete/{model}/{id}', [SupervisorController::class, 'destroy'])->name('supervisor.delete');
-
 
 
 

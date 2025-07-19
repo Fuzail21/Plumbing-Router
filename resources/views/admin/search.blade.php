@@ -260,7 +260,7 @@
                                 <th>BLDG Floor</th>
                                 <th>Zone - Unit</th>
                                 <th>D-X</th>
-                                <th>Job # - System - Location</th>
+                                <th>Job # - System - Location - BLDG Floor - Zone - Unit</th>
                                 <th>Date Needed</th>
                                 <th>Old Date Needed</th>
                                 <th>Eng Date Needed</th>
@@ -297,7 +297,7 @@
                                         <td>{{ $search->bldFloor }}</td>
                                         <td>{{ $search->zoneUnit }}</td>
                                         <td>{{ $search->dx }}</td>
-                                        <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td> <!-- Casting to integers to ensure proper subtraction -->
+                                        <td>{{ $search->jobId }} - {{ $search->sys }} - {{ $search->bldFloor }} - {{ $search->zoneUnit }} - {{ $search->dx }}</td>
                                         <td>{{ $search->dateNeeded ? \Carbon\Carbon::parse($search->dateNeeded)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->old_dateNeeded ? \Carbon\Carbon::parse($search->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->engNeeded ? \Carbon\Carbon::parse($search->engNeeded)->format('m / d / Y') : '' }}</td>

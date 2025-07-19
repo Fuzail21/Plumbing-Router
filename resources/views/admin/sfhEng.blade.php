@@ -152,19 +152,19 @@
                     <table class="table table-striped" id="data-table">
                         <thead>
                             <tr>
-                                <th><a href="#" class="sort" data-column="j.jobType" style="color: inherit; text-decoration: none;">Job-Type</a></th>
+                                <th>Job-Type</th>
                                 <th><a href="#" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job#</a></th>
-                                <th><a href="#" class="sort" data-column="j.descript" style="color: inherit; text-decoration: none;">Description</a></th>
-                                <th><a href="#" class="sort" data-column="j.phase" style="color: inherit; text-decoration: none;">Phase</a></th>
-                                <th><a href="#" class="sort" data-column="j.units" style="color: inherit; text-decoration: none;">Units</a></th>
-                                <th><a href="#" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
-                                <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">BLDG-Floor</a></th>
+                                <th>Description</th>
+                                <th>Phase</th>
+                                <th>Units</th>
+                                <th>System</th>
+                                <th>BLDG-Floor</th>
                                 <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
-                                <th><a href="#" class="sort" data-column="s.old_dateNeeded" style="color: inherit; text-decoration: none;">Old-Date-Needed</a></th>
-                                <th><a href="#" class="sort" data-column="j.roughSuper" style="color: inherit; text-decoration: none;">Rough-Super</a></th>
-                                <th><a href="#" class="sort" data-column="j.engineer" style="color: inherit; text-decoration: none;">Engineer</a></th>
-                                <th><a href="#" class="sort" data-column="s.pActManager" style="color: inherit; text-decoration: none;">PM/Act-Manager</a></th>
-                                <th><a href="#" class="sort" data-column="s.notes" style="color: inherit; text-decoration: none;">Notes</a></th>
+                                <th>Old-Date-Needed</th>
+                                <th>Rough-Super</th>
+                                <th>Engineer</th>
+                                <th>PM/Act-Manager</th>
+                                <th>Notes</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

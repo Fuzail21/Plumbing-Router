@@ -160,7 +160,7 @@
                                 <th><a href="#" class="sort" data-column="j.materials" style="color: inherit; text-decoration: none;">Materials</a></th>
                                 <th><a href="#" class="sort" data-column="j.sys" style="color: inherit; text-decoration: none;">System</a></th>
                                 <th><a href="#" class="sort" data-column="j.bldFloor" style="color: inherit; text-decoration: none;">BLDG-Floor</a></th>
-                                <th>Job # - System - Location</th>
+                                <th>Job # - System - Location - BLDG Floor - Zone - Unit</th>
                                 <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
                                 <!-- <th><a href="#" class="sort" data-column="s.old_dateNeeded" style="color: inherit; text-decoration: none;">New-Date-Needed</a></th> -->
                                 <th><a href="#" class="sort" data-column="j.roughSuper" style="color: inherit; text-decoration: none;">Rough-Super</a></th>
@@ -178,7 +178,7 @@
                                     <td>{{ $SF->material }}</td>
                                     <td>{{ $SF->sys }}</td>
                                     <td>{{ $SF->bldFloor }}</td>
-                                    <td>{{ (int) $SF->jobId - (int) $SF->sys - (int) $SF->dx }}</td>
+                                        <td>{{ $SF->jobId }} - {{ $SF->sys }} - {{ $SF->bldFloor }} - {{ $SF->zoneUnit }} - {{ $SF->dx }}</td>
                                     <td>{{ $SF->dateNeeded ? \Carbon\Carbon::parse($SF->dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <!-- <td></td> -->
                                     <td>{{ $SF->roughSuper }}</td>

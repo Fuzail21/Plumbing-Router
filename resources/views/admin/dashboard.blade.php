@@ -167,7 +167,7 @@
                             <th><a href="#" class="sort" data-column="bldFloor" data-order="asc" style="color: inherit; text-decoration: none;">BLDG Floor</a></th>
                             <th><a href="#" class="sort" data-column="zoneUnit" data-order="asc" style="color: inherit; text-decoration: none;">Zone - Unit</a></th>
                             <th><a href="#" class="sort" data-column="dx" data-order="asc" style="color: inherit; text-decoration: none;">D-X</a></th>
-                            <th>Job # - System - Location</th>
+                            <th>Job # - System - Location - BLDG Floor - Zone - Unit</th>
                             <th><a href="#" class="sort" data-column="dateNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Date Needed</a></th>
                             <th><a href="#" class="sort" data-column="old_dateNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Old Date Needed</a></th>
                             <th><a href="#" class="sort" data-column="engNeeded" data-order="asc" style="color: inherit; text-decoration: none;">Eng Date Needed</a></th>
@@ -205,7 +205,7 @@
                                     <td>{{ $row->bldFloor }}</td>
                                     <td>{{ $row->zoneUnit }}</td>
                                     <td>{{ $row->dx }}</td>
-                                    <td>{{ $row->jobId . '-' . $row->sys . '-' . $row->dx }}</td> 
+                                    <td>{{ $row->jobId }} - {{ $row->sys }} - {{ $row->bldFloor }} - {{ $row->zoneUnit }} - {{ $row->dx }}</td>
                                     <td>{{ $row->dateNeeded ? \Carbon\Carbon::parse($row->dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->old_dateNeeded ? \Carbon\Carbon::parse($row->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->engNeeded ? \Carbon\Carbon::parse($row->engNeeded)->format('m / d / Y') : '' }}</td>
@@ -219,7 +219,7 @@
                                     <td>{{ $row->finishSuper }}</td>
                                     <td>{{ $row->engineer }}</td>
                                     <td>{{ $row->pActManager }}</td>
-                                    <!-- <td>{{ $row->wrhs2_feb }}</td> -->
+                                    {{-- <!-- <td>{{ $row->wrhs2_feb }}</td> --> --}}
                                     <td>{{ $row->notes }}</td>
                                     <td>
                                         <a href="{{ route('form.edit', ['recnum' => $row->recnum]) }}" class="text-success">

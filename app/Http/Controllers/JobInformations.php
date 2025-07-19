@@ -356,12 +356,12 @@ class JobInformations extends Controller
     
         // Execute query and paginate only if search filters are applied
         if ($isSearchApplied) {
-            $search = (clone $query)->orderBy('j.recnum', 'desc')->paginate(20)->appends(request()->query());
+            $search = (clone $query)->orderBy('s.dateneeded', 'desc')->paginate(20)->appends(request()->query());
 
             $allSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
-        
+
             session(['search' => $allSearch]);
-        
+
             return view('admin.search', compact('search'));
         }
         
@@ -371,9 +371,8 @@ class JobInformations extends Controller
     }
     
     public function sfh_eng(Request $request){
-        // Get sorting parameters from session or request
-        $sortColumn = $request->get('column', session('data_sort_column_sfh', 'j.recnum'));
-        $sortDirection = $request->get('order', session('data_sort_direction_sfh', 'desc'));
+        $sortColumn = $request->get('column', session('data_sort_column_sfh', 's.dateNeeded'));
+        $sortDirection = $request->get('order', session('data_sort_direction_sfh', 'asc'));
 
         // Store sorting preferences in session
         session(['data_sort_column_sfh' => $sortColumn, 'data_sort_direction_sfh' => $sortDirection]);
@@ -397,9 +396,8 @@ class JobInformations extends Controller
     }
 
     public function com_eng(Request $request){
-        // Get sorting parameters from session or request
-        $sortColumn = $request->get('column', session('data_sort_column_com', 'j.recnum'));
-        $sortDirection = $request->get('order', session('data_sort_direction_com', 'desc'));
+        $sortColumn = $request->get('column', session('data_sort_column_com', 's.dateNeeded'));
+        $sortDirection = $request->get('order', session('data_sort_direction_com', 'asc'));
 
         // Store sorting preferences in session
         session(['data_sort_column_com' => $sortColumn, 'data_sort_direction_com' => $sortDirection]);
@@ -408,6 +406,7 @@ class JobInformations extends Controller
         $comEng = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->where('j.jobType', '=', 'COM')
+            ->whereNotNull('s.dateNeeded')
             ->select('j.*', 's.*')
             ->orderBy($sortColumn, $sortDirection)
             ->paginate(150);
@@ -739,6 +738,102 @@ class JobInformations extends Controller
         }
 
         return view('admin.sf_sort_filter', compact('sfSort'));
-    }    
+    }
+    
+    public function addRow(Request $request){
+        DB::beginTransaction();
+        try {
+            // Get the last recnum and increment for each new record separately
+            $lastRecnum = JobInformation::max('recnum') ?? 0;
+
+            $newRecnums = []; // To store recnums of newly inserted records
+
+            // Since the frontend sends data for a single row wrapped in arrays,
+            // we'll access the first element of each array.
+            // Check if 'material' (or any other required field) exists and is an array
+            if ($request->has('material') && is_array($request->material) && count($request->material) > 0) {
+                // Extract all values for the first (and only) index
+                $material = $request->material[0] ?? null;
+                $system = $request->sys[0] ?? null; // Changed from $request->system to $request->sys based on frontend data-column
+                $bldFloor = $request->bldFloor[0] ?? null;
+                $zoneUnit = $request->zoneUnit[0] ?? null;
+                $dx = $request->dx[0] ?? null;
+                $dateNeeded = $request->dateNeeded[0] ?? null;
+                $engNeeded = $request->engNeeded[0] ?? null;
+                $engComplete = $request->engComplete[0] ?? null;
+                $prwr = $request->prwr[0] ?? null; // WRHS Misc Complete
+                $fabwr = $request->fabwr[0] ?? null; // FAB Complete
+                $fabmisc = $request->fabmisc[0] ?? null; // FAB Misc Complete
+                $shipComplete = $request->shipComplete[0] ?? null;
+                $roughSuper = $request->roughSuper[0] ?? null;
+                $finishSuper = $request->finishSuper[0] ?? null;
+                $engineer = $request->engineer[0] ?? null;
+                $pActManager = $request->pActManager[0] ?? null; // Changed from $request->pmactmanager to $request->pActManager
+                $notes = $request->notes[0] ?? null;
+                $jobType = $request->jobType[0] ?? null;
+                $jobId = $request->jobId[0] ?? null; // Changed from $request->jobNum to $request->jobId
+                $descript = $request->descript[0] ?? null;
+                $phase = $request->phase[0] ?? null;
+                $units = $request->units[0] ?? null;
+
+
+                // Check if at least one significant field has a value to consider it a valid row
+                if (!empty($jobId) || !empty($material) || !empty($system) || !empty($bldFloor) || !empty($zoneUnit) || !empty($dx) || !empty($dateNeeded) || !empty($engNeeded)) {
+                    // Increment the recnum for this new record
+                    $newRecnum = $lastRecnum + 1;
+                    $lastRecnum = $newRecnum; // Update lastRecnum for the next potential iteration (though here it's single)
+
+                    // Save job information
+                    $job = JobInformation::create([
+                        'recnum' => $newRecnum,
+                        'jobType' => $jobType,
+                        'jobId' => $jobId,
+                        'descript' => $descript,
+                        'phase' => $phase,
+                        'units' => $units,
+                        'material' => $material,
+                        'sys' => $system,
+                        'bldFloor' => $bldFloor,
+                        'zoneUnit' => $zoneUnit,
+                        'dx' => $dx,
+                        'roughSuper' => $roughSuper,
+                        'finishSuper' => $finishSuper,
+                        'engineer' => $engineer,
+                    ]);
+
+                    // Save job status
+                    JobStatus::create([
+                        'jobId' => $job->jobId, // Use the jobId from the newly created job information
+                        'recnum' => $newRecnum,
+                        'dateNeeded' => $dateNeeded,
+                        'engNeeded' => $engNeeded,
+                        'pActManager' => $pActManager,
+                        'engComplete' => $engComplete,
+                        'prwr' => $prwr,
+                        'fabwr' => $fabwr,
+                        'fabmisc' => $fabmisc,
+                        'shipComplete' => $shipComplete,
+                        'notes' => $notes,
+                    ]);
+
+                    $newRecnums[] = $newRecnum; // Track the new recnum
+                }
+            }
+
+            // If no valid records were inserted, rollback
+            if (empty($newRecnums)) {
+                DB::rollBack();
+                return response()->json(['success' => false, 'error' => 'No valid records to save'], 400);
+            }
+
+            DB::commit();
+            // Return a JSON response with success and the new recnum(s)
+            return response()->json(['success' => true, 'message' => 'Added Successfully.', 'recnums' => $newRecnums]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'error' => 'Failed to save job', 'message' => $e->getMessage()], 500);
+        }
+    }
 
 }
