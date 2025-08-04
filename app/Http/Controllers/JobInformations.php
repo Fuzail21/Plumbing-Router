@@ -452,8 +452,16 @@ class JobInformations extends Controller
         $sfhEng = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->where('j.jobType', '=', 'SFH')
+            ->whereNotNull('s.dateNeeded')
+            ->whereNull('s.engComplete')
+            ->where(function($query) {
+                $query->whereNull('s.shipComplete')
+                      ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })
             ->select('j.*', 's.*')
-            ->orderBy($sortColumn, $sortDirection)
+            ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
+            ->orderBy('s.dateNeeded', 'ASC')
+            ->orderBy('s.engComplete', 'DESC')
             ->paginate(150);
 
         // Return AJAX response for sorting and pagination
@@ -478,8 +486,11 @@ class JobInformations extends Controller
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->where('j.jobType', '=', 'COM')
             ->whereNotNull('s.dateNeeded')
+            ->whereNull('s.engComplete')
             ->select('j.*', 's.*')
-            ->orderBy($sortColumn, $sortDirection)
+            ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
+            ->orderBy('s.dateNeeded', 'ASC')
+            ->orderBy('s.engComplete', 'DESC')
             ->paginate(150);
 
         // Return AJAX response for sorting and pagination

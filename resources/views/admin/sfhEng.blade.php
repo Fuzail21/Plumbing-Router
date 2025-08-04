@@ -153,13 +153,13 @@
                         <thead>
                             <tr>
                                 <th>Job-Type</th>
-                                <th><a href="#" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job#</a></th>
+                                <th>Job#</th>
                                 <th>Description</th>
                                 <th>Phase</th>
                                 <th>Units</th>
                                 <th>System</th>
                                 <th>BLDG-Floor</th>
-                                <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
+                                <th>Date-Needed</th>
                                 <th>Old-Date-Needed</th>
                                 <th>Rough-Super</th>
                                 <th>Engineer</th>

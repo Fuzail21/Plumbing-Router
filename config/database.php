@@ -115,32 +115,32 @@ return [
 
         // commented following on 11/02/2025 while uploading on azure by Haseeb and adding server strings
 
-        'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
-        ],
-
         // 'sqlsrv' => [
-        //         'driver' => 'sqlsrv',
-        //         'host' => '2020sqlwebapp.database.windows.net',
-        //         'port' => '1433',
-        //         'database' => 'plumbingRouter_laravel',
-        //         'username' => 'index',
-        //         'password' => '5920@dm!n',
-        //         'charset' => 'utf8',
-        //         'prefix' => '',
-        //         'prefix_indexes' => true,
-        //  ],
+        //     'driver' => 'sqlsrv',
+        //     'url' => env('DATABASE_URL'),
+        //     'host' => env('DB_HOST', 'localhost'),
+        //     'port' => env('DB_PORT', '1433'),
+        //     'database' => env('DB_DATABASE', 'forge'),
+        //     'username' => env('DB_USERNAME', 'forge'),
+        //     'password' => env('DB_PASSWORD', ''),
+        //     'charset' => 'utf8',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     // 'encrypt' => env('DB_ENCRYPT', 'yes'),
+        //     // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+        // ],
+
+        'sqlsrv' => [
+                'driver' => 'sqlsrv',
+                'host' => '2020sqlwebapp.database.windows.net',
+                'port' => '1433',
+                'database' => 'plumbingRouter_laravel',
+                'username' => 'index',
+                'password' => '5920@dm!n',
+                'charset' => 'utf8',
+                'prefix' => '',
+                'prefix_indexes' => true,
+         ],
 
 
     ],
