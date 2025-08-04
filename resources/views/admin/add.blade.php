@@ -213,7 +213,7 @@
                     </select>
                 </div>
                 
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
                 <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
                 <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
                 <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
@@ -273,1084 +273,7 @@
                     </select>
                 </div>
                 
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-            
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
-                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
-                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
-                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
-                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Material:</label>
-                    <select id="material" name="material[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="ABS">ABS</option>
-                        <option value="CPR">CPR</option>
-                        <option value="BI">BI</option>
-                        <option value="CANS">CANS</option>
-                        <option value="OTHER">OTHER</option>
-                        <option value="PVC">PVC</option>
-                        <option value="CPVC">CPVC</option>
-                        <option value="PE">PE</option>
-                        <option value="ROD">ROD</option>
-                        <option value="FINISH">FINISH</option>
-                        <option value="NH">NH</option>
-                        <option value="PEX">PEX</option>
-                        <option value="WELD">WELD</option>
-                        <option value="HANGER">HANGER</option>
-                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>System:</label>
-                    <select id="system"  name="system[]">
-                        <option selected value="">-- select an option --</option>
-                        <option value="GSDM">GSDM</option>
-                        <option value="GS">GS</option>
-                        <option value="GSSD">GSSD</option>
-                        <option value="GW">GW</option>
-                        <option value="BDS">BDS</option>
-                        <option value="BDSD">BDSD</option>
-                        <option value="BDW">BDW</option>
-                        <option value="BDG">BDG</option>
-                        <option value="DECK">DECK</option>
-                        <option value="TOGM">TOGM</option>
-                        <option value="CANS">CANS</option>
-                        <option value="GSBL">GSBL</option>
-                        <option value="GSGW">GSGW</option>
-                        <option value="TOS">TOS</option>
-                        <option value="TOSD">TOSD</option>
-                        <option value="TOWM">TOWM</option>
-                        <option value="TOW">TOW</option>
-                        <option value="TOG">TOG</option>
-                        <option value="BF">BF</option>
-                        <option value="CON">CON</option>
-                        <option value="GG">GG</option>
-                        <option value="IRR">IRR</option>
-                        <option value="COP">COP</option>
-                    </select>
-                </div>
-                
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
                 <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
                 <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
                 <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
@@ -1361,6 +284,68 @@
             
 
 
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
 
 
             <div class="form-row">
@@ -1416,7 +401,1022 @@
                     </select>
                 </div>
                 
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
+                <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
+                <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
+                <div class="form-group"><label>Eng Date Needed:</label><input id="engNeeded" name="engNeeded[]" type="date"></div>
+            </div>
+
+
+            
+
+
+
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Material:</label>
+                    <select id="material" name="material[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="ABS">ABS</option>
+                        <option value="CPR">CPR</option>
+                        <option value="BI">BI</option>
+                        <option value="CANS">CANS</option>
+                        <option value="OTHER">OTHER</option>
+                        <option value="PVC">PVC</option>
+                        <option value="CPVC">CPVC</option>
+                        <option value="PE">PE</option>
+                        <option value="ROD">ROD</option>
+                        <option value="FINISH">FINISH</option>
+                        <option value="NH">NH</option>
+                        <option value="PEX">PEX</option>
+                        <option value="WELD">WELD</option>
+                        <option value="HANGER">HANGER</option>
+                    </select>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label>System:</label>
+                    <select id="system"  name="system[]">
+                        <option selected value="">-- select an option --</option>
+                        <option value="GSDM">GSDM</option>
+                        <option value="GS">GS</option>
+                        <option value="GSSD">GSSD</option>
+                        <option value="GW">GW</option>
+                        <option value="BDS">BDS</option>
+                        <option value="BDSD">BDSD</option>
+                        <option value="BDW">BDW</option>
+                        <option value="BDG">BDG</option>
+                        <option value="DECK">DECK</option>
+                        <option value="TOGM">TOGM</option>
+                        <option value="CANS">CANS</option>
+                        <option value="GSBL">GSBL</option>
+                        <option value="GSGW">GSGW</option>
+                        <option value="TOS">TOS</option>
+                        <option value="TOSD">TOSD</option>
+                        <option value="TOWM">TOWM</option>
+                        <option value="TOW">TOW</option>
+                        <option value="TOG">TOG</option>
+                        <option value="BF">BF</option>
+                        <option value="CON">CON</option>
+                        <option value="GG">GG</option>
+                        <option value="IRR">IRR</option>
+                        <option value="COP">COP</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
                 <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
                 <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
                 <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>
@@ -1490,7 +1490,7 @@
                     </select>
                 </div>
                 
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" name="bldFloor[]" type="text"></div>
                 <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit[]" type="text"></div>
                 <div class="form-group"><label>D-X:</label><input id="dx" name="dx[]" type="text"></div>
                 <div class="form-group"><label>Date Needed:</label><input id="dateNeeded" name="dateNeeded[]" type="date"></div>

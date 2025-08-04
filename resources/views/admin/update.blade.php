@@ -127,7 +127,7 @@
             <div class="form-row">
                 <div class="form-group"><label>Material:</label><input id="material" name="material" value="{{ $record->material }}" type="text"></div>
                 <div class="form-group"><label>System:</label><input id="sys" name="sys" value="{{$record->sys}}" type="text"></div>
-                <div class="form-group"><label>Bld - Floor:</label><input id="bldFloor" value="{{ $record->bldFloor }}" name="bldFloor" type="text"></div>
+                <div class="form-group"><label>Bldg - Floor:</label><input id="bldFloor" value="{{ $record->bldFloor }}" name="bldFloor" type="text"></div>
                 <div class="form-group"><label>Zone - Unit:</label><input id="zoneUnit" name="zoneUnit" value="{{ $record->zoneUnit }}" type="text"></div>
             </div>
 
@@ -154,6 +154,7 @@
             </div>
 
             <div class="form-row">
+                <div class="form-group"><label>Feb Misc:</label><input id="FebMisc" name="febMisc" value="{{ $record->fabmisc }}" type="text"></div>
                 <div class="form-group"><label>WRHS2 Feb:</label><input id="wrhs2Feb" name="wrhs2Feb" value="{{ $record->wrhs2_feb }}" type="date"></div>
             </div>
 

@@ -131,36 +131,106 @@ class JobInformations extends Controller
         }
     }
 
-    public function update(Request $request, $recnum) {
-        // Fetch job status using Eloquent
-        $jobStatus = JobStatus::where('recnum', $recnum)->first();
+    // public function update(Request $request, $recnum) {
+    //     // Fetch job status using Eloquent
+    //     $jobStatus = JobStatus::where('recnum', $recnum)->first();
 
+    //     if (!$jobStatus) {
+    //         return response()->json(['message' => 'Job status not found'], 404);
+    //     }
+
+    //     // Store old values before update
+    //     $oldDateNeeded = $jobStatus->dateNeeded;
+    //     $oldEngNeeded = $jobStatus->engNeeded;
+
+    //     // Prepare update data for job_status
+    //     $updateData = [];
+
+    //     if ($request->filled('dateNeeded')) {
+    //         $updateData['old_dateNeeded'] = $oldDateNeeded;
+    //         $updateData['dateNeeded'] = $request->dateNeeded;
+    //     }
+
+    //     if ($request->filled('engNeeded')) {
+    //         $updateData['old_engNeeded'] = $oldEngNeeded;
+    //         $updateData['engNeeded'] = $request->engNeeded;
+    //     }
+
+    //     // Update only if there are changes
+    //     if (!empty($updateData)) {
+    //         $jobStatus->update($updateData);
+    //     }
+
+    //     // Update job_information table
+    //     DB::table('job_information')
+    //         ->where('recnum', $recnum)
+    //         ->update([
+    //             'jobType' => $request->jobType,
+    //             'descript' => $request->description,
+    //             'phase' => $request->phase,
+    //             'units' => $request->units,
+    //             'material' => $request->material,
+    //             'sys' => $request->sys,
+    //             'bldFloor' => $request->bldFloor,
+    //             'zoneUnit' => $request->zoneUnit,
+    //             'dx' => $request->dx,
+    //             'roughSuper' => $request->roughSuper,
+    //             'finishSuper' => $request->finishSuper,
+    //             'engineer' => $request->engineer,
+    //         ]);
+
+    //     // Update job_status table with other fields
+    //     DB::table('job_status')
+    //         ->where('recnum', $recnum)
+    //         ->update([
+    //             'engComplete' => $request->engComplete,
+    //             'prwr' => $request->wrhsMiscComplete,
+    //             'fabwr' => $request->fabComplete,
+    //             'shipComplete' => $request->shipComplete,
+    //             'fabmisc' => $request->febMisc,
+    //             'wrhs2_feb' => $request->wrhs2Feb,
+    //             'notes' => $request->note,
+    //         ]);
+
+    //     return redirect()->route('search')->with('success', 'Updated Successfully.');
+    // }
+
+    public function update(Request $request, $recnum) {
+        $jobStatus = JobStatus::where('recnum', $recnum)->first();
+        
+        // If the record is not found, we can't update it.
         if (!$jobStatus) {
             return response()->json(['message' => 'Job status not found'], 404);
         }
-
-        // Store old values before update
+    
         $oldDateNeeded = $jobStatus->dateNeeded;
-        $oldEngNeeded = $jobStatus->engNeeded;
-
-        // Prepare update data for job_status
+        $oldEngDateNeeded = $jobStatus->engNeeded;
+    
+        // STEP 3: PREPARE THE UPDATE DATA ARRAY WITH THE CORRECT LOGIC
+        // This is where we will fix the bug. We only want to update the 'old'
+        // fields if a new value for the corresponding field is provided.
         $updateData = [];
-
-        if ($request->filled('dateNeeded')) {
+    
+        // Check if 'dateNeeded' is present in the request AND if it has actually changed.
+        if ($request->filled('dateNeeded') && $request->dateNeeded != $jobStatus->dateNeeded) {
+        
             $updateData['old_dateNeeded'] = $oldDateNeeded;
             $updateData['dateNeeded'] = $request->dateNeeded;
         }
-
-        if ($request->filled('engNeeded')) {
-            $updateData['old_engNeeded'] = $oldEngNeeded;
+    
+        // Check if 'engNeeded' is present in the request AND if it has actually changed.
+        if ($request->filled('engNeeded') && $request->engNeeded != $jobStatus->engNeeded) {
+            // If the date has changed, we set the old value to the
+            // date we fetched in Step 2.
+            $updateData['old_engNeeded'] = $oldEngDateNeeded;
             $updateData['engNeeded'] = $request->engNeeded;
         }
-
-        // Update only if there are changes
+    
         if (!empty($updateData)) {
             $jobStatus->update($updateData);
         }
-
+    
+        // The rest of your code seems to handle other updates. This is fine.
         // Update job_information table
         DB::table('job_information')
             ->where('recnum', $recnum)
@@ -178,7 +248,7 @@ class JobInformations extends Controller
                 'finishSuper' => $request->finishSuper,
                 'engineer' => $request->engineer,
             ]);
-
+        
         // Update job_status table with other fields
         DB::table('job_status')
             ->where('recnum', $recnum)
@@ -187,10 +257,11 @@ class JobInformations extends Controller
                 'prwr' => $request->wrhsMiscComplete,
                 'fabwr' => $request->fabComplete,
                 'shipComplete' => $request->shipComplete,
+                'fabmisc' => $request->febMisc,
                 'wrhs2_feb' => $request->wrhs2Feb,
                 'notes' => $request->note,
             ]);
-
+        
         return redirect()->route('search')->with('success', 'Updated Successfully.');
     }
 

@@ -120,7 +120,7 @@
                 <input type="text" value="{{ request('sys') }}" name="sys" style="width: 200px; padding: 5px; border: none; border-bottom: 1px solid #000;">
             </div>
             <div style="display: flex; flex-direction: column; text-align: left;">
-                <label>Blf-Floor</label>
+                <label>Bldg-Floor</label>
                 <input type="text" value="{{ request('blf_floor') }}" name="blf_floor" style="width: 200px; padding: 5px; border: none; border-bottom: 1px solid #000;">
             </div>
             <div style="display: flex; flex-direction: column; text-align: left;">
