@@ -265,8 +265,7 @@ class JobInformations extends Controller
         return redirect()->route('search')->with('success', 'Updated Successfully.');
     }
 
-    public function home(Request $request)
-    {
+    public function home(Request $request){
         $sortColumn = $request->input('column', session('sort_column', 'j.recnum'));
         $sortDirection = $request->input('order', session('sort_direction', 'desc'));
 
@@ -286,8 +285,12 @@ class JobInformations extends Controller
         // Base query
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where(function($q) {
+                $q->whereNull('s.shipComplete')
+                  ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })
             ->select('j.*', 's.*')
-            ->orderBy($sortColumn, $sortDirection);
+            ->orderBy('j.recnum', 'DESC');
 
         // Fetch data
         $jobs = $query->paginate(150);
@@ -314,8 +317,12 @@ class JobInformations extends Controller
         // Fetch data with sorting
         $dataView = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where(function($q) {
+                $q->whereNull('s.shipComplete')
+                  ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })
             ->select('j.*', 's.*')
-            ->orderBy($sortColumn, $sortDirection)
+            ->orderBy('j.jobId', 'DESC')
             ->paginate(150);
     
         // Return AJAX response for sorting and pagination
@@ -427,9 +434,9 @@ class JobInformations extends Controller
     
         // Execute query and paginate only if search filters are applied
         if ($isSearchApplied) {
-            $search = (clone $query)->orderBy('s.dateneeded', 'desc')->paginate(20)->appends(request()->query());
+            $search = (clone $query)->orderBy('j.recnum', 'ASC')->paginate(20)->appends(request()->query());
 
-            $allSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
+            $allSearch = (clone $query)->orderBy('j.recnum', 'ASC')->get();
 
             session(['search' => $allSearch]);
 
@@ -537,9 +544,9 @@ class JobInformations extends Controller
     
         // If search has been applied, get the results
         if ($searchApplied) {
-            $sfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->paginate(20)->appends(request()->query());
+            $sfhEngSearch = (clone $query)->orderBy('j.recnum', 'ASC')->paginate(20)->appends(request()->query());
             
-            $allSfhEngSearch = (clone $query)->orderBy('j.recnum', 'desc')->get();
+            $allSfhEngSearch = (clone $query)->orderBy('j.recnum', 'ASC')->get();
     
             session(['sfhEngSearch' => $allSfhEngSearch]);
         
@@ -554,8 +561,13 @@ class JobInformations extends Controller
     public function search_editBy_dateField(Request $request) {
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
-            ->select('j.recnum', 'j.jobType', 'j.*', 's.*') // Ensure ORDER BY column is included
-            ->orderBy('j.recnum', 'desc'); // Apply ORDER BY
+            ->where(function($q) {
+                $q->whereNull('s.shipComplete')
+                  ->orWhere('s.shipComplete', '>=', DB::raw("DATE_SUB(NOW(), INTERVAL 90 DAY)"));
+            })
+            ->select('j.*', 's.*')
+            ->orderBy('j.recnum', 'ASC');
+
     
         // Initialize empty results
         $searchResults = collect([]);
@@ -586,6 +598,10 @@ class JobInformations extends Controller
     public function bulk_edit(Request $request) {
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where(function($q) {
+                $q->whereNull('s.shipComplete')
+                  ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })
             ->select('j.*', 's.*')
             ->distinct();
     
@@ -682,10 +698,10 @@ class JobInformations extends Controller
     
         if ($isSearchApplied) {
             // Clone the query and apply pagination with query parameters
-            $bulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->paginate(20)->appends(request()->query());
+            $bulkEdit = (clone $query)->orderBy('j.recnum', 'ASC')->paginate(20)->appends(request()->query());
         
             // Clone again for non-paginated results
-            $allBulkEdit = (clone $query)->orderBy('j.recnum', 'desc')->get();
+            $allBulkEdit = (clone $query)->orderBy('j.recnum', 'ASC')->get();
         
             session(['bulkEdit' => $allBulkEdit]);
         

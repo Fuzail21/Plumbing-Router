@@ -231,6 +231,7 @@
                                     <th>System</th>
                                     <th>BLDG Floor</th>
                                     <th>Date Needed</th>
+                                    <th>ENG Complete</th>
                                     <th>Old Date Needed</th>
                                     <th>Rough Super</th>
                                     <th>Engineer</th>
@@ -255,6 +256,7 @@
                                             <td>{{ $SFH->sys }}</td>
                                             <td>{{ $SFH->bldFloor }}</td>
                                             <td>{{ $SFH->dateNeeded ? \Carbon\Carbon::parse($SFH->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                            <td>{{ $SFH->engComplete ? \Carbon\Carbon::parse($SFH->engComplete)->format('m / d / Y') : '' }}</td>
                                             <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                             <td>{{ $SFH->roughSuper }}</td>
                                             <td>{{ $SFH->engineer }}</td>

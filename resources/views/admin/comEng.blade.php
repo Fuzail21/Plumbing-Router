@@ -161,15 +161,15 @@
                         <thead>
                             <tr>
                                 <th>Job-Type</th>
-                                <th><a href="#" class="sort" data-column="j.jobId" style="color: inherit; text-decoration: none;">Job#</a></th>
+                                <th>Job#</th>
                                 <th>Description</th>
                                 <th>Phase</th>
                                 <th>Units</th>
                                 <th>System</th>
                                 <th>BLDG-Floor</th>
                                 <th>Job # - System - Location - BLDG Floor - Zone - Unit</th>
-                                <th><a href="#" class="sort" data-column="s.dateNeeded" style="color: inherit; text-decoration: none;">Date-Needed</a></th>
-                                <th>Old-Date-Needed</th>
+                                <th>Date-Needed</th>
+                                {{-- <th>Old-Date-Needed</th> --}}
                                 <th>ENG-Complete</th>
                                 <th>Rough-Super</th>
                                 <th>Engineer</th>
@@ -190,7 +190,7 @@
                                     <td>{{ $COM->bldFloor }}</td>
                                         <td>{{ $COM->jobId }} - {{ $COM->sys }} - {{ $COM->bldFloor }} - {{ $COM->zoneUnit }} - {{ $COM->dx }}</td>
                                     <td>{{ $COM->dateNeeded ? \Carbon\Carbon::parse($COM->dateNeeded)->format('m / d / Y') : '' }}</td>
-                                    <td>{{ $COM->old_dateNeeded ? \Carbon\Carbon::parse($COM->old_dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    {{-- <td>{{ $COM->old_dateNeeded ? \Carbon\Carbon::parse($COM->old_dateNeeded)->format('m / d / Y') : '' }}</td> --}}
                                     <td>{{ $COM->engComplete ? \Carbon\Carbon::parse($COM->engComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $COM->roughSuper }}</td>
                                     <td>{{ $COM->engineer }}</td>
