@@ -175,8 +175,9 @@
 
                             <th><a href="#" class="sort" data-column="engComplete" data-order="asc" style="color: inherit; text-decoration: none;">ENG Complete</a></th>
                             <th><a href="#" class="sort" data-column="prwr" data-order="asc" style="color: inherit; text-decoration: none;">WRHS Misc Complete</a></th>
-                            <th><a href="#" class="sort" data-column="fabwr" data-order="asc" style="color: inherit; text-decoration: none;">FAB Complete</a></th>
                             <th><a href="#" class="sort" data-column="fabmisc" data-order="asc" style="color: inherit; text-decoration: none;">FAB Misc Complete</a></th>
+                            <th><a href="#" class="sort" data-column="fabwr" data-order="asc" style="color: inherit; text-decoration: none;">FAB Complete</a></th>
+
                             <th><a href="#" class="sort" data-column="shipComplete" data-order="asc" style="color: inherit; text-decoration: none;">Ship Complete</a></th>
                             <th><a href="#" class="sort" data-column="roughSuper" data-order="asc" style="color: inherit; text-decoration: none;">Rough Super</a></th>
                             <th><a href="#" class="sort" data-column="finishSuper" data-order="asc" style="color: inherit; text-decoration: none;">Finish Super</a></th>
@@ -212,8 +213,8 @@
                                     <td>{{ $row->old_engNeeded ? \Carbon\Carbon::parse($row->old_engNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->engComplete ? \Carbon\Carbon::parse($row->engComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->prwr }}</td>
-                                    <td>{{ $row->fabwr ? \Carbon\Carbon::parse($row->fabwr)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->fabmisc }}</td>
+                                    <td>{{ $row->fabwr ? \Carbon\Carbon::parse($row->fabwr)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->shipComplete ? \Carbon\Carbon::parse($row->shipComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $row->roughSuper }}</td>
                                     <td>{{ $row->finishSuper }}</td>

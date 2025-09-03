@@ -471,6 +471,22 @@ class JobInformations extends Controller
             ->orderBy('s.engComplete', 'DESC')
             ->paginate(150);
 
+
+        // $sfhEng = DB::table('job_information as j')
+        //     ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+        //     ->where('j.jobType', '=', 'SFH')
+        //     ->whereNotNull('s.dateNeeded')
+        //     // ->whereNull('s.engComplete')
+        //     ->where(function($query) {
+        //         $query->whereNull('s.shipComplete')
+        //               ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+        //     })
+        //     ->select('j.*', 's.*')
+        //     ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
+        //     ->orderBy('s.dateNeeded', 'ASC')
+        //     ->orderBy('s.engComplete', 'DESC')
+        //     ->paginate(150);
+
         // Return AJAX response for sorting and pagination
         if ($request->ajax()) {
             return response()->json([
@@ -499,6 +515,19 @@ class JobInformations extends Controller
             ->orderBy('s.dateNeeded', 'ASC')
             ->orderBy('s.engComplete', 'DESC')
             ->paginate(150);
+
+
+
+        // $comEng = DB::table('job_information as j')
+        //     ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+        //     ->where('j.jobType', '=', 'COM')
+        //     ->whereNotNull('s.dateNeeded')
+        //     // ->whereNull('s.engComplete')
+        //     ->select('j.*', 's.*')
+        //     ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
+        //     ->orderBy('s.dateNeeded', 'ASC')
+        //     ->orderBy('s.engComplete', 'DESC')
+        //     ->paginate(150);
 
         // Return AJAX response for sorting and pagination
         if ($request->ajax()) {
@@ -563,7 +592,7 @@ class JobInformations extends Controller
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->where(function($q) {
                 $q->whereNull('s.shipComplete')
-                  ->orWhere('s.shipComplete', '>=', DB::raw("DATE_SUB(NOW(), INTERVAL 90 DAY)"));
+                  ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
             })
             ->select('j.*', 's.*')
             ->orderBy('j.recnum', 'ASC');
