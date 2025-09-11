@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobInformations;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\PublicPortalController;
 use Illuminate\Support\Facades\Auth;
 
 // Route::get('/', function () {
@@ -78,9 +79,32 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
         Route::post('/user/edit/{id}', [UserController::class, 'update'])->name('user.update');
         Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+        Route::get('/deleted-records', [JobInformations::class, 'deletedRecords'])->name('deleted.records');
+        Route::patch('/jobs/restore/{recnum}', [JobInformations::class, 'restore'])
+            ->name('jobs.restore');
+        Route::delete('/jobs/hard-delete/{recnum}', [JobInformations::class, 'hardDelete'])
+            ->name('jobs.hardDelete');
+
     });
+
+    Route::patch('/recnum/delete/{recnum}', [JobInformations::class, 'softDelete'])->name('recnum.delete');
+    
 
 
 });
+
+
+    Route::prefix('portal')->group(function () {
+        Route::get('/', [PublicPortalController::class, 'home'])->name('portal.home');
+        Route::get('/data-view', [PublicPortalController::class, 'data_view'])->name('portal.data_view');
+        Route::get('/search', [PublicPortalController::class, 'search'])->name('portal.search');
+
+        Route::get('/sfh-eng', [PublicPortalController::class, 'sfh_eng'])->name('portal.sfh_eng');
+        Route::get('/com-eng', [PublicPortalController::class, 'com_eng'])->name('portal.com_eng');
+
+        Route::get('/sfh-eng-search', [PublicPortalController::class, 'sfh_eng_search'])->name('portal.sfh_eng_search');
+        Route::get('/sf-sort-filter', [PublicPortalController::class, 'sf_sort_filter'])->name('portal.sf_sort_filter');
+    });
 
 require __DIR__.'/auth.php';

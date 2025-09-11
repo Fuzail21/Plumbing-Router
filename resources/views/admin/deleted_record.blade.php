@@ -7,67 +7,10 @@
 
 @section('style')
     <style>
-        /* Floating Button Styling */
-        .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #021962;
-            color: white;
-            border-radius: 50%; /* Perfectly round */
-            width: 55px;
-            height: 55px;
-            font-size: 32px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            line-height: 55px;
-            z-index: 9999;
-        }
-
-        .floating-btn:hover {
-            background-color: #001040;
-            color: white;
-            cursor: pointer;
-        }
-
         thead th {
             white-space: nowrap;
             min-width: 100px; /* Adjust as needed */
         }
-
-
-
-
-        .table-container {
-            position: relative;
-            overflow-x: auto;
-            padding-bottom: 20px; /* Ensure space for the floating scrollbar */
-        }
-        
-        .table-responsive {
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-bottom: 20px; /* Prevent overlap */
-        }
-        
-        .floating-scrollbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 16px; /* Height of the scrollbar */
-            overflow-x: auto;
-            overflow-y: hidden;
-            background: #f1f1f1;
-            z-index: 1000;
-        }
-        
-        .floating-scrollbar div {
-            height: 1px; /* Invisible but allows scrolling */
-        }
-
-
-
 
 
         /* Responsive Design */
@@ -75,19 +18,6 @@
             .app-content {
                 min-height: 100vh; /* Ensure it covers the full viewport */
                 overflow-y: auto; /* Allow scrolling if needed */
-            }
-
-            .table-responsive {
-                overflow-x: auto; /* Enable horizontal scrolling */
-                white-space: nowrap; /* Prevent text wrapping */
-            }
-
-            .floating-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 28px;
-                bottom: 15px; /* Adjust for smaller screens */
-                right: 15px;
             }
 
             thead th {
@@ -103,53 +33,60 @@
     <div class="app-content">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title"></h3>
-                <div class="card-tools">
-                    <ul class="pagination pagination-sm float-end">
-                        <!-- Previous Page Link -->
-                        @if ($jobs->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $jobs->previousPageUrl() }}">&laquo;</a></li>
-                        @endif
+                <h3 class="card-title">Deleted Records List</h3>
                 
-                        @php
-                            $start = max(1, $jobs->currentPage() - 2);
-                            $end = min($jobs->lastPage(), $jobs->currentPage() + 2);
-                        @endphp
-                
-                        <!-- First Page -->
-                        @if ($start > 1)
-                            <li class="page-item"><a class="page-link" href="{{ $jobs->url(1) }}">1</a></li>
-                            @if ($start > 2)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                <div class="card-tools d-flex justify-content-between align-items-center">
+                    {{-- <a href="{{ route('user.add') }}" class="btn btn-sm btn-primary me-3 mt-0">Add User</a> --}}
+
+                    <div>
+                        <ul class="pagination pagination-sm float-end mb-0">
+                            <!-- Previous Page Link -->
+                            @if ($jobs->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                            @else
+                                <li class="page-item"><a class="page-link" href="{{ $jobs->previousPageUrl() }}">&laquo;</a></li>
                             @endif
-                        @endif
-                
-                        <!-- Page Number Links -->
-                        @for ($page = $start; $page <= $end; $page++)
-                            <li class="page-item {{ $page == $jobs->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $jobs->url($page) }}">{{ $page }}</a>
-                            </li>
-                        @endfor
-                
-                        <!-- Last Page -->
-                        @if ($end < $jobs->lastPage())
-                            @if ($end < $jobs->lastPage() - 1)
-                                <li class="page-item disabled"><span class="page-link">...</span></li>
+
+                            @php
+                                $start = max(1, $jobs->currentPage() - 2);
+                                $end = min($jobs->lastPage(), $jobs->currentPage() + 2);
+                            @endphp
+
+                            <!-- First Page -->
+                            @if ($start > 1)
+                                <li class="page-item"><a class="page-link" href="{{ $jobs->url(1) }}">1</a></li>
+                                @if ($start > 2)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
                             @endif
-                            <li class="page-item"><a class="page-link" href="{{ $jobs->url($jobs->lastPage()) }}">{{ $jobs->lastPage() }}</a></li>
-                        @endif
-                
-                        <!-- Next Page Link -->
-                        @if ($jobs->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $jobs->nextPageUrl() }}">&raquo;</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
-                        @endif
-                    </ul>
+
+                            <!-- Page Number Links -->
+                            @for ($page = $start; $page <= $end; $page++)
+                                <li class="page-item {{ $page == $jobs->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $jobs->url($page) }}">{{ $page }}</a>
+                                </li>
+                            @endfor
+
+                            <!-- Last Page -->
+                            @if ($end < $jobs->lastPage())
+                                @if ($end < $jobs->lastPage() - 1)
+                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                @endif
+                                <li class="page-item"><a class="page-link" href="{{ $jobs->url($jobs->lastPage()) }}">{{ $jobs->lastPage() }}</a></li>
+                            @endif
+
+                            <!-- Next Page Link -->
+                            @if ($jobs->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $jobs->nextPageUrl() }}">&raquo;</a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                            @endif
+                        </ul>
+                    </div>
                 </div>
-                
+
+
+
             </div> <!-- /.card-header -->
 
             <div class="card-body p-0">
@@ -185,9 +122,7 @@
                             <th><a href="#" class="sort" data-column="pActManager" data-order="asc" style="color: inherit; text-decoration: none;">PM/Act Manager</a></th>
                             <!-- <th><a href="#" class="sort" data-column="wrhs2_feb" data-order="asc" style="color: inherit; text-decoration: none;">WRHS to FAB</a></th> -->
                             <th><a href="#" class="sort" data-column="notes" data-order="asc" style="color: inherit; text-decoration: none;">Notes</a></th>
-                            @auth
-                                <th colspan="2">Action</th>
-                            @endauth
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody id="jobs-table">
@@ -224,112 +159,68 @@
                                     <td>{{ $row->pActManager }}</td>
                                     {{-- <!-- <td>{{ $row->wrhs2_feb }}</td> --> --}}
                                     <td>{{ $row->notes }}</td>
-                                    @auth
-                                        <td>
-                                            <a href="{{ route('form.edit', ['recnum' => $row->recnum]) }}" class="text-success">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <button class="btn text-danger p-0" style="background: none; border: none;"
-                                                    onclick="confirmDelete({{ $row->recnum }})">
+                                    
+
+                                    <td>
+                                        <form action="{{ route('jobs.restore', $row->recnum) }}" method="POST" onsubmit="return confirm('Are you sure you want to restore this job?');">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-md text-success" title="Restore" style="background: none; border: none;">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    </form>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('jobs.hardDelete', $row->recnum) }}" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete this record.');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-md text-danger" title="Hard Delete" style="background: none; border: none;">
                                                 <i class="bi bi-trash"></i>
                                             </button>
-                                        </td>
-                                    @endauth    
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
                 </table>
+                
+                    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title">Confirm Delete</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          </div>
+                          <div class="modal-body">
+                           <strong> Are you sure you want to delete this job?  </strong>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" 
+                                    data-bs-dismiss="modal">Cancel</button>
+                            <form id="deleteForm" method="POST" action="">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                 </div> <!-- /.table-responsive -->
             </div> <!-- /.card-body -->
-
-            <div class="floating-scrollbar"><div></div></div>
-
-
         </div>
     </div>
-
-    <!-- Confirmation Modal -->
-    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title">Confirm Delete</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-           <strong> Are you sure you want to delete this job?  </strong>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" 
-                    data-bs-dismiss="modal">Cancel</button>
-            <form id="deleteForm" method="POST" action="">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn btn-danger">Yes, Delete</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Floating Button -->
-    <a href="{{ route('form.add') }}" class="floating-btn">
-        <i class="bi bi-plus"></i>
-    </a>
 
 @endsection
 
+
 @section('js')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('.sort').on('click', function (e) {
-                e.preventDefault();
-            
-                let column = $(this).data('column');
-                let order = $(this).data('order');
-                let newOrder = order === 'asc' ? 'desc' : 'asc';
-            
-                $.ajax({
-                    url: "{{ route('dashboard') }}",
-                    type: "GET",
-                    data: { column: column, order: order },
-                    success: function (response) {
-                        $('#jobs-table').html($(response.table).find('#jobs-table').html());
-                        $('.sort[data-column="' + column + '"]').data('order', newOrder);
-                    }
-                });
-            });
-        });
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-            let sideBar = document.querySelector(".app-sidebar");
-            let tableContainer = document.querySelector(".table-responsive");
-            let floatingScrollbar = document.querySelector(".floating-scrollbar");
-            let scrollbarContent = floatingScrollbar.querySelector("div");
-            let totalWidthScrollBar = sideBar.scrollWidth + tableContainer.scrollWidth;
-
-
-            // Set width of floating scrollbar to match the table
-            scrollbarContent.style.width = totalWidthScrollBar + "px";
-
-            // Sync scrolling
-            floatingScrollbar.addEventListener("scroll", function () {
-                tableContainer.scrollLeft = floatingScrollbar.scrollLeft;
-            });
-        
-            tableContainer.addEventListener("scroll", function () {
-                floatingScrollbar.scrollLeft = tableContainer.scrollLeft;
-            });
-        });
 
         function confirmDelete(recnum) {
-            let url = `/recnum/delete/${recnum}`;
+            let url = `/jobs/hard-delete/${recnum}`;
             document.getElementById('deleteForm').action = url;
             new bootstrap.Modal(document.getElementById('deleteConfirmModal')).show();
         }

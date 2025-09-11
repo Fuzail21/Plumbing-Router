@@ -238,7 +238,9 @@
                                     <th>PM/Act Manager</th>
                                     <!-- <th>WRHS2 FEB</th> -->
                                     <th>Notes</th>
-                                    <th>Action</th>
+                                    @auth
+                                        <th colspan="2">Action</th>
+                                    @endauth
                                 </tr>
                             </thead>
                             <tbody>
@@ -263,11 +265,19 @@
                                             <td>{{ $SFH->pActManager }}</td>
                                             <!-- <td>{{ $SFH->wrhs2_feb }}</td> -->
                                             <td>{{ $SFH->notes }}</td>
-                                            <td>
-                                                <a href="{{ route('form.edit', ['recnum' => $SFH->recnum]) }}" class="text-success">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                            </td>                        
+                                            @auth
+                                                <td>
+                                                    <a href="{{ route('form.edit', ['recnum' => $SFH->recnum]) }}" class="text-success">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                </td>    
+                                                <td>
+                                                    <button class="btn text-danger p-0" style="background: none; border: none;"
+                                                            onclick="confirmDelete({{ $SFH->recnum }})">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>  
+                                            @endauth                  
                                         </tr>
                                     @endforeach
                                 @endif
@@ -281,6 +291,29 @@
         </div>
     </div>
     
+     <!-- Confirmation Modal -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title">Confirm Delete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+           <strong> Are you sure you want to delete this job?  </strong>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" 
+                    data-bs-dismiss="modal">Cancel</button>
+            <form id="deleteForm" method="POST" action="">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Floating Button -->
     <a href="{{ route('form.add') }}" class="floating-btn">
@@ -314,7 +347,11 @@
             });
         });
 
-
+        function confirmDelete(recnum) {
+            let url = `/recnum/delete/${recnum}`;
+            document.getElementById('deleteForm').action = url;
+            new bootstrap.Modal(document.getElementById('deleteConfirmModal')).show();
+        }
 
     </script>
 @endsection

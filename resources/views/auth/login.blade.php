@@ -7,6 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <div class="absolute top-4 right-4">
+        <a href="{{ route('portal.home') }}" 
+           class="bg-green-600 text-white px-4 py-2 rounded-md shadow hover:bg-green-700">
+           View Portal
+        </a>
+    </div>
+
     <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <div class="flex justify-center mb-6">
             <img src="/dist/assets/img/logo/logo.png" alt="Custom Logo" width="50%" height="auto">

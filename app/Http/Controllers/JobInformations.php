@@ -288,7 +288,7 @@ class JobInformations extends Controller
             ->where(function($q) {
                 $q->whereNull('s.shipComplete')
                   ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
-            })
+            })->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->orderBy('j.recnum', 'DESC');
 
@@ -320,7 +320,7 @@ class JobInformations extends Controller
             ->where(function($q) {
                 $q->whereNull('s.shipComplete')
                   ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
-            })
+            })->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->orderBy('j.jobId', 'DESC')
             ->paginate(150);
@@ -338,6 +338,7 @@ class JobInformations extends Controller
     public function search(Request $request) {
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->distinct();
     
@@ -464,7 +465,7 @@ class JobInformations extends Controller
             ->where(function($query) {
                 $query->whereNull('s.shipComplete')
                       ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
-            })
+            })->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
             ->orderBy('s.dateNeeded', 'ASC')
@@ -510,6 +511,7 @@ class JobInformations extends Controller
             ->where('j.jobType', '=', 'COM')
             ->whereNotNull('s.dateNeeded')
             ->whereNull('s.engComplete')
+            ->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
             ->orderBy('s.dateNeeded', 'ASC')
@@ -543,6 +545,7 @@ class JobInformations extends Controller
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->where('j.jobType', '=', 'SFH')
+            ->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->distinct();
     
@@ -593,7 +596,7 @@ class JobInformations extends Controller
             ->where(function($q) {
                 $q->whereNull('s.shipComplete')
                   ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
-            })
+            })->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->orderBy('j.recnum', 'ASC');
 
@@ -630,7 +633,7 @@ class JobInformations extends Controller
             ->where(function($q) {
                 $q->whereNull('s.shipComplete')
                   ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
-            })
+            })->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->distinct();
     
@@ -853,6 +856,7 @@ class JobInformations extends Controller
         $sfSort = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
             ->where('j.jobType', '=', 'SFH')
+            ->where('j.is_deleted', 0)
             ->select('j.*', 's.*')
             ->orderBy($sortColumn, $sortDirection)
             ->paginate(150);
@@ -961,6 +965,89 @@ class JobInformations extends Controller
             DB::rollBack();
             return response()->json(['success' => false, 'error' => 'Failed to save job', 'message' => $e->getMessage()], 500);
         }
+    }
+
+    public function softDelete($recnum){
+        $record = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where('j.recnum', '=', $recnum)
+            ->select('j.recnum') // keep it simple, just grab j.recnum
+            ->first();
+
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found.');
+        }
+
+        // Perform soft delete (update is_deleted column)
+        DB::table('job_information')
+            ->where('recnum', $recnum)
+            ->update([
+                'is_deleted'  => 1,
+                'deleted_at'  => date('Y-m-d H:i:s'),
+            ]);
+
+        return redirect()->back()->with('success', 'Job soft deleted successfully.');
+    }
+
+    public function deletedRecords(){
+        $records = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where(function($q) {
+                $q->whereNull('s.shipComplete')
+                  ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })->where('j.is_deleted', 1)
+            ->select('j.*', 's.*')
+            ->orderBy('j.recnum', 'DESC');
+
+        // Fetch data
+        $jobs = $records->paginate(150);
+
+        return view('admin.deleted_record', compact('jobs'));
+    }
+
+    public function hardDelete($recnum){
+        // First check if record exists in job_information
+        $record = DB::table('job_information')
+            ->where('recnum', $recnum)
+            ->first();
+
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found.');
+        }
+
+        // Delete related job_status records (child table)
+        DB::table('job_status')
+            ->where('recnum', $recnum)
+            ->delete();
+
+        // Delete from job_information (parent table)
+        DB::table('job_information')
+            ->where('recnum', $recnum)
+            ->delete();
+
+        return redirect()->back()->with('success', 'Job permanently deleted successfully.');
+    }
+
+    public function restore($recnum){
+        // Check if record exists and is soft-deleted
+        $record = DB::table('job_information')
+            ->where('recnum', $recnum)
+            ->where('is_deleted', 1)
+            ->first();
+
+        if (!$record) {
+            return redirect()->back()->with('error', 'Record not found or not deleted.');
+        }
+
+        // Restore (set is_deleted back to 0)
+        DB::table('job_information')
+            ->where('recnum', $recnum)
+             ->update([
+                'is_deleted'  => 0,
+                'deleted_at'  => NULL,
+            ]);
+
+        return redirect()->back()->with('success', 'Job restored successfully.');
     }
 
 }

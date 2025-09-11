@@ -295,7 +295,6 @@
                                 <th>PM/Act Manager</th>
                                 <!-- <th>WRHS to FAB</th> -->
                                 <th>Notes</th>
-                                <th>Action</th> <!-- New Action column header -->
                             </tr>
                         </thead>
                         <tbody>
@@ -334,9 +333,6 @@
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="pActManager">{{ $search->pActManager }}</td>
                                         {{-- <!-- <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="wrhs2_feb">{{ $search->wrhs2_feb }}</td> --> --}}
                                         <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="notes">{{ $search->notes }}</td>
-                                        <td>
-                                            <!-- Save button only for new rows, not for existing ones -->
-                                        </td>
                                     </tr>
                                     
                                 @endforeach
