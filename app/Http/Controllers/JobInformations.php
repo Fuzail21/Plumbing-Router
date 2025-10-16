@@ -590,6 +590,67 @@ class JobInformations extends Controller
         
     }
 
+    public function sfh_eng_ops(Request $request){
+        $query = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->where('j.jobType', '=', 'SFH')
+            ->where('j.is_deleted', 0)
+            ->select('j.*', 's.*')
+            ->distinct();
+    
+        // List of searchable fields
+        $filters = [
+            'jobNumber'    => 'j.jobId',
+            'description'  => 'j.descript',
+            'phase'        => 'j.phase',
+            'units'        => 'j.units',
+            'sys'          => 'j.sys',
+            'blf_floor'    => 'j.bldFloor',
+            'dataNeeded'   => 's.dateNeeded',
+            'engComplete'  => 's.engComplete',
+            'roughSuper'   => 'j.roughSuper',
+            'engineer'     => 'j.engineer',
+            'pmActManager' => 's.pActManager',
+            'wrhs2Feb'     => 's.wrhs2_feb',
+        ];
+    
+        $searchApplied = false;
+    
+        // Apply normal text filters
+        foreach ($filters as $input => $column) {
+            if ($request->filled($input)) {
+                $query->where($column, 'LIKE', '%' . trim($request->input($input)) . '%');
+                $searchApplied = true;
+            }
+        }
+    
+        // ✅ Apply Date Needed range filter
+        if ($request->filled('dataNeeded_from') && $request->filled('dataNeeded_to')) {
+            $query->whereBetween('s.dateNeeded', [
+                $request->input('dataNeeded_from'),
+                $request->input('dataNeeded_to')
+            ]);
+            $searchApplied = true;
+        } elseif ($request->filled('dataNeeded_from')) {
+            $query->whereDate('s.dateNeeded', '>=', $request->input('dataNeeded_from'));
+            $searchApplied = true;
+        } elseif ($request->filled('dataNeeded_to')) {
+            $query->whereDate('s.dateNeeded', '<=', $request->input('dataNeeded_to'));
+            $searchApplied = true;
+        }
+    
+        // If search has been applied, get the results
+        if ($searchApplied) {
+            $sfhEngOps = (clone $query)->orderBy('j.recnum', 'ASC')->paginate(20)->appends(request()->query());
+            $allSfhEngOPS = (clone $query)->orderBy('j.recnum', 'ASC')->get();
+            session(['sfhEngOps' => $allSfhEngOPS]);
+        } else {
+            $sfhEngOps = collect();
+        }
+    
+        return view('admin.sfhEngOPS', compact('sfhEngOps', 'searchApplied'));
+    }
+
     public function search_editBy_dateField(Request $request) {
         $query = DB::table('job_information as j')
             ->join('job_status as s', 'j.recnum', '=', 's.recnum')
@@ -828,6 +889,12 @@ class JobInformations extends Controller
     public function export_excel_view_sf_eng_search(Request $request){
         $sfhEng = session('sfhEngSearch', []);
         return view('admin.export_view.sfhEngSearch', compact('sfhEng'));
+    }
+
+    //search_sfh-eng-ops
+    public function export_excel_view_sf_eng_ops(Request $request){
+        $sfhEng = session('sfhEngOps', []);
+        return view('admin.export_view.sfhEngOps', compact('sfhEng'));
     }
 
     //search

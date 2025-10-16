@@ -32,11 +32,41 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('sfh_eng') }}" class="nav-link {{ request()->routeIs('sfh_eng') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-diagram-3"></i>
                             <p>SFH ENG</p>
                         </a>
+                    </li> --}}
+
+                    <li class="nav-item has-treeview {{ request()->routeIs('sfh_eng') || request()->routeIs('sfh_eng_search') || request()->routeIs('sfh_eng_ops') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->routeIs('sfh_eng') || request()->routeIs('sfh_eng_search') || request()->routeIs('sfh_eng_ops') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-diagram-3"></i>
+                            <p>
+                                SFH
+                                <i class="right bi bi-chevron-down"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('sfh_eng') }}" class="nav-link {{ request()->routeIs('sfh_eng') ? 'active' : '' }}">
+                                    <i class="bi bi-circle nav-icon"></i>
+                                    <p>SFH ENG</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('sfh_eng_search') }}" class="nav-link {{ request()->routeIs('sfh_eng_search') ? 'active' : '' }}">
+                                    <i class="bi bi-circle nav-icon"></i>
+                                    <p>SFH ENG Search</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('sfh_eng_ops') }}" class="nav-link {{ request()->routeIs('sfh_eng_ops') ? 'active' : '' }}">
+                                    <i class="bi bi-circle nav-icon"></i>
+                                    <p>SFH ENG OPS</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="nav-item">
@@ -46,12 +76,19 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('sfh_eng_search') }}" class="nav-link {{ request()->routeIs('sfh_eng_search') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-search"></i>
                             <p>SFH ENG Search</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('sfh_eng_ops') }}" class="nav-link {{ request()->routeIs('sfh_eng_ops') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-search"></i>
+                            <p>SFH ENG OPS</p>
+                        </a>
+                    </li> --}}
 
                     <li class="nav-item">
                         <a href="{{ route('bulk_edit') }}" class="nav-link {{ request()->routeIs('bulk_edit') ? 'active' : '' }}">

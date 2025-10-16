@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/sfh-eng-search', [JobInformations::class, 'sfh_eng_search'])->name('sfh_eng_search');
 
+    Route::get('/sfh-eng-ops', [JobInformations::class, 'sfh_eng_ops'])->name('sfh_eng_ops');
+
     Route::get('/search-editBy-dateFeild', [JobInformations::class, 'search_editBy_dateField'])->name('search_editBy_dateField');
     Route::get('/bulk_edit', [JobInformations::class, 'bulk_edit'])->name('bulk_edit');
 
@@ -52,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/bulk_edit/export_excel', [JobInformations::class, 'export_excel_view_bulkEdit'])->name('export.excel_bulk_edit');
 
     Route::post('/sfh-eng-search/export_excel', [JobInformations::class, 'export_excel_view_sf_eng_search'])->name('export.excel_sfh-eng-search');
+    Route::post('/sfh-eng-ops/export_excel', [JobInformations::class, 'export_excel_view_sf_eng_ops'])->name('export.excel_sfh-eng-ops');
 
 
     Route::post('/search/export_excel', [JobInformations::class, 'export_excel_view_search'])->name('export.excel_search');
