@@ -95,7 +95,7 @@
                             <th>BLDG Floor</th>
                             <th>Zone - Unit</th>
                             <th>D-X</th>
-                            <th>Job # - System - Location</th>
+                            <th>Job # - System - Location - BLDG Floor - Zone - Unit</th>
                             <th>Date Needed</th>
                             <th>Old Date Needed</th>
                             <th>Eng Date Needed</th>
@@ -131,7 +131,7 @@
                                     <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="bldFloor">{{ $search->bldFloor }}</td>
                                     <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="zoneUnit">{{ $search->zoneUnit }}</td>
                                     <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dx">{{ $search->dx }}</td>
-                                    <td>{{ (int) $search->jobId - (int) $search->sys - (int) $search->dx }}</td>
+                                    <td>{{ $search->jobId }} - {{ $search->sys }} - {{ $search->bldFloor }} - {{ $search->zoneUnit }} - {{ $search->dx }}</td>
                                     <td contenteditable="true" data-id="{{ $search->recnum }}" data-column="dateNeeded">{{ $search->dateNeeded ? \Carbon\Carbon::parse($search->dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $search->old_dateNeeded ? \Carbon\Carbon::parse($search->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td contenteditable="true" data-id="{{ $search->recnum }}"  data-column="engNeeded">{{ $search->engNeeded ? \Carbon\Carbon::parse($search->engNeeded)->format('m / d / Y') : '' }}</td>

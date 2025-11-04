@@ -54,50 +54,45 @@
             <div class="table-responsive">
                 <table id="sfhEng" class="table table-striped">
                     <thead>
-                        <thead>
-                            <tr>
-                                <th>Job Type</th>
-                                <th>Job #</th>
-                                <th>Job Name</th>
-                                <th>Phase</th>
-                                <th>Units</th>
-                                <th>Material</th>
-                                <th>System</th>
-                                <th>BLDG Floor</th>
-                                <th>Zone - Unit</th>
-                                <th>D-X</th>
-                                <th>Job # - System - Location</th>
-                                <th>Date Needed</th>
-                                <th>New Date Needed</th>
-                                <th>Rough Super</th>
-                                <th>Finish Super</th>
-                            </tr>
-                        </thead>
-
+                        <tr>
+                            <th>Job #</th>
+                            <th>Description</th>
+                            <th>Phase</th>
+                            <th>Units</th>
+                            <th>System</th>
+                            <th>BLDG Floor</th>
+                            <th>Date Needed</th>
+                            <th>ENG Complete</th>
+                            <th>Old Date Needed</th>
+                            <th>Rough Super</th>
+                            <th>Engineer</th>
+                            <th>PM/Act Manager</th>
+                            <th>Notes</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @if($sfhEng->isEmpty())
-                        <tr>
-                            <td colspan="15" style="text-align: center;">No records found. Please enter search criteria.</td>
-                        </tr>
+                            <tr>
+                                <td colspan="15" style="text-align: center;">
+                                    No records found. Please enter search criteria.
+                                </td>
+                            </tr>
                         @else
                             @foreach($sfhEng as $SFH)
                                 <tr class="align-middle">
-                                    <td>{{ $SFH->jobType }}</td>
                                     <td>{{ $SFH->jobId }}</td>
                                     <td>{{ $SFH->descript }}</td>
                                     <td>{{ $SFH->phase }}</td>
                                     <td>{{ $SFH->units }}</td>
-                                    <td>{{ $SFH->material }}</td>
                                     <td>{{ $SFH->sys }}</td>
                                     <td>{{ $SFH->bldFloor }}</td>
-                                    <td>{{ $SFH->zoneUnit }}</td>
-                                    <td>{{ $SFH->dx }}</td>
-                                    <td>{{ $SFH->jobId }} - {{ $SFH->sys }} - {{ $SFH->dx }}</td>
-                                    <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $SFH->dateNeeded ? \Carbon\Carbon::parse($SFH->dateNeeded)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $SFH->engComplete ? \Carbon\Carbon::parse($SFH->engComplete)->format('m / d / Y') : '' }}</td>
+                                    <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $SFH->roughSuper }}</td>
-                                    <td>{{ $SFH->finishSuper }}</td>
+                                    <td>{{ $SFH->engineer }}</td>
+                                    <td>{{ $SFH->pActManager }}</td>
+                                    <td>{{ $SFH->notes }}</td>            
                                 </tr>
                             @endforeach
                         @endif
@@ -114,19 +109,25 @@
 
 <script>
     function downloadSearchDataCSV() {
-        var table = document.getElementById("sfhEng");
-        var csv = [];
-        var rows = table.querySelectorAll("tr");
-        rows.forEach(function (row) {
-            var rowData = [];
-            var cells = row.querySelectorAll("td, th");
-            cells.forEach(function (cell) {
-                rowData.push(cell.textContent.trim());
-            });
-            csv.push(rowData.join(","));
+    var table = document.getElementById("sfhEng");
+    var csv = [];
+    var rows = table.querySelectorAll("tr");
+
+    rows.forEach(function (row) {
+        var rowData = [];
+        var cells = row.querySelectorAll("td, th");
+        cells.forEach(function (cell) {
+            // Escape quotes and wrap each cell in double quotes
+            var text = cell.textContent.replace(/"/g, '""').trim();
+            rowData.push('"' + text + '"');
         });
-        var csvContent = csv.join("\n");
-        var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
-        saveAs(blob, "SFH_Eng_OPS.csv");
-    }
+        csv.push(rowData.join(","));
+    });
+
+    // Add UTF-8 BOM for proper Excel compatibility
+    var csvContent = "\uFEFF" + csv.join("\n");
+
+    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, "SFH_Eng_OPS.csv");
+}
 </script>
