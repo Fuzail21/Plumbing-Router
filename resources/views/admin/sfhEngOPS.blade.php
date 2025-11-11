@@ -231,20 +231,20 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Job Type</th>
                                     <th>Job #</th>
-                                    <th>Description</th>
+                                    <th>Job Name</th>
                                     <th>Phase</th>
                                     <th>Units</th>
+                                    <th>Materials</th>
                                     <th>System</th>
                                     <th>BLDG Floor</th>
+                                    <th>Zone - Unit</th>
+                                    <th>Job # - System - Location</th>
+                                    <th>New Date Needed</th>
                                     <th>Date Needed</th>
-                                    <th>ENG Complete</th>
-                                    <th>Old Date Needed</th>
                                     <th>Rough Super</th>
-                                    <th>Engineer</th>
-                                    <th>PM/Act Manager</th>
-                                    <!-- <th>WRHS2 FEB</th> -->
-                                    <th>Notes</th>
+                                    <th>Finish Super</th>
                                     @auth
                                         <th colspan="2">Action</th>
                                     @endauth
@@ -258,20 +258,20 @@
                                 @else
                                     @foreach($sfhEngOps as $SFH)
                                         <tr class="align-middle">
+                                            <td>{{ $SFH->jobType }}</td>
                                             <td>{{ $SFH->jobId }}</td>
                                             <td>{{ $SFH->descript }}</td>
                                             <td>{{ $SFH->phase }}</td>
                                             <td>{{ $SFH->units }}</td>
+                                            <td>{{ $SFH->material }}</td>
                                             <td>{{ $SFH->sys }}</td>
                                             <td>{{ $SFH->bldFloor }}</td>
+                                            <td>{{ $SFH->zoneUnit }}</td>
+                                            <td>{{ $SFH->jobId }} - {{ $SFH->sys }}</td>
                                             <td>{{ $SFH->dateNeeded ? \Carbon\Carbon::parse($SFH->dateNeeded)->format('m / d / Y') : '' }}</td>
-                                            <td>{{ $SFH->engComplete ? \Carbon\Carbon::parse($SFH->engComplete)->format('m / d / Y') : '' }}</td>
                                             <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                             <td>{{ $SFH->roughSuper }}</td>
-                                            <td>{{ $SFH->engineer }}</td>
-                                            <td>{{ $SFH->pActManager }}</td>
-                                            <!-- <td>{{ $SFH->wrhs2_feb }}</td> -->
-                                            <td>{{ $SFH->notes }}</td>
+                                            <td>{{ $SFH->finishSuper }}</td>
                                             @auth
                                                 <td>
                                                     <a href="{{ route('form.edit', ['recnum' => $SFH->recnum]) }}" class="text-success">
