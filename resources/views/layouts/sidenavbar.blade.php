@@ -76,6 +76,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('warehouse') }}" class="nav-link {{ request()->routeIs('warehouse') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-house-fill"></i>
+                            <p>WareHouse</p>
+                        </a>
+                    </li>
+
                     {{-- <li class="nav-item">
                         <a href="{{ route('sfh_eng_search') }}" class="nav-link {{ request()->routeIs('sfh_eng_search') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-search"></i>
@@ -174,6 +181,13 @@
                         <a href="{{ route('portal.com_eng') }}" class="nav-link {{ request()->routeIs('portal.com_eng') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-diagram-3"></i>
                             <p>COM ENG</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('portal.warehouse') }}" class="nav-link {{ request()->routeIs('portal.warehouse') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-house-fill"></i>
+                            <p>WareHouse</p>
                         </a>
                     </li>
 

@@ -47,4 +47,10 @@ class PublicPortalController extends Controller
     {
         return app(\App\Http\Controllers\JobInformations::class)->sf_sort_filter($request);
     }
+
+    // Public Warehouse
+    public function warehouse(Request $request)
+    {
+        return app(\App\Http\Controllers\JobInformations::class)->warehouse($request);  
+    }
 }

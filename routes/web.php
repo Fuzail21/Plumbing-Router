@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/sfh-eng', [JobInformations::class, 'sfh_eng'])->name('sfh_eng');
     Route::get('/com-eng', [JobInformations::class, 'com_eng'])->name('com_eng');
+    Route::get('/warehouse', [JobInformations::class, 'warehouse'])->name('warehouse');
 
     Route::get('/sfh-eng-search', [JobInformations::class, 'sfh_eng_search'])->name('sfh_eng_search');
 
@@ -105,6 +106,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/sfh-eng', [PublicPortalController::class, 'sfh_eng'])->name('portal.sfh_eng');
         Route::get('/com-eng', [PublicPortalController::class, 'com_eng'])->name('portal.com_eng');
+        Route::get('/warehouse', [PublicPortalController::class, 'warehouse'])->name('portal.warehouse');
 
         Route::get('/sfh-eng-search', [PublicPortalController::class, 'sfh_eng_search'])->name('portal.sfh_eng_search');
         Route::get('/sf-sort-filter', [PublicPortalController::class, 'sf_sort_filter'])->name('portal.sf_sort_filter');

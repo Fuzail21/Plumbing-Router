@@ -131,70 +131,6 @@ class JobInformations extends Controller
         }
     }
 
-    // public function update(Request $request, $recnum) {
-    //     // Fetch job status using Eloquent
-    //     $jobStatus = JobStatus::where('recnum', $recnum)->first();
-
-    //     if (!$jobStatus) {
-    //         return response()->json(['message' => 'Job status not found'], 404);
-    //     }
-
-    //     // Store old values before update
-    //     $oldDateNeeded = $jobStatus->dateNeeded;
-    //     $oldEngNeeded = $jobStatus->engNeeded;
-
-    //     // Prepare update data for job_status
-    //     $updateData = [];
-
-    //     if ($request->filled('dateNeeded')) {
-    //         $updateData['old_dateNeeded'] = $oldDateNeeded;
-    //         $updateData['dateNeeded'] = $request->dateNeeded;
-    //     }
-
-    //     if ($request->filled('engNeeded')) {
-    //         $updateData['old_engNeeded'] = $oldEngNeeded;
-    //         $updateData['engNeeded'] = $request->engNeeded;
-    //     }
-
-    //     // Update only if there are changes
-    //     if (!empty($updateData)) {
-    //         $jobStatus->update($updateData);
-    //     }
-
-    //     // Update job_information table
-    //     DB::table('job_information')
-    //         ->where('recnum', $recnum)
-    //         ->update([
-    //             'jobType' => $request->jobType,
-    //             'descript' => $request->description,
-    //             'phase' => $request->phase,
-    //             'units' => $request->units,
-    //             'material' => $request->material,
-    //             'sys' => $request->sys,
-    //             'bldFloor' => $request->bldFloor,
-    //             'zoneUnit' => $request->zoneUnit,
-    //             'dx' => $request->dx,
-    //             'roughSuper' => $request->roughSuper,
-    //             'finishSuper' => $request->finishSuper,
-    //             'engineer' => $request->engineer,
-    //         ]);
-
-    //     // Update job_status table with other fields
-    //     DB::table('job_status')
-    //         ->where('recnum', $recnum)
-    //         ->update([
-    //             'engComplete' => $request->engComplete,
-    //             'prwr' => $request->wrhsMiscComplete,
-    //             'fabwr' => $request->fabComplete,
-    //             'shipComplete' => $request->shipComplete,
-    //             'fabmisc' => $request->febMisc,
-    //             'wrhs2_feb' => $request->wrhs2Feb,
-    //             'notes' => $request->note,
-    //         ]);
-
-    //     return redirect()->route('search')->with('success', 'Updated Successfully.');
-    // }
-
     public function update(Request $request, $recnum) {
         $jobStatus = JobStatus::where('recnum', $recnum)->first();
         
@@ -871,7 +807,6 @@ class JobInformations extends Controller
         }
     }
 
-
     //search_editByDateField
     public function export_excel_view_search_editBy_dateFeild(Request $request){
         $searchResults = session('searchResults', []);
@@ -903,6 +838,39 @@ class JobInformations extends Controller
         return view('admin.export_view.search', compact('search'));
     }
 
+    //warehouse
+    public function warehouse(Request $request){
+        $sortColumn = $request->get('column', session('data_sort_column_warehouse', 's.dateNeeded'));
+        $sortDirection = $request->get('order', session('data_sort_direction_warehouse', 'asc'));
+
+        // Store sorting preferences in session
+        session(['data_sort_column_warehouse' => $sortColumn, 'data_sort_direction_warehouse' => $sortDirection]);
+
+        // Fetch data with sorting
+        $warehouse = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->whereNotNull('s.dateNeeded')
+            ->whereNull('s.engComplete')
+            ->where(function($query) {
+                $query->whereNull('s.shipComplete')
+                      ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })->where('j.is_deleted', 0)
+            ->select('j.*', 's.*')
+            ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
+            ->orderBy('s.dateNeeded', 'ASC')
+            ->orderBy('s.engComplete', 'DESC')
+            ->paginate(150);
+
+
+        
+        if ($request->ajax()) {
+            return response()->json([
+                'table' => view('admin.warehouse', compact('warehouse'))->render()
+            ]);
+        }
+
+        return view('admin.warehouse', compact('warehouse'));
+    }
 
     public function AdminLogout(Request $request){
         Auth::logout();
