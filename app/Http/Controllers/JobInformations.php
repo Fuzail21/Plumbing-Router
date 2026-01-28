@@ -861,6 +861,20 @@ class JobInformations extends Controller
             ->orderBy('s.engComplete', 'DESC')
             ->paginate(150);
 
+        $warehouseWithoutPagination = DB::table('job_information as j')
+            ->join('job_status as s', 'j.recnum', '=', 's.recnum')
+            ->whereNotNull('s.dateNeeded')
+            ->whereNull('s.engComplete')
+            ->where(function($query) {
+                $query->whereNull('s.shipComplete')
+                      ->orWhere('s.shipComplete', '>=', DB::raw("DATEADD(DAY, -90, GETDATE())"));
+            })->where('j.is_deleted', 0)
+            ->select('j.*', 's.*')
+            ->orderByRaw('(CASE WHEN s.engComplete IS NULL THEN 1 ELSE 0 END) DESC')
+            ->orderBy('s.dateNeeded', 'ASC')
+            ->orderBy('s.engComplete', 'DESC')
+            ->get();
+
 
         
         if ($request->ajax()) {
@@ -868,9 +882,15 @@ class JobInformations extends Controller
                 'table' => view('admin.warehouse', compact('warehouse'))->render()
             ]);
         }
+        session(['warehouse' => $warehouseWithoutPagination]);
 
         return view('admin.warehouse', compact('warehouse'));
     }
+
+    public function export_excel_view_warehouse(Request $request){
+        $warehouse = session('warehouse', []);
+        return view('admin.export_view.warehouse', compact('warehouse'));
+    }   
 
     public function AdminLogout(Request $request){
         Auth::logout();

@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/search/export_excel', [JobInformations::class, 'export_excel_view_search'])->name('export.excel_search');
 
+    Route::post('/warehouse/export_excel', [JobInformations::class, 'export_excel_view_warehouse'])->name('export.warehouse_excel');
+
     Route::get('/admin/logout', [JobInformations::class, 'AdminLogout'])->name('admin_logout');
 
 

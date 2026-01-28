@@ -99,9 +99,16 @@
     <div class="app-content">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title"></h3>
-                <div class="card-tools">
-                    <ul class="pagination pagination-sm float-end">
+                <h3 class="card-title">
+                    <form method="POST" action="{{ route('export.warehouse_excel') }}">
+                        @csrf
+                        <button type="submit" style="width: 100%; max-width: 200px; margin: 5px 0 5px 5px; padding: 10px 20px; background-color: navy; color: white; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; transition: background-color 0.3s; display: block; text-align: center;">
+                            <i class="bi bi-filetype-xls"></i> EXPORT TO EXCEL
+                        </button>
+                    </form>
+                </h3>
+                <div class="card-tools" style="margin-top: 10px;">
+                    <ul class="pagination pagination-sm float-start">
                         <!-- Previous Page Link -->
                         @if ($warehouse->onFirstPage())
                         <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
@@ -162,11 +169,14 @@
                                 <th>Units</th>
                                 <th>ENG Complete</th>
                                 <th>WRHS Misc Complete</th>
-                                <th>Prior to Fab Completed</th>
+                                <th>Fab Misc Completed</th>
                                 <th>FAB Complete</th>
                                 <th>Ship Complete</th>                                
                                 <th>Rough-Super</th>
                                 <th>Notes</th>
+                                @auth
+                                    <th>Action</th>
+                                @endauth                               
                             </tr>
                         </thead>
                         <tbody>
@@ -187,6 +197,19 @@
                                     <td>{{ $warehouse->shipComplete ? \Carbon\Carbon::parse($warehouse->shipComplete)->format('m / d / Y') : '' }}</td>
                                     <td>{{ $warehouse->roughSuper }}</td>
                                     <td>{{ $warehouse->notes }}</td>
+                                    @auth
+                                        <td>
+                                            <a href="{{ route('form.edit', ['recnum' => $warehouse->recnum]) }}" class="text-success">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </td>     
+                                        {{-- <td>
+                                            <button class="btn text-danger p-0" style="background: none; border: none;"
+                                                    onclick="confirmDelete({{ $warehouse->recnum }})">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td> --}}
+                                    @endauth
                                 </tr>
                             @endforeach
                         </tbody>
