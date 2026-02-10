@@ -154,8 +154,8 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group"><label>Feb Misc:</label><input id="FebMisc" name="febMisc" value="{{ $record->fabmisc }}" type="text"></div>
-                <div class="form-group"><label>WRHS2 Feb:</label><input id="wrhs2Feb" name="wrhs2Feb" value="{{ $record->wrhs2_feb }}" type="date"></div>
+                <div class="form-group"><label>FFAB MISC:</label><input id="FebMisc" name="febMisc" value="{{ $record->fabmisc }}" type="text"></div>
+                <div class="form-group"><label>WRHS2FAB:</label><input id="wrhs2Feb" name="wrhs2Feb" value="{{ $record->wrhs2_feb }}" type="date"></div>
             </div>
 
             <div class="form-row table">
