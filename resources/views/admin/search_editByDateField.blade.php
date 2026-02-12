@@ -251,7 +251,7 @@
                                         <td>{{ $search->old_engNeeded ? \Carbon\Carbon::parse($search->old_engNeeded)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->engComplete ? \Carbon\Carbon::parse($search->engComplete)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->prwr }}</td>
-                                        <!-- <td>{{ $search->wrhs2_feb }}</td> -->
+                                        {{-- <td>{{ $search->wrhs2_feb }}</td> --}}
                                         <td>{{ $search->fabmisc }}</td>
                                         <td>{{ $search->fabwr ? \Carbon\Carbon::parse($search->fabwr)->format('m / d / Y') : '' }}</td>
                                         <td>{{ $search->shipComplete ? \Carbon\Carbon::parse($search->shipComplete)->format('m / d / Y') : '' }}</td>

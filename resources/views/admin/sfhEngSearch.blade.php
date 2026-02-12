@@ -144,10 +144,10 @@
                 <label>PM Act Manager</label>
                 <input type="text" value="{{ request('pmActManager') }}" name="pmActManager" style="width: 200px; padding: 5px; border: none; border-bottom: 1px solid #000;">
             </div>
-            <div style="display: flex; flex-direction: column; text-align: left;">
+            {{-- <div style="display: flex; flex-direction: column; text-align: left;">
                 <label>WRHS2 Feb</label>
                 <input type="text" value="{{ request('wrhs2Feb') }}" name="wrhs2Feb" style="width: 200px; padding: 5px; border: none; border-bottom: 1px solid #000;">
-            </div>
+            </div> --}}
         </div>
 
         <button type="submit" style="margin-top: 20px; padding: 10px 20px; background-color: navy; color: white; border: none; cursor: pointer; border-radius: 5px;">
@@ -236,7 +236,7 @@
                                     <th>Rough Super</th>
                                     <th>Engineer</th>
                                     <th>PM/Act Manager</th>
-                                    <!-- <th>WRHS2 FEB</th> -->
+                                    <!-- <th>WRHS2 FAB</th> -->
                                     <th>Notes</th>
                                     @auth
                                         <th colspan="2">Action</th>
@@ -263,7 +263,7 @@
                                             <td>{{ $SFH->roughSuper }}</td>
                                             <td>{{ $SFH->engineer }}</td>
                                             <td>{{ $SFH->pActManager }}</td>
-                                            <!-- <td>{{ $SFH->wrhs2_feb }}</td> -->
+                                            {{-- <td>{{ $SFH->wrhs2_feb }}</td>  --}}
                                             <td>{{ $SFH->notes }}</td>
                                             @auth
                                                 <td>

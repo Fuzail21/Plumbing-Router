@@ -194,7 +194,7 @@ class JobInformations extends Controller
                 'fabwr' => $request->fabComplete,
                 'shipComplete' => $request->shipComplete,
                 'fabmisc' => $request->febMisc,
-                'wrhs2_feb' => $request->wrhs2Feb,
+                // 'wrhs2_feb' => $request->wrhs2Feb,
                 'notes' => $request->note,
             ]);
         

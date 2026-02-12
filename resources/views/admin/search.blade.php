@@ -313,7 +313,7 @@
                                         <td>{{ $search->finishSuper }}</td>
                                         <td>{{ $search->engineer }}</td>
                                         <td>{{ $search->pActManager }}</td>
-                                        <!-- <td>{{ $search->wrhs2_feb }}</td> -->
+                                        {{-- <td>{{ $search->wrhs2_feb }}</td> --}}
                                         <td>{{ $search->notes }}</td>
                                         @auth
                                             <td>
