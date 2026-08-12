@@ -163,7 +163,7 @@
                                 <th>ENG Complete</th>
                                 {{-- <th>Old-Date-Needed</th> --}}
                                 <th>Rough-Super</th>
-                                {{-- <th>Engineer</th> --}}
+                                <th>Engineer</th>
                                 <th>PM/Act-Manager</th>
                                 <th>Notes</th>
                                 @auth
@@ -185,7 +185,7 @@
                                     <td>{{ $SFH->engComplete ? \Carbon\Carbon::parse($SFH->engComplete)->format('m / d / Y') : '' }}</td>
                                     {{-- <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td> --}}
                                     <td>{{ $SFH->roughSuper }}</td>
-                                    {{-- <td>{{ $SFH->engineer }}</td> --}}
+                                    <td>{{ $SFH->engineer }}</td>
                                     <td>{{ $SFH->pActManager }}</td>
                                     <td>{{ $SFH->notes }}</td>
                                     @auth

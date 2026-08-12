@@ -244,6 +244,7 @@
                                     <th>New Date Needed</th>
                                     <th>Date Needed</th>
                                     <th>Rough Super</th>
+                                    <th>Engineer</th>
                                     <th>Finish Super</th>
                                     @auth
                                         <th colspan="2">Action</th>
@@ -253,7 +254,7 @@
                             <tbody>
                                 @if($sfhEngOps->isEmpty())
                                 <tr>
-                                    <td colspan="14" style="text-align: center;">No records found. Please enter search criteria.</td>
+                                    <td colspan="16" style="text-align: center;">No records found. Please enter search criteria.</td>
                                 </tr>
                                 @else
                                     @foreach($sfhEngOps as $SFH)
@@ -271,6 +272,7 @@
                                             <td>{{ $SFH->dateNeeded ? \Carbon\Carbon::parse($SFH->dateNeeded)->format('m / d / Y') : '' }}</td>
                                             <td>{{ $SFH->old_dateNeeded ? \Carbon\Carbon::parse($SFH->old_dateNeeded)->format('m / d / Y') : '' }}</td>
                                             <td>{{ $SFH->roughSuper }}</td>
+                                            <td>{{ $SFH->engineer }}</td>
                                             <td>{{ $SFH->finishSuper }}</td>
                                             @auth
                                                 <td>
